@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title data-i18n="meta.home.title">Regina Tarasova — Графический дизайнер</title>
+  <meta name="description" data-i18n-content="meta.home.desc" content="Портфолио графического дизайнера Regina Tarasova — обложки альбомов, айдентика, печатный дизайн." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="assets/css/site.css?v=110">
+  <link rel="preload" href="https://fonts.gstatic.com/s/anonymouspro/v21/rP2Bp2a15UIB7Un-bOeISG3pLlw89CH98Ko.woff2" as="font" type="font/woff2" crossorigin>
+</head>
+<body class="page-cover">
+  <aside class="home-side home-side--inv">
+    <div class="home-side__top">
+      <a class="home-side__brand" href="index.html">
+        <span>Regina</span>
+        <span>Tarasova</span>
+      </a>
+      <span class="home-side__role" data-i18n="role">Графический дизайнер</span>
+    </div>
+
+    <nav class="home-side__nav" aria-label="Главная навигация" data-i18n-aria-label="a11y.mainNav">
+      <a href="work/" data-i18n="nav.portfolio">Портфолио</a>
+      <a href="work/misc/" data-i18n="nav.misc">Misc</a>
+      <a href="experience.html" data-i18n="nav.experience">Опыт работы</a>
+      <a href="work/#contact" data-i18n="nav.contacts">Контакты</a>
+    </nav>
+
+    <div class="home-side__lang" data-lang-switch>
+      <a data-lang="ru" class="is-active">RU</a>
+      <a data-lang="en">EN</a>
+    </div>
+  </aside>
+
+  <a class="home-cover" href="work/" data-slideshow>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/Egor_02_m.png">
+      <img class="home-cover__slide is-active" src="assets/slideshow/Egor_02.png" alt="" data-theme="light">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/R_07_m.png">
+      <img class="home-cover__slide" src="assets/slideshow/R_07.png" alt="" data-theme="dark">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/DQ_01_m.jpg">
+      <img class="home-cover__slide" src="assets/slideshow/DQ_01.jpg" alt="" data-theme="light">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/Jony_03_m.png">
+      <img class="home-cover__slide" src="assets/slideshow/Jony_03.jpg" alt="" data-theme="light">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/Cloud_04_m.png">
+      <img class="home-cover__slide" src="assets/slideshow/Cloud_04.png" alt="" data-theme="light">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/Tini_05_m.png">
+      <img class="home-cover__slide" src="assets/slideshow/Tini_05.png" alt="" data-theme="dark">
+    </picture>
+    <picture>
+      <source media="(max-width: 768px)" srcset="assets/slideshow/Posta_06_m.png">
+      <img class="home-cover__slide" src="assets/slideshow/Posta_06.jpg" alt="" data-theme="light">
+    </picture>
+  </a>
+
+  <button class="home-cover__zone home-cover__zone--prev" type="button" data-slide-prev aria-label="Предыдущий слайд" data-i18n-aria-label="a11y.slidePrev"></button>
+  <button class="home-cover__zone home-cover__zone--next" type="button" data-slide-next aria-label="Следующий слайд" data-i18n-aria-label="a11y.slideNext"></button>
+
+  <script src="assets/js/i18n.js?v=1" defer></script>
+  <script src="assets/js/site.js?v=74" defer></script>
+</body>
+</html>
