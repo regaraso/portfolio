@@ -14,6 +14,19 @@
   src: url('../fonts/AnonymousPro-Italic.woff2') format('woff2');
 }
 
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  padding: 8px 16px;
+  background: #181818;
+  color: #F9FBFE;
+  z-index: 9999;
+  font-size: 14px;
+}
+.skip-link:focus { top: 0; }
+
 /* ---------- Tokens ---------- */
 :root {
   --bg-light: #F9FBFE;
