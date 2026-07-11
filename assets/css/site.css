@@ -873,9 +873,12 @@ button { font: inherit; cursor: pointer; }
 .logo-strip__track {
   display: inline-flex;
   align-items: center;
-  gap: clamp(56px, 6vw, 100px);
+  gap: clamp(32px, 3.5vw, 56px);
   animation: logo-scroll 42s linear infinite;
   white-space: nowrap;
+}
+.logo-strip__track picture {
+  display: contents;
 }
 .logo-strip__track img {
   height: clamp(28px, 3vw, 42px);
