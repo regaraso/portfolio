@@ -241,18 +241,26 @@
   // Build modal once
   const overlay = document.createElement('div');
   overlay.className = 'lightbox';
-  overlay.innerHTML = '<div class="lightbox__frame"><img alt=""></div>';
+  overlay.innerHTML =
+    '<button class="lightbox__nav lightbox__nav--prev" aria-label="Предыдущая">&#8592;</button>' +
+    '<div class="lightbox__frame"><img alt=""></div>' +
+    '<button class="lightbox__nav lightbox__nav--next" aria-label="Следующая">&#8594;</button>';
   document.body.appendChild(overlay);
   const frameImg = overlay.querySelector('img');
+  const btnPrev = overlay.querySelector('.lightbox__nav--prev');
+  const btnNext = overlay.querySelector('.lightbox__nav--next');
 
   let items = [];
   let index = 0;
+  let touchStartX = 0;
 
   const show = (n) => {
     if (!items.length) return;
     index = (n + items.length) % items.length;
     const it = items[index];
     frameImg.src = it.getAttribute('href') || it.querySelector('img')?.src;
+    btnPrev.style.display = items.length > 1 ? '' : 'none';
+    btnNext.style.display = items.length > 1 ? '' : 'none';
   };
 
   const open = (group, i) => {
@@ -278,7 +286,18 @@
     });
   });
 
-  overlay.addEventListener('click', close);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay || e.target === frameImg) close();
+  });
+
+  btnPrev.addEventListener('click', (e) => { e.stopPropagation(); show(index - 1); });
+  btnNext.addEventListener('click', (e) => { e.stopPropagation(); show(index + 1); });
+
+  overlay.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  overlay.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 40) dx < 0 ? show(index + 1) : show(index - 1);
+  });
 
   document.addEventListener('keydown', (e) => {
     if (!overlay.classList.contains('is-open')) return;

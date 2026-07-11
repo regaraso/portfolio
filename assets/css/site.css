@@ -1330,34 +1330,50 @@ button { font: inherit; cursor: pointer; }
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 16px;
   padding: clamp(20px, 4vw, 56px);
   opacity: 0;
   pointer-events: none;
   transition: opacity .3s var(--ease);
-  cursor: zoom-out;
 }
 .lightbox.is-open {
   opacity: 1;
   pointer-events: auto;
 }
 .lightbox__frame {
-  width: 100%;
+  flex: 1 1 0;
+  min-width: 0;
   max-width: var(--container);
   max-height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: zoom-out;
 }
 .lightbox__frame img {
-  width: 100%;
+  width: auto;
   height: auto;
-  max-height: 100%;
+  max-width: 100%;
+  max-height: calc(100vh - clamp(40px, 8vw, 112px));
   object-fit: contain;
   display: block;
   transform: scale(.98);
   transition: transform .35s var(--ease);
 }
 .lightbox.is-open .lightbox__frame img { transform: scale(1); }
+.lightbox__nav {
+  flex: 0 0 auto;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 24px;
+  padding: 12px;
+  cursor: pointer;
+  opacity: .6;
+  transition: opacity .2s;
+  line-height: 1;
+}
+.lightbox__nav:hover { opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
