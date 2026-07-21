@@ -345,21 +345,32 @@ button { font: inherit; cursor: pointer; }
   mix-blend-mode: difference;
 }
 @keyframes side-in { to { opacity: 1; transform: none; } }
-#home-sidebar .home-side__top {
+/* Nav links rest at opacity:.55 (not 1) — animating them with side-in would
+   overshoot to fully opaque, then visibly snap back to .55 the instant
+   .is-entering is removed. This variant settles at the real resting value. */
+@keyframes side-in-dim { to { opacity: .55; transform: none; } }
+/* The entrance animation only runs once, scoped to a temporary
+   .is-entering class that JS removes once it's done. Without that
+   separation, an element's base rule would need opacity:0/translateY
+   too (for the animation to animate *from*) — and swapping to the
+   hover animation later would re-trigger that base state for a frame,
+   making the text vanish and jump before it blinks. Keeping the base
+   state at rest (opacity:1, no transform) avoids that entirely. */
+#home-sidebar.is-entering .home-side__top {
   opacity: 0;
   transform: translateY(14px);
   animation: side-in .6s var(--ease) .05s forwards;
 }
-#home-sidebar .home-side__nav a {
+#home-sidebar.is-entering .home-side__nav a {
   opacity: 0;
   transform: translateY(14px);
-  animation: side-in .55s var(--ease) forwards;
+  animation: side-in-dim .55s var(--ease) forwards;
 }
-#home-sidebar .home-side__nav a:nth-child(1) { animation-delay: .15s; }
-#home-sidebar .home-side__nav a:nth-child(2) { animation-delay: .25s; }
-#home-sidebar .home-side__nav a:nth-child(3) { animation-delay: .35s; }
-#home-sidebar .home-side__nav a:nth-child(4) { animation-delay: .45s; }
-#home-sidebar .home-side__lang {
+#home-sidebar.is-entering .home-side__nav a:nth-child(1) { animation-delay: .15s; }
+#home-sidebar.is-entering .home-side__nav a:nth-child(2) { animation-delay: .25s; }
+#home-sidebar.is-entering .home-side__nav a:nth-child(3) { animation-delay: .35s; }
+#home-sidebar.is-entering .home-side__nav a:nth-child(4) { animation-delay: .45s; }
+#home-sidebar.is-entering .home-side__lang {
   opacity: 0;
   transform: translateY(14px);
   animation: side-in .5s var(--ease) .55s forwards;
@@ -486,6 +497,18 @@ button { font: inherit; cursor: pointer; }
   .cursor-dot { display: none; }
 }
 
+/* Hide the plain system arrow where the custom dot is doing the job —
+   but keep the native pointer over anything clickable, so the "this is
+   a link" signal never disappears. */
+.page-home { cursor: none; }
+.page-home a, .page-home button { cursor: pointer; }
+/* ...except the slideshow's prev/next hit zones — those keep the system
+   cursor hidden, since the arrow-shaped .cover-cursor stands in for it. */
+.page-home .home-cover__zone { cursor: none; }
+@media (hover: none), (pointer: coarse) {
+  .page-home { cursor: auto; }
+}
+
 /* Section heading */
 .section-head {
   display: flex;
@@ -575,12 +598,22 @@ button { font: inherit; cursor: pointer; }
 
 .case-card__cta--external::after { content: "↗"; }
 
-/* Contacts — standalone section, not just the footer, but modest in size */
-.contact-section { padding: 56px var(--gutter) 0; }
-.contact-section + .site-footer { padding-top: 16px; }
-.contact-section__head { margin-bottom: 20px; }
-.contact-section__head h2 {
-  margin: 0;
+/* About + Contacts — one hairline-framed block instead of two separate
+   sections: a short personal line on the left, ways to reach out on the
+   right, split by a single hairline divider. */
+.about-contact { padding: 64px var(--gutter) 64px; }
+.about-contact__frame {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--hair-dark);
+}
+.about-contact__panel {
+  padding: 40px;
+}
+.about-contact__panel:first-child { border-right: 1px solid var(--hair-dark); }
+.about-contact__label {
+  display: block;
+  margin-bottom: 20px;
   font-size: 16px;
   font-weight: 700;
   letter-spacing: .16em;
@@ -588,31 +621,37 @@ button { font: inherit; cursor: pointer; }
   text-transform: uppercase;
   color: var(--muted-dark);
 }
-.contact-section__links {
+.about-contact__text {
+  font-size: clamp(18px, 1.8vw, 21px);
+  line-height: 1.55;
+}
+.about-contact__links {
   display: flex;
   flex-direction: column;
 }
-.contact-link {
+.about-contact__link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 0;
-  border-top: 1px solid var(--hair-dark);
+  padding: 14px 0;
   font-size: 18px;
   font-weight: 400;
   letter-spacing: .04em;
   text-transform: uppercase;
 }
-/* No border-bottom on the last link — the footer's own border-top right
-   below it already draws that line; adding both created a visible double
-   stripe. */
-.contact-link span {
+.about-contact__link:not(:last-child) { border-bottom: 1px solid var(--hair-dark); }
+.about-contact__link span {
   font-size: 16px;
   letter-spacing: normal;
   text-transform: none;
   transition: transform .35s var(--ease);
 }
-.contact-link:hover span { transform: translateX(8px); }
+.about-contact__link:hover span { transform: translateX(8px); }
+/* The footer's own border-top spans the full content column (edge to
+   edge), wider than the frame above it (which sits inset by the gutter) —
+   drop it here so the frame's own bottom border is the only divider, at
+   the frame's width. */
+.about-contact + .site-footer { border-top: none; }
 .about-meta {
   margin-top: var(--gap-m);
   display: grid;
@@ -1154,6 +1193,10 @@ button { font: inherit; cursor: pointer; }
 
   .case-hero__grid { grid-template-columns: 1fr; gap: var(--gap-m); }
   .case-meta { grid-template-columns: repeat(2, 1fr); }
+
+  .about-contact__frame { grid-template-columns: 1fr; }
+  .about-contact__panel:first-child { border-right: none; border-bottom: 1px solid var(--hair-dark); }
+  .about-contact__panel { padding: 28px var(--gutter); }
 
   .intro { grid-template-columns: 1fr; }
   .cd-grid { grid-template-columns: 1fr; }

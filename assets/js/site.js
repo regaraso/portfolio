@@ -394,6 +394,14 @@
   document.addEventListener('mouseleave', () => el.classList.remove('is-on'));
 })();
 
+// ---------- Home sidebar: drop the one-time entrance class once it's done,
+// so hover animations don't fight it afterwards ----------
+(function () {
+  const sidebar = document.getElementById('home-sidebar');
+  if (!sidebar || !sidebar.classList.contains('is-entering')) return;
+  setTimeout(() => sidebar.classList.remove('is-entering'), 1200);
+})();
+
 // ---------- Easter egg: footer brand ----------
 (function () {
   const brand = document.querySelector('.site-footer__brand');

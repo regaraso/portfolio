@@ -6,7 +6,7 @@
   <title data-i18n="meta.home.title">Regina Tarasova — Графический дизайнер</title>
   <meta name="description" data-i18n-content="meta.home.desc" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/css/site.css?v=124">
+  <link rel="stylesheet" href="assets/css/site.css?v=134">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reginatarasova.com/">
   <meta property="og:title" content="Regina Tarasova — Графический дизайнер">
@@ -33,7 +33,7 @@
 <body class="page-home">
 <a class="skip-link" href="#main-content">Перейти к содержимому</a>
 
-  <aside class="home-side home-side--inv" id="home-sidebar">
+  <aside class="home-side home-side--inv is-entering" id="home-sidebar">
     <div class="home-side__top">
       <a class="home-side__brand" href="index.html">
         <span>Regina</span>
@@ -62,37 +62,37 @@
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/Egor_02_m.webp" type="image/webp">
           <source srcset="assets/slideshow/Egor_02.webp" type="image/webp">
-          <img class="home-cover__slide is-active" src="assets/slideshow/Egor_02.png" alt="">
+          <img class="home-cover__slide is-active" src="assets/slideshow/Egor_02.png" alt="" data-theme="light">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/R_07_m.webp" type="image/webp">
           <source srcset="assets/slideshow/R_07.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/R_07.png" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/R_07.png" alt="" data-theme="dark">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/DQ_01_m.webp" type="image/webp">
           <source srcset="assets/slideshow/DQ_01.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/DQ_01.jpg" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/DQ_01.jpg" alt="" data-theme="light">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/Jony_03_m.webp" type="image/webp">
           <source srcset="assets/slideshow/Jony_03.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Jony_03.jpg" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/Jony_03.jpg" alt="" data-theme="light">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/Cloud_04_m.webp" type="image/webp">
           <source srcset="assets/slideshow/Cloud_04.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Cloud_04.png" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/Cloud_04.png" alt="" data-theme="light">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/Tini_05_m.webp" type="image/webp">
           <source srcset="assets/slideshow/Tini_05.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Tini_05.png" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/Tini_05.png" alt="" data-theme="dark">
         </picture>
         <picture>
           <source media="(max-width: 768px)" srcset="assets/slideshow/Posta_06_m.webp" type="image/webp">
           <source srcset="assets/slideshow/Posta_06.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Posta_06.jpg" alt="">
+          <img class="home-cover__slide" src="assets/slideshow/Posta_06.jpg" alt="" data-theme="light">
         </picture>
       </a>
       <button class="home-cover__zone home-cover__zone--prev" type="button" data-slide-prev aria-label="Предыдущий слайд" data-i18n-aria-label="a11y.slidePrev"></button>
@@ -144,14 +144,20 @@
         </div>
     </section>
 
-    <section id="contact" class="contact-section reveal">
-      <div class="contact-section__head">
-        <h2 data-i18n="home.contactH">Контакты</h2>
-      </div>
-      <div class="contact-section__links">
-        <a class="contact-link" href="mailto:reedgini@gmail.com" target="_blank">Email<span>→</span></a>
-        <a class="contact-link" href="https://t.me/redgini" rel="noopener" target="_blank">Telegram<span>→</span></a>
-        <a class="contact-link" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">Behance<span>→</span></a>
+    <section id="contact" class="about-contact reveal">
+      <div class="about-contact__frame">
+        <div class="about-contact__panel">
+          <span class="about-contact__label">Обо мне</span>
+          <p class="about-contact__text">Графический дизайнер с опытом 7+ лет. Делаю афиши для артистов, рекламные кампании, лендинги, брендинг. Умею переключаться между совершенно разными эстетиками в зависимости от задачи.</p>
+        </div>
+        <div class="about-contact__panel">
+          <span class="about-contact__label" data-i18n="home.contactH">Контакты</span>
+          <div class="about-contact__links">
+            <a class="about-contact__link" href="mailto:reedgini@gmail.com" target="_blank">Email<span>→</span></a>
+            <a class="about-contact__link" href="https://t.me/redgini" rel="noopener" target="_blank">Telegram<span>→</span></a>
+            <a class="about-contact__link" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">Behance<span>→</span></a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -163,7 +169,9 @@
     </footer>
   </main>
 
+  <div class="cursor-dot" data-cursor aria-hidden="true"></div>
+
   <script src="assets/js/i18n.js?v=1" defer></script>
-  <script src="assets/js/site.js?v=81" defer></script>
+  <script src="assets/js/site.js?v=83" defer></script>
 </body>
 </html>
