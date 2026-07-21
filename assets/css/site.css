@@ -331,21 +331,65 @@ button { font: inherit; cursor: pointer; }
 .home-side__lang a { opacity: .35; cursor: pointer; transition: opacity .2s, color .4s var(--ease); }
 .home-side__lang a.is-active { opacity: 1; }
 
+/* The regular (light) sidebar starts hidden and fades/slides in once the
+   hero has finished collapsing — it should only appear alongside the case
+   cards, not float over the slideshow. JS toggles .is-visible via scroll
+   progress. */
+/* The sidebar is always in place (fixed) — negative/blend-mode colored so
+   it self-adjusts over the dark hero AND the light page below, no fading
+   or repositioning. Its text plays a one-time staggered entrance instead. */
 .home-side--inv {
   background: none;
   color: #fff;
   z-index: 50;
   mix-blend-mode: difference;
 }
+@keyframes side-in { to { opacity: 1; transform: none; } }
+#home-sidebar .home-side__top {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: side-in .6s var(--ease) .05s forwards;
+}
+#home-sidebar .home-side__nav a {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: side-in .55s var(--ease) forwards;
+}
+#home-sidebar .home-side__nav a:nth-child(1) { animation-delay: .15s; }
+#home-sidebar .home-side__nav a:nth-child(2) { animation-delay: .25s; }
+#home-sidebar .home-side__nav a:nth-child(3) { animation-delay: .35s; }
+#home-sidebar .home-side__nav a:nth-child(4) { animation-delay: .45s; }
+#home-sidebar .home-side__lang {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: side-in .5s var(--ease) .55s forwards;
+}
 
-.home-cover {
-  position: fixed;
+/* Hero — full-screen slideshow at the top of the page. It scrolls away
+   like any other block, no shrinking/resizing on scroll. */
+.hero-shell {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-1 * clamp(220px, 21vw, 320px));
+  height: 100vh;
+  height: 100dvh;
+  background: var(--bg-light);
+  overflow: hidden;
+}
+.hero-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.hero-frame {
+  position: absolute;
   inset: 0;
   display: block;
   background: #000;
   cursor: pointer;
   overflow: hidden;
 }
+
 .home-cover__slide {
   position: absolute;
   inset: 0;
@@ -359,11 +403,12 @@ button { font: inherit; cursor: pointer; }
   opacity: 1;
 }
 
-/* Slideshow cover zones: prev / next — JS-driven cursor handles display */
+/* Slideshow zones: prev / next — confined to the hero frame, not the
+   whole viewport, so they don't intercept clicks once the page scrolls. */
 .home-cover__zone {
-  position: fixed;
+  position: absolute;
   top: 0; bottom: 0;
-  z-index: 45;
+  z-index: 5;
   background: none;
   border: none;
   padding: 0;
@@ -398,12 +443,6 @@ button { font: inherit; cursor: pointer; }
 
 @media (hover: none), (pointer: coarse) {
   .home-cover__zone { display: none; }
-}
-
-.page-cover {
-  height: 100vh;
-  height: 100dvh;
-  overflow: hidden;
 }
 
 .home-main {
@@ -535,6 +574,45 @@ button { font: inherit; cursor: pointer; }
 .case-card:hover .case-card__cta::after { transform: translateX(8px); }
 
 .case-card__cta--external::after { content: "↗"; }
+
+/* Contacts — standalone section, not just the footer, but modest in size */
+.contact-section { padding: 56px var(--gutter) 0; }
+.contact-section + .site-footer { padding-top: 16px; }
+.contact-section__head { margin-bottom: 20px; }
+.contact-section__head h2 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.contact-section__links {
+  display: flex;
+  flex-direction: column;
+}
+.contact-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-top: 1px solid var(--hair-dark);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+}
+/* No border-bottom on the last link — the footer's own border-top right
+   below it already draws that line; adding both created a visible double
+   stripe. */
+.contact-link span {
+  font-size: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+  transition: transform .35s var(--ease);
+}
+.contact-link:hover span { transform: translateX(8px); }
 .about-meta {
   margin-top: var(--gap-m);
   display: grid;
@@ -1099,34 +1177,11 @@ button { font: inherit; cursor: pointer; }
   .home-side__role { display: none; }
   .home-side__lang { display: none; }
   .home-main { margin-left: 0; }
-
-  .page-cover .home-side {
-    position: fixed;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 32px var(--gutter);
-  }
-  .page-cover .home-side__brand span:last-child { display: block; }
-  .page-cover .home-side__nav {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin: auto 0;
-    gap: 20px;
-    font-size: 16px;
-  }
-  .page-cover .home-side__role { display: block; max-width: 10ch; }
-  .page-cover .home-side__lang { display: flex; font-size: 16px; }
-
-  .home-cover__nav {
-    right: var(--gutter);
-    bottom: 32px;
-  }
-  .home-cover__arrow {
-    font-size: 12px;
-    line-height: 1.45;
-  }
+  .hero-shell { width: 100%; margin-left: 0; }
+  /* #home-sidebar stays fixed (out of flow) even on mobile, as a compact
+     top bar over the hero — a static position would push the hero down
+     and leave a plain white strip above it instead of overlaying it. */
+  #home-sidebar { position: fixed; top: 0; left: 0; right: 0; bottom: auto; width: auto; height: auto; }
 
   .exp-row { grid-template-columns: 1fr; gap: var(--gap-s); }
   .exp-row__years { padding-top: 0; }
@@ -1139,9 +1194,6 @@ button { font: inherit; cursor: pointer; }
   /* Case hero: full-width text at tablet, no forced title breaks */
   .case-hero__sub { max-width: none; }
   .case-hero__title br { display: none; }
-
-  /* Cover page: name stays at 32px on mobile */
-  .page-cover .home-side__brand { font-size: 32px; }
 }
 
 @media (max-width: 560px) {
@@ -1155,13 +1207,10 @@ button { font: inherit; cursor: pointer; }
   .next-case__grid { grid-template-columns: 1fr; }
 
   .home-side { padding: 14px var(--gutter); }
-  .home-side__brand { font-size: 20px; }
+  .home-side__brand { font-size: 0; }
   .home-side__brand span:first-child { display: none; }
-  .home-side__brand::before { content: "R."; }
-  .page-cover .home-side__brand span:first-child { display: block; }
-  .page-cover .home-side__brand::before { content: none; }
+  .home-side__brand::before { content: "R."; font-size: 13px; }
   .home-side__nav { gap: 14px; font-size: 12px; }
-  .page-cover .home-side__nav { font-size: 16px; gap: 20px; }
   .home-work { padding: 28px var(--gutter) 48px; padding-top: calc(48px + 28px); }
 
   /* tighten the 64px paddings on phones */

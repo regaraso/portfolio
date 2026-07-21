@@ -359,12 +359,11 @@
 
 })();
 
-// ---------- Home cover: mix-blend-mode arrow cursor ----------
+// ---------- Home cover: mix-blend-mode arrow cursor over prev/next zones ----------
 (function () {
-  const cover = document.querySelector('[data-slideshow]');
   const prevZone = document.querySelector('.home-cover__zone--prev');
   const nextZone = document.querySelector('.home-cover__zone--next');
-  if (!cover || !prevZone || !nextZone) return;
+  if (!prevZone || !nextZone) return;
 
   const el = document.createElement('div');
   el.className = 'cover-cursor';
@@ -372,22 +371,19 @@
   document.body.appendChild(el);
 
   let raf = null;
-  let px = 0, py = 0;
 
   document.addEventListener('mousemove', (e) => {
-    px = e.clientX; py = e.clientY;
-    const vw = window.innerWidth;
-    const inPrev = px < 560;
-    const inNext = px > vw - 240;
-    const overSide = !!document.elementFromPoint(px, py)?.closest('.home-side');
+    const px = e.clientX, py = e.clientY;
+    const target = document.elementFromPoint(px, py);
+    const zone = target ? target.closest('.home-cover__zone') : null;
 
     if (raf) cancelAnimationFrame(raf);
     raf = requestAnimationFrame(() => {
       el.style.left = px + 'px';
-      el.style.top  = py + 'px';
+      el.style.top = py + 'px';
 
-      if (!overSide && (inPrev || inNext)) {
-        el.textContent = inPrev ? '←' : '→';
+      if (zone) {
+        el.textContent = zone.classList.contains('home-cover__zone--prev') ? '←' : '→';
         el.classList.add('is-on');
       } else {
         el.classList.remove('is-on');

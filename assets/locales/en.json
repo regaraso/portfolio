@@ -21,6 +21,9 @@
   "footer": {
     "rights": "All rights reserved"
   },
+  "home": {
+    "contactH": "Contact"
+  },
   "meta": {
     "home":      { "title": "Regina Tarasova — Graphic Designer", "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design." },
     "work":      { "title": "Portfolio · Regina Tarasova", "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design." },
