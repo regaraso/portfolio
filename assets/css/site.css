@@ -463,6 +463,30 @@ button { font: inherit; cursor: pointer; }
   padding: 64px var(--gutter);
 }
 
+/* Home intro — full-screen, very fast (3s), hard-cut slideshow shown once
+   on first visit, then wiped away like a curtain to reveal the page
+   already scrolled to the case grid. No fades between slides on purpose —
+   only the closing wipe itself eases. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: #000;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform .6s cubic-bezier(.65, 0, .35, 1);
+}
+.intro.is-closing { transform: translateY(-100%); }
+.intro__slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.intro__slide.is-active { opacity: 1; }
+
 /* Custom cursor dot */
 .cursor-dot {
   position: fixed;
