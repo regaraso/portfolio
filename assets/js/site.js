@@ -402,56 +402,6 @@
   setTimeout(() => sidebar.classList.remove('is-entering'), 1200);
 })();
 
-// ---------- Home intro: a fast hard-cut slideshow that plays on every
-// plain visit to the home page, then a curtain wipe reveals the page.
-// Arriving via an anchor (e.g. the "Портфолио"/"Контакты" nav links from
-// other pages, which land on index.html#work or #contact) skips it
-// entirely — that's a deliberate jump to a specific spot, not a fresh
-// "walk in the door" visit, so the intro would just get in the way. The
-// sequence starts AND ends on slide 1, so the last intro frame matches
-// the real hero's initial slide underneath — no visual jump at the seam.
-// The real hero (with its own slower slideshow + arrows) sits underneath
-// the whole time, unaffected — scrolling back up to it after the curtain
-// lifts works exactly as it always does. ----------
-(function () {
-  const intro = document.getElementById('intro');
-  const work = document.getElementById('work');
-  if (!intro || !work) return;
-
-  if (location.hash) { intro.remove(); return; }
-
-  const slides = intro.querySelectorAll('.intro__slide');
-  if (!slides.length) { intro.remove(); return; }
-
-  document.documentElement.style.overflow = 'hidden';
-
-  const FRAME_MS = 300;
-  // 0,1,2,...,n-1,0 — starts on slide 1, cycles through the rest, ends back on slide 1.
-  const sequence = [...slides.keys(), 0];
-  let step = 0;
-
-  const tick = setInterval(() => {
-    step += 1;
-    if (step >= sequence.length) { finish(); return; }
-    slides.forEach((s) => s.classList.remove('is-active'));
-    slides[sequence[step]].classList.add('is-active');
-  }, FRAME_MS);
-
-  let done = false;
-  const finish = () => {
-    if (done) return;
-    done = true;
-    clearInterval(tick);
-
-    work.scrollIntoView({ behavior: 'auto' });
-    document.documentElement.style.overflow = '';
-
-    intro.classList.add('is-closing');
-    intro.addEventListener('transitionend', () => intro.remove(), { once: true });
-  };
-
-  intro.addEventListener('click', finish);
-})();
 
 // ---------- Easter egg: footer brand ----------
 (function () {
