@@ -22,7 +22,10 @@
     "rights": "All rights reserved"
   },
   "home": {
-    "contactH": "Contact"
+    "aboutH": "About",
+    "contactH": "Contact",
+    "aboutText": "Graphic designer with 7+ years of experience. I make posters for artists, ad campaigns, landing pages, branding.",
+    "aboutPersonal": "I also love concerts — flew to the other side of the planet to Argentina for one, went on two solo trips to Europe, I'm learning Spanish, and I was even a backstage manager for a rock band!"
   },
   "meta": {
     "home":      { "title": "Regina Tarasova — Graphic Designer", "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design." },

@@ -625,6 +625,11 @@ button { font: inherit; cursor: pointer; }
   font-size: clamp(18px, 1.8vw, 21px);
   line-height: 1.55;
 }
+.about-contact__text--personal {
+  margin-top: 20px;
+  font-size: 16px;
+  color: var(--muted-dark);
+}
 .about-contact__links {
   display: flex;
   flex-direction: column;
