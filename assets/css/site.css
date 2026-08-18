@@ -76,7 +76,34 @@
 /* ---------- Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; scrollbar-width: none; }
+html::-webkit-scrollbar { display: none; }
+
+/* ---------- Custom scroll indicator ---------- */
+.scroll-indicator {
+  position: fixed;
+  right: 8px;
+  top: 24px;
+  bottom: 24px;
+  width: 1px;
+  z-index: 200;
+  pointer-events: none;
+}
+.scroll-indicator__track {
+  position: absolute;
+  inset: 0;
+  background: color-mix(in srgb, var(--ink) 15%, transparent);
+}
+.scroll-indicator__thumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background: var(--ink);
+  transition: height .05s linear;
+}
+@media (max-width: 768px) { .scroll-indicator { display: none; } }
 body {
   font-family: var(--font);
   font-weight: 400;
@@ -373,6 +400,8 @@ button { font: inherit; cursor: pointer; }
   transform: translateY(-100%);
 }
 
+.site-footer .home-side__lang { display: none; }
+
 .home-side__lang {
   display: flex;
   gap: 12px;
@@ -446,7 +475,7 @@ button { font: inherit; cursor: pointer; }
 }
 .hero-frame {
   position: absolute;
-  inset: 0;
+  inset: 24px;
   display: block;
   background: #000;
   cursor: pointer;
@@ -470,15 +499,15 @@ button { font: inherit; cursor: pointer; }
    whole viewport, so they don't intercept clicks once the page scrolls. */
 .home-cover__zone {
   position: absolute;
-  top: 0; bottom: 0;
+  top: 24px; bottom: 24px;
   z-index: 5;
   background: none;
   border: none;
   padding: 0;
   cursor: none;
 }
-.home-cover__zone--prev { left: 0; width: 560px; }
-.home-cover__zone--next { right: 0; width: 240px; }
+.home-cover__zone--prev { left: 24px; width: 560px; }
+.home-cover__zone--next { right: 24px; width: 240px; }
 
 @media (max-width: 960px) {
   .home-cover__zone { display: none; }
@@ -1367,26 +1396,71 @@ button { font: inherit; cursor: pointer; }
   .vinyl-hero__sleeve { width: 86%; margin-right: 0; margin-bottom: -20%; }
   .vinyl-hero__record { width: 78%; }
 
-  /* Sidebar collapses to a static top bar; work list flows full-width below */
+  /* Sidebar: stays vertical over the full-bleed hero, then collapses to a
+     horizontal blur header once the hero scrolls out of view (.is-header) */
   .home-side {
-    position: static;
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: clamp(100px, 28vw, 200px);
+    padding: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+    /* no transition — layout snap avoids the half-screen flash on scroll-back */
+    transition: none;
+    pointer-events: none;
+  }
+  /* only fade the background when entering header mode */
+  .home-side.is-header { transition: background .25s var(--ease); }
+  /* re-enable events only on actual interactive elements */
+  .home-side__brand,
+  .home-side__nav a,
+  .home-side__lang a { pointer-events: auto; }
+
+  .home-side__brand { white-space: normal; }
+  .home-side__brand span { display: block; }
+  .home-side__role { display: block; white-space: normal; font-size: 16px; }
+  .home-side__lang { display: none; }
+
+  /* Collapsed header state — triggered by JS when hero leaves viewport */
+  .home-side.is-header {
+    inset: 0 0 auto 0;
     width: auto;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    padding: 18px var(--gutter);
+    padding: 20px;
+    pointer-events: auto;
   }
-  .home-side__brand { font-size: 16px; }
-  .home-side__brand span:last-child { display: none; }
-  .home-side__nav { display: flex; flex: 0 1 auto; flex-direction: row; justify-content: flex-end; gap: clamp(14px, 2.6vw, 28px); margin-top: 0; }
-  .home-side__role { display: none; }
-  .home-side__lang { display: none; }
+  .home-side--inv.is-header {
+    mix-blend-mode: normal;
+    background: rgba(249, 251, 254, .92);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    color: var(--ink);
+    border-bottom: 1px solid var(--hair-dark);
+  }
+  .home-side.is-header .home-side__brand { font-size: 0; white-space: nowrap; }
+  .home-side.is-header .home-side__brand span { display: none; }
+  .home-side.is-header .home-side__brand::after { content: "R."; font-size: 16px; }
+  .home-side.is-header .home-side__role { display: none; }
+  .home-side.is-header .home-side__nav { display: flex; flex-direction: row; gap: clamp(12px, 2.4vw, 20px); }
+
+  /* Lang switcher: hidden in sidebar, shown in footer on mobile */
+  /* Footer: one horizontal row with lang appended */
+  .page-home .site-footer { display: flex; flex-direction: row; align-items: baseline; justify-content: space-between; flex-wrap: nowrap; }
+  .page-home .site-footer .site-footer__row { flex: 1; }
+  .page-home .site-footer .home-side__lang { display: flex; flex-shrink: 0; gap: 12px; }
+  .page-home .site-footer .home-side__lang a { color: var(--ink); opacity: .55; }
+  .page-home .site-footer .home-side__lang a.is-active { opacity: 1; }
+
+  /* Hero: full bleed on mobile */
   .home-main { margin-left: 0; }
   .hero-shell { width: 100%; margin-left: 0; }
-  /* #home-sidebar stays fixed (out of flow) even on mobile, as a compact
-     top bar over the hero — a static position would push the hero down
-     and leave a plain white strip above it instead of overlaying it. */
-  #home-sidebar { position: fixed; top: 0; left: 0; right: 0; bottom: auto; width: auto; height: auto; }
+  .hero-frame { inset: 0; }
+  .home-cover__zone { top: 0; bottom: 0; }
+  .home-cover__zone--prev { left: 0; }
+  .home-cover__zone--next { right: 0; }
 
   .exp-row { grid-template-columns: 1fr; gap: var(--gap-s); }
   .exp-row__years { padding-top: 0; }
@@ -1411,11 +1485,7 @@ button { font: inherit; cursor: pointer; }
   .site-footer__links { margin-left: 0; }
   .next-case__grid { grid-template-columns: 1fr; }
 
-  .home-side { padding: 14px var(--gutter); }
-  .home-side__brand { font-size: 0; }
-  .home-side__brand span:first-child { display: none; }
-  .home-side__brand::before { content: "R."; font-size: 13px; }
-  .home-side__nav { gap: 14px; font-size: 12px; }
+  .home-side { padding: 20px; }
   .home-work { padding: 28px var(--gutter) 48px; padding-top: calc(48px + 28px); }
 
   /* tighten the 64px paddings on phones */

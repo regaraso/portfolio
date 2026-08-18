@@ -395,6 +395,17 @@
   document.addEventListener('mouseleave', () => el.classList.remove('is-on'));
 })();
 
+// ---------- Mobile sidebar: collapse to header when hero scrolls out ----------
+(function () {
+  const sidebar = document.getElementById('home-sidebar');
+  const hero = document.querySelector('.hero-shell');
+  if (!sidebar || !hero) return;
+  const io = new IntersectionObserver((entries) => {
+    sidebar.classList.toggle('is-header', !entries[0].isIntersecting);
+  }, { threshold: 0.9 });
+  io.observe(hero);
+})();
+
 // ---------- Home sidebar: drop the one-time entrance class once it's done,
 // so hover animations don't fight it afterwards ----------
 (function () {
@@ -430,6 +441,22 @@
 })();
 
 
+
+// ---------- Custom scroll indicator ----------
+(function () {
+  const indicator = document.createElement('div');
+  indicator.className = 'scroll-indicator';
+  indicator.innerHTML = '<div class="scroll-indicator__track"></div><div class="scroll-indicator__thumb"></div>';
+  document.body.appendChild(indicator);
+  const thumb = indicator.querySelector('.scroll-indicator__thumb');
+  const update = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const pct = max > 0 ? (window.scrollY / max) * 100 : 0;
+    thumb.style.height = pct + '%';
+  };
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
 
 // ---------- Contacts popup ----------
 (function () {
