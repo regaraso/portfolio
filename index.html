@@ -6,10 +6,11 @@
   <title data-i18n="meta.home.title">Regina Tarasova — Графический дизайнер</title>
   <meta name="description" data-i18n-content="meta.home.desc" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать" />
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/css/site.css?v=136">
+  <link rel="stylesheet" href="assets/css/site.css?v=163">
+  <style>html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis.lenis-smooth iframe{pointer-events:none}</style>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reginatarasova.com/">
-  <meta property="og:title" content="Regina Tarasova — Графический дизайнер">
+  <meta property="og:title" content="REGINA TARASOVA — Графический дизайнер">
   <meta property="og:description" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать">
   <meta property="og:image" content="https://reginatarasova.com/assets/og.png">
   <meta name="twitter:card" content="summary_large_image">
@@ -47,7 +48,7 @@
       <a href="#work" aria-current="page" data-i18n="nav.portfolio">Портфолио</a>
       <a href="work/misc/" data-i18n="nav.misc">Misc</a>
       <a href="experience.html" data-i18n="nav.experience">Опыт работы</a>
-      <a href="#contact" data-i18n="nav.contacts">Контакты</a>
+      <a href="#" data-contacts-open data-i18n="nav.contacts">Контакты</a>
     </nav>
 
     <div class="home-side__lang" data-lang-switch>
@@ -104,12 +105,18 @@
      </div>
     </div>
 
+    <section class="home-about reveal">
+      <p class="home-about__text">МЕНЯ ЗОВУТ РЕГИНА,<br>Я ГРАФИЧЕСКИЙ ДИЗАЙНЕР<br>С&nbsp;ОПЫТОМ 7+ ЛЕТ</p>
+      <p class="home-about__text">СПЕЦИАЛИЗИРУЮСЬ<br>(НО НЕ&nbsp;ОГРАНИЧИВАЮСЬ) НА&nbsp;DIGITAL И&nbsp;КОНЦЕРТНОЙ ИНДУСТРИИ</p>
+    </section>
+
     <section id="work" class="home-work">
       <div class="work">
           <a class="case-card reveal" href="work/recuerdo/" aria-label="Открыть кейс TINI — Recuerdo" data-i18n-aria-label="a11y.openRecuerdo">
             <div class="case-card__media">
               <picture><source srcset="assets/case_recuerdo/cover_detail.webp" type="image/webp"><img src="assets/case_recuerdo/cover_detail.jpg" alt="TINI Recuerdo — packaging overview" fetchpriority="high"></picture>
             </div>
+            <img class="case-card__img-sub" src="assets/case_recuerdo/cover_detail_02.jpg" alt="" loading="lazy">
             <div class="case-card__meta">
               <h3 class="case-card__name">TINI — Recuerdo<small data-i18n="cards.recuerdoSub">Обложка и упаковка · 2025</small></h3>
               <span class="case-card__cta" data-i18n="cards.cta">Подробнее</span>
@@ -146,24 +153,7 @@
             </div>
           </a>
         </div>
-    </section>
 
-    <section id="contact" class="about-contact reveal">
-      <div class="about-contact__frame">
-        <div class="about-contact__panel">
-          <span class="about-contact__label" data-i18n="home.aboutH">Обо мне</span>
-          <p class="about-contact__text" data-i18n="home.aboutText">Графический дизайнер с опытом 7+ лет. Делаю афиши для артистов, рекламные кампании, лендинги, брендинг.</p>
-          <p class="about-contact__text about-contact__text--personal" data-i18n="home.aboutPersonal">А ещё обожаю концерты — ради одного даже полетела на другой конец планеты, в Аргентину, ездила в Европу в соло-путешествия два раза, изучаю испанский, и даже была бэкстейдж-менеджером у рок-группы!</p>
-        </div>
-        <div class="about-contact__panel">
-          <span class="about-contact__label" data-i18n="home.contactH">Контакты</span>
-          <div class="about-contact__links">
-            <a class="about-contact__link" href="mailto:reedgini@gmail.com" target="_blank">Email<span>→</span></a>
-            <a class="about-contact__link" href="https://t.me/redgini" rel="noopener" target="_blank">Telegram<span>→</span></a>
-            <a class="about-contact__link" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">Behance<span>→</span></a>
-          </div>
-        </div>
-      </div>
     </section>
 
     <footer class="site-footer">
@@ -174,9 +164,34 @@
     </footer>
   </main>
 
-  <div class="cursor-dot" data-cursor aria-hidden="true"></div>
+  <div class="contacts-popup" id="contacts-popup" aria-modal="true" role="dialog" aria-label="Контакты">
+    <button class="contacts-popup__close" data-contacts-close aria-label="Закрыть">✕</button>
+    <div class="contacts contacts-popup__inner">
+      <a class="contacts__row" href="mailto:reedgini@gmail.com" target="_blank">
+        <span class="contacts__name">Email</span>
+        <span class="contacts__val">reedgini@gmail.com</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+      <a class="contacts__row" href="https://t.me/redgini" rel="noopener" target="_blank">
+        <span class="contacts__name">Telegram</span>
+        <span class="contacts__val">@redgini</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+      <a class="contacts__row" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">
+        <span class="contacts__name">Behance</span>
+        <span class="contacts__val">reginatarasova</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+    </div>
+  </div>
 
   <script src="assets/js/i18n.js?v=1" defer></script>
-  <script src="assets/js/site.js?v=88" defer></script>
+  <script src="assets/js/site.js?v=91" defer></script>
+  <script src="assets/js/lenis.min.js"></script>
+  <script>
+    var lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, touchMultiplier: 1 });
+    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+  </script>
 </body>
 </html>

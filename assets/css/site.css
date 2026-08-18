@@ -1,17 +1,35 @@
 /* ---------- Fonts ---------- */
 @font-face {
-  font-family: 'Anonymous Pro';
+  font-family: 'Geist Mono';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/AnonymousPro-Regular.woff2') format('woff2');
+  src: url('../fonts/GeistMono-latin.woff2') format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
-  font-family: 'Anonymous Pro';
-  font-style: italic;
-  font-weight: 400;
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
   font-display: swap;
-  src: url('../fonts/AnonymousPro-Italic.woff2') format('woff2');
+  src: url('../fonts/GeistMono-latin-ext.woff2') format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/GeistMono-cyrillic.woff2') format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../fonts/GeistMono-cyrillic-ext.woff2') format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
 }
 
 /* ---------- Skip link ---------- */
@@ -40,9 +58,9 @@
   --grad-a: #4AAB9D;
   --grad-b: #CCD463;
 
-  --font: "Anonymous Pro", monospace;
-  --display: "Anonymous Pro", monospace;
-  --name-font: "Anonymous Pro", monospace;
+  --font: "Geist Mono", monospace;
+  --display: "Geist Mono", monospace;
+  --name-font: "Geist Mono", monospace;
 
   --ease: cubic-bezier(.2, .7, .15, 1);
   --gutter: clamp(20px, 4vw, 64px);
@@ -95,7 +113,7 @@ button { font: inherit; cursor: pointer; }
   font-family: var(--font);
   font-weight: 400;
   font-size: 11px;
-  letter-spacing: .14em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
 }
@@ -143,7 +161,7 @@ button { font: inherit; cursor: pointer; }
   display: flex;
   gap: clamp(18px, 2.6vw, 36px);
   font-size: 16px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin-left: auto;
 }
@@ -151,18 +169,13 @@ button { font: inherit; cursor: pointer; }
   opacity: .82;
   transition: opacity .25s var(--ease);
 }
-@keyframes nav-pulse {
-  0%, 49.9% { opacity: 1; }
-  50%, 100% { opacity: .3; }
-}
-.site-header__nav a:hover,
-.home-side__nav a:hover { animation: nav-pulse .45s linear infinite; }
+.site-header__nav a:hover { opacity: 1; }
 .site-header__lang {
   display: none; /* hidden in case-page headers — language is global via URL */
   gap: 10px;
   margin-left: clamp(14px, 2vw, 28px);
   font-size: 12px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .site-header__lang a { opacity: .4; cursor: pointer; transition: opacity .2s; }
@@ -208,24 +221,24 @@ button { font: inherit; cursor: pointer; }
 .site-footer__brand {
   font-weight: 400;
   font-size: 16px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .site-footer__links {
   display: flex;
   gap: 22px;
   font-size: 16px;
-  letter-spacing: .16em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-light);
   margin-left: auto;
 }
 .site-footer__links a { transition: color .25s var(--ease); }
-.site-footer__links a:hover { animation: nav-pulse .45s linear infinite; }
-.site-footer__copy { font-size: 16px; color: var(--muted-light); letter-spacing: .08em; text-transform: uppercase; }
+.site-footer__links a:hover { opacity: 1; }
+.site-footer__copy { font-size: 16px; color: var(--muted-light); letter-spacing: 0; text-transform: uppercase; }
 
 /* Home/light pages: footer reads as part of the light column, not a dark band */
-.page-home .site-footer,
+.page-home .site-footer { background: var(--bg-light); color: var(--ink); border-top: none; }
 .page-light .site-footer { background: var(--bg-light); color: var(--ink); border-top: 1px solid var(--hair-dark); }
 .page-home .site-footer__links,
 .page-light .site-footer__links { color: var(--muted-dark); }
@@ -284,48 +297,69 @@ button { font: inherit; cursor: pointer; }
   display: block;
   font-family: var(--name-font);
   font-weight: 400;
-  font-size: 36px;
+  font-size: 16px;
   line-height: 1;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
   text-transform: uppercase;
+  white-space: nowrap;
 }
-.home-side__brand span { display: block; }
+.home-side__brand span { display: inline; }
 
 .home-side__top {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
 }
 
 .home-side__role {
   font-size: 16px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
-  opacity: .55;
+  white-space: nowrap;
 }
 
 .home-side__nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
   margin: auto 0;
   font-size: 16px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .home-side__nav a {
   position: relative;
+  overflow: hidden;
   width: max-content;
   opacity: .55;
   transition: opacity .25s var(--ease);
 }
-.home-side__nav a:hover { opacity: 1; /* overridden by nav-pulse animation */ }
+.home-side__nav a:hover { opacity: 1; }
+.home-side__nav a .nav-out {
+  display: block;
+  transition: transform .45s cubic-bezier(.006, .798, .427, .996), opacity .45s cubic-bezier(0, .698, .304, .991);
+}
+.home-side__nav a .nav-in {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  pointer-events: none;
+  transition: transform .45s cubic-bezier(.006, .798, .427, .996);
+}
+.home-side__nav a:hover .nav-out {
+  transform: translateY(-100%);
+  opacity: .3;
+}
+.home-side__nav a:hover .nav-in {
+  transform: translateY(-100%);
+}
 
 .home-side__lang {
   display: flex;
   gap: 12px;
   font-size: 16px;
-  letter-spacing: .12em;
+  letter-spacing: 0;
   text-transform: uppercase;
 }
 .home-side__lang a { opacity: .35; cursor: pointer; transition: opacity .2s, color .4s var(--ease); }
@@ -490,6 +524,20 @@ button { font: inherit; cursor: pointer; }
 .home-main {
   margin-left: clamp(220px, 21vw, 320px);
 }
+.home-about {
+  padding: clamp(64px, 10vw, 120px) var(--gutter);
+}
+.home-about__text {
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  margin: 0 0 clamp(24px, 3vw, 48px);
+  max-width: 16em;
+}
+.home-about__text:last-child { margin-bottom: 0; }
+
 .home-work {
   padding: 64px var(--gutter);
 }
@@ -518,47 +566,8 @@ button { font: inherit; cursor: pointer; }
 }
 .intro__slide.is-active { opacity: 1; }
 
-/* Custom cursor dot */
-.cursor-dot {
-  position: fixed;
-  top: 0; left: 0;
-  width: 10px;
-  height: 10px;
-  background: #fff;
-  border-radius: 50%;
-  pointer-events: none;
-  mix-blend-mode: difference;
-  z-index: 80;
-  transform: translate3d(-50%, -50%, 0);
-  transition: width .25s var(--ease), height .25s var(--ease);
-  opacity: 0;
-}
-/* On the home cover, skip the blend trick — switch to a solid color
-   matching the active slide's theme instead (blend-mode washes out
-   to unreadable gray against mid-tone photos). */
-.cursor-dot[data-cover-theme] {
-  mix-blend-mode: normal;
-  transition: width .25s var(--ease), height .25s var(--ease), background-color .4s var(--ease);
-}
-.cursor-dot[data-cover-theme].is-on-light {
-  background: var(--ink);
-}
-.cursor-dot.is-on { opacity: 1; }
-.cursor-dot.is-grow { width: 56px; height: 56px; }
-
-/* No real persistent pointer on touch/coarse input — the dot just lags
-   and renders oddly there, so don't show it at all. */
-@media (hover: none), (pointer: coarse) {
-  .cursor-dot { display: none; }
-}
-
-/* Hide the plain system arrow where the custom dot is doing the job —
-   but keep the native pointer over anything clickable, so the "this is
-   a link" signal never disappears. */
-.page-home { cursor: none; }
-.page-home a, .page-home button { cursor: pointer; }
-/* ...except the slideshow's prev/next hit zones — those keep the system
-   cursor hidden, since the arrow-shaped .cover-cursor stands in for it. */
+.page-home { text-transform: uppercase; }
+/* Slideshow prev/next zones keep cursor hidden — the arrow .cover-cursor stands in for it. */
 .page-home .home-cover__zone { cursor: none; }
 @media (hover: none), (pointer: coarse) {
   .page-home { cursor: auto; }
@@ -588,7 +597,7 @@ button { font: inherit; cursor: pointer; }
   font-family: var(--font);
   font-size: 16px;
   font-weight: 700;
-  letter-spacing: .16em;
+  letter-spacing: 0;
   line-height: 1;
   text-transform: uppercase;
   color: var(--muted-dark);
@@ -635,90 +644,158 @@ button { font: inherit; cursor: pointer; }
   display: block;
   font-weight: 400;
   font-size: 16px;
-  letter-spacing: .10em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
   margin-top: 14px;
 }
 .case-card__cta {
   flex: 0 0 auto;
-  display: inline-flex; align-items: center; gap: 10px;
-  font-size: 16px; letter-spacing: .12em; text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  display: inline-flex; align-items: center;
+  font-size: 16px; letter-spacing: 0; text-transform: uppercase;
 }
-.case-card__cta::after {
-  content: "→";
-  transition: transform .35s var(--ease);
+.case-card__cta .nav-out {
+  display: block;
+  transition: transform .45s cubic-bezier(.006, .798, .427, .996), opacity .45s cubic-bezier(0, .698, .304, .991);
 }
-.case-card:hover .case-card__cta::after { transform: translateX(8px); }
+.case-card__cta .nav-in {
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  pointer-events: none;
+  transition: transform .45s cubic-bezier(.006, .798, .427, .996);
+}
+.case-card:hover .case-card__cta .nav-out {
+  transform: translateY(-100%);
+  opacity: .3;
+}
+.case-card:hover .case-card__cta .nav-in {
+  transform: translateY(-100%);
+}
 
-.case-card__cta--external::after { content: "↗"; }
+.case-card__img-sub {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.work-soon {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  margin-top: 80px;
+}
+.case-card--soon { pointer-events: none; cursor: default; }
+.case-card--soon:hover .case-card__media { transform: none; }
+.case-card__media--soon { background: #d4d4d4; opacity: .6; }
+.case-card__cta--soon {
+  flex: 0 0 auto;
+  font-size: 16px;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--muted-dark);
+}
+.case-card__cta--soon::after { content: ""; }
+
+@media (max-width: 640px) {
+  .work-soon { grid-template-columns: 1fr; }
+}
 
 /* About + Contacts — one hairline-framed block instead of two separate
    sections: a short personal line on the left, ways to reach out on the
    right, split by a single hairline divider. */
-.about-contact { padding: 64px var(--gutter) 64px; }
-.about-contact__frame {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  border: 1px solid var(--hair-dark);
+/* Contacts — full-width row links */
+.contacts {
+  padding: 0 var(--gutter) clamp(48px, 6vw, 96px);
+  border-top: 1px solid var(--hair-dark);
+  margin-top: clamp(48px, 6vw, 96px);
 }
-.about-contact__panel {
-  padding: 40px;
-}
-.about-contact__panel:first-child { border-right: 1px solid var(--hair-dark); }
-.about-contact__label {
-  display: block;
-  margin-bottom: 20px;
-  font-size: 16px;
-  font-weight: 700;
-  letter-spacing: .16em;
-  line-height: 1;
-  text-transform: uppercase;
-  color: var(--muted-dark);
-}
-.about-contact__text {
-  font-size: clamp(18px, 1.8vw, 21px);
-  line-height: 1.55;
-}
-.about-contact__text--personal {
-  margin-top: 20px;
-  font-size: 16px;
-  color: var(--muted-dark);
-}
-.about-contact__links {
+.contacts__row {
   display: flex;
-  flex-direction: column;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 40px);
+  padding: clamp(20px, 2.5vw, 32px) 0;
+  border-bottom: 1px solid var(--hair-dark);
+  transition: opacity .25s var(--ease);
 }
-.about-contact__link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 0;
-  font-size: 18px;
-  font-weight: 400;
-  letter-spacing: .04em;
+.contacts:hover .contacts__row { opacity: .35; }
+.contacts__row:hover { opacity: 1 !important; }
+.contacts__name {
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.08;
   text-transform: uppercase;
+  flex: 0 0 auto;
+  min-width: 6ch;
 }
-.about-contact__link:not(:last-child) { border-bottom: 1px solid var(--hair-dark); }
-.about-contact__link span {
-  font-size: 16px;
-  letter-spacing: normal;
-  text-transform: none;
+.contacts__val {
+  font-size: clamp(13px, 1.2vw, 18px);
+  letter-spacing: 0;
+  color: var(--muted-dark);
+  text-transform: lowercase;
+  flex: 1;
+}
+.contacts__arrow {
+  font-size: clamp(20px, 2.5vw, 36px);
+  flex: 0 0 auto;
   transition: transform .35s var(--ease);
 }
-.about-contact__link:hover span { transform: translateX(8px); }
-/* The footer's own border-top spans the full content column (edge to
-   edge), wider than the frame above it (which sits inset by the gutter) —
-   drop it here so the frame's own bottom border is the only divider, at
-   the frame's width. */
-.about-contact + .site-footer { border-top: none; }
+.contacts__row:hover .contacts__arrow { transform: translate(6px, -6px); }
+
+/* Contacts popup */
+.contacts-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(249, 251, 254, .88);
+  backdrop-filter: saturate(140%) blur(20px);
+  -webkit-backdrop-filter: saturate(140%) blur(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s var(--ease);
+}
+.contacts-popup.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.contacts-popup__inner {
+  width: min(680px, 90vw);
+  padding: 0;
+  border-top: none;
+  margin-top: 0;
+}
+.contacts-popup__inner .contacts__row:first-child {
+  border-top: 1px solid var(--hair-dark);
+}
+.contacts-popup__close {
+  position: absolute;
+  top: clamp(20px, 3vw, 40px);
+  right: clamp(20px, 4vw, 64px);
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  opacity: .45;
+  transition: opacity .2s var(--ease);
+  line-height: 1;
+  padding: 4px;
+}
+.contacts-popup__close:hover { opacity: 1; }
+
 .about-meta {
   margin-top: var(--gap-m);
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 18px 32px;
   font-size: 11px;
-  letter-spacing: .14em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
 }
@@ -751,7 +828,7 @@ button { font: inherit; cursor: pointer; }
 .case-hero__eyebrow {
   display: flex; gap: 16px;
   font-size: 16px;
-  letter-spacing: .08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
 }
@@ -791,7 +868,7 @@ button { font: inherit; cursor: pointer; }
 }
 .case-meta div {
   font-size: 14px;
-  letter-spacing: .1em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
 }
@@ -964,7 +1041,7 @@ button { font: inherit; cursor: pointer; }
 .exp-row:last-child { border-bottom: none; }
 .exp-row__years {
   font-size: 16px;
-  letter-spacing: .08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
   padding-top: 4px;
@@ -1009,7 +1086,7 @@ button { font: inherit; cursor: pointer; }
 .next-case { padding-block: clamp(56px, 8vw, 120px); }
 .next-case__link { display: block; }
 .next-case__eyebrow {
-  font-size: 16px; letter-spacing: .12em; text-transform: uppercase;
+  font-size: 16px; letter-spacing: 0; text-transform: uppercase;
   color: var(--muted-light); margin-bottom: 14px;
 }
 .next-case__row {
@@ -1021,10 +1098,10 @@ button { font: inherit; cursor: pointer; }
   margin: 0;
   flex: 0 0 auto;
   font-family: var(--display);
-  font-size: clamp(32px, 9vw, 96px);
-  font-weight: 400;
-  line-height: .92;
-  letter-spacing: -0.03em;
+  font-size: clamp(28px, 4.5vw, 64px);
+  font-weight: 500;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   text-transform: uppercase;
   transition: transform .45s var(--ease);
 }
@@ -1088,7 +1165,7 @@ button { font: inherit; cursor: pointer; }
 .timeline__num {
   font-family: var(--display);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   line-height: 1.45;
   color: var(--ink);
 }
@@ -1096,7 +1173,7 @@ button { font: inherit; cursor: pointer; }
   margin: 0;
   font-family: var(--name-font);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: .04em;
   line-height: 1.45;
@@ -1123,7 +1200,7 @@ button { font: inherit; cursor: pointer; }
 .section:not(.dark) .role-card { border-color: var(--hair-dark); }
 .section:not(.dark) .role-card:hover { background: rgba(24, 24, 24, .025); }
 .role-card__num {
-  font-size: 11px; letter-spacing: .16em; text-transform: uppercase;
+  font-size: 11px; letter-spacing: 0; text-transform: uppercase;
   color: var(--muted-light);
 }
 .section:not(.dark) .role-card__num,
@@ -1366,14 +1443,14 @@ button { font: inherit; cursor: pointer; }
 }
 .lens__msg {
   font-size: 12px;
-  letter-spacing: .24em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-dark);
 }
 .lens__link {
   margin-top: clamp(8px, 1.4vw, 16px);
   font-size: 13px;
-  letter-spacing: .08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   padding-bottom: 4px;
   border-bottom: 1px solid currentColor;
@@ -1421,7 +1498,7 @@ button { font: inherit; cursor: pointer; }
 }
 .notfound__eyebrow {
   font-size: 11px;
-  letter-spacing: .18em;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: var(--muted-light);
   margin-bottom: var(--gap-m);
@@ -1456,7 +1533,7 @@ button { font: inherit; cursor: pointer; }
 .notfound__links a {
   position: relative;
   font-size: 13px;
-  letter-spacing: .06em;
+  letter-spacing: 0;
   padding-bottom: 6px;
   border-bottom: 1px solid var(--hair-light);
   transition: border-color .25s var(--ease), opacity .25s var(--ease);

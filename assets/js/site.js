@@ -73,24 +73,23 @@
   if (y) y.textContent = new Date().getFullYear();
 })();
 
-// ---------- Global custom cursor ----------
+// ---------- Slide-roll hover: wrap nav + CTA link text in .nav-out + .nav-in spans ----------
 (function () {
-  const cursor = document.querySelector('[data-cursor]');
-  if (!cursor) return;
-
-  const onMove = (e) => {
-    cursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
-    cursor.classList.add('is-on');
-  };
-  const onLeave = () => cursor.classList.remove('is-on');
-
-  window.addEventListener('pointermove', onMove, { passive: true });
-  document.addEventListener('mouseleave', onLeave);
-
-  const grow = (e) => {
-    cursor.classList.toggle('is-grow', !!e.target.closest('a, button, .case-card'));
-  };
-  window.addEventListener('pointermove', grow, { passive: true });
+  function wrapSlideRoll(el) {
+    var text = el.textContent.trim();
+    var out = document.createElement('span');
+    out.className = 'nav-out';
+    out.textContent = text;
+    var inn = document.createElement('span');
+    inn.className = 'nav-in';
+    inn.textContent = text;
+    inn.setAttribute('aria-hidden', 'true');
+    el.textContent = '';
+    el.appendChild(out);
+    el.appendChild(inn);
+  }
+  document.querySelectorAll('.home-side__nav a').forEach(wrapSlideRoll);
+  document.querySelectorAll('.case-card__cta').forEach(wrapSlideRoll);
 })();
 
 // ---------- 404 lens: black veil with a cursor-following hole that swells at centre ----------
@@ -428,3 +427,37 @@
   });
 })();
 
+
+
+// ---------- Contacts popup ----------
+(function () {
+  const popup = document.getElementById('contacts-popup');
+  if (!popup) return;
+
+  const open = () => {
+    popup.classList.add('is-open');
+    document.documentElement.style.overflow = 'hidden';
+    if (window.lenis) lenis.stop();
+  };
+  const close = () => {
+    popup.classList.remove('is-open');
+    document.documentElement.style.overflow = '';
+    if (window.lenis) lenis.start();
+  };
+
+  document.querySelectorAll('[data-contacts-open]').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); open(); });
+  });
+
+  document.querySelectorAll('[data-contacts-close]').forEach(el => {
+    el.addEventListener('click', close);
+  });
+
+  popup.addEventListener('click', e => {
+    if (e.target === popup) close();
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && popup.classList.contains('is-open')) close();
+  });
+})();
