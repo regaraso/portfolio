@@ -6,7 +6,7 @@
   <title data-i18n="meta.misc.title">Misc · Regina Tarasova</title>
   <meta name="description" data-i18n-content="meta.misc.desc" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать" />
   <link rel="icon" type="image/svg+xml" href="../../assets/favicon.svg">
-  <link rel="stylesheet" href="../../assets/css/site.css?v=136">
+  <link rel="stylesheet" href="../../assets/css/site.css?v=165">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reginatarasova.com/work/misc/">
   <meta property="og:title" content="Misc · Regina Tarasova">
@@ -39,7 +39,7 @@
       <a href="../../index.html#work" data-i18n="nav.portfolio">Портфолио</a>
       <a href="./" aria-current="page" data-i18n="nav.misc">Misc</a>
       <a href="../../experience.html" data-i18n="nav.experience">Опыт работы</a>
-      <a href="../../index.html#contact" data-i18n="nav.contacts">Контакты</a>
+      <a href="#" data-contacts-open data-i18n="nav.contacts">Контакты</a>
     </nav>
     <div class="site-header__lang" data-lang-switch>
       <a data-lang="ru" class="is-active">RU</a>
@@ -129,6 +129,26 @@
   </main>
 
   <script src="../../assets/js/i18n.js?v=1" defer></script>
-  <script src="../../assets/js/site.js?v=88" defer></script>
+  <script src="../../assets/js/site.js?v=93" defer></script>
+  <div class="contacts-popup" id="contacts-popup" aria-modal="true" role="dialog" aria-label="Контакты">
+    <button class="contacts-popup__close" data-contacts-close aria-label="Закрыть">✕</button>
+    <div class="contacts contacts-popup__inner">
+      <a class="contacts__row" href="mailto:reedgini@gmail.com" target="_blank">
+        <span class="contacts__name">Email</span>
+        <span class="contacts__val">reedgini@gmail.com</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+      <a class="contacts__row" href="https://t.me/redgini" rel="noopener" target="_blank">
+        <span class="contacts__name">Telegram</span>
+        <span class="contacts__val">@redgini</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+      <a class="contacts__row" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">
+        <span class="contacts__name">Behance</span>
+        <span class="contacts__val">reginatarasova</span>
+        <span class="contacts__arrow">↗</span>
+      </a>
+    </div>
+  </div>
 </body>
 </html>

@@ -89,7 +89,9 @@
     el.appendChild(inn);
   }
   document.querySelectorAll('.home-side__nav a').forEach(wrapSlideRoll);
+  document.querySelectorAll('.site-header__nav a').forEach(wrapSlideRoll);
   document.querySelectorAll('.case-card__cta').forEach(wrapSlideRoll);
+  document.querySelectorAll('.next-case__title').forEach(wrapSlideRoll);
 })();
 
 // ---------- 404 lens: black veil with a cursor-following hole that swells at centre ----------
