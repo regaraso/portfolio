@@ -22,21 +22,46 @@
     "rights": "All rights reserved"
   },
   "home": {
-    "aboutH": "About",
-    "contactH": "Contact",
-    "aboutText": "Graphic designer with 7+ years of experience. I make posters for artists, ad campaigns, landing pages, branding.",
-    "aboutPersonal": "I also love concerts — flew to the other side of the planet to Argentina for one, went on two solo trips to Europe, I'm learning Spanish, and I was even a backstage manager for a rock band!"
+    "intro1": "MY NAME IS REGINA,<br>I'M A GRAPHIC DESIGNER<br>WITH 7+ YEARS OF EXPERIENCE",
+    "intro2": "I SPECIALISE<br><span class=\"home-about__accent\">(BUT DON'T LIMIT MYSELF)</span><br>IN DIGITAL AND THE CONCERT INDUSTRY"
   },
   "meta": {
-    "home":      { "title": "Regina Tarasova — Graphic Designer", "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design." },
-    "work":      { "title": "Portfolio · Regina Tarasova", "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design." },
-    "misc":      { "title": "Misc · Regina Tarasova", "desc": "Misc — a feed of visual experiments and one-off works by Regina Tarasova." },
-    "about":     { "title": "About · Regina Tarasova", "desc": "About Regina Tarasova, graphic designer: music packaging, print, identity." },
-    "experience":{ "title": "Experience · Regina Tarasova", "desc": "Regina Tarasova's experience — graphic designer: concert industry, e-commerce, print." },
-    "nebo":      { "title": "Concert tours · Regina Tarasova", "desc": "Case: an advertising campaign for concert tours — a system of posters and adaptations for Nebo Records tours." },
-    "cloud":     { "title": "Blog covers · Regina Tarasova", "desc": "Case: a series of blog covers for the SaaS product Aspro.Cloud — one visual language." },
-    "recuerdo":  { "title": "TINI — Recuerdo · Regina Tarasova", "desc": "Case: design of the TINI Recuerdo album — cover, vinyl, cassette, CD, booklet, pre-save." },
-    "e404":      { "title": "404 · Regina Tarasova", "desc": "Page not found — Regina Tarasova, graphic designer portfolio." }
+    "home": {
+      "title": "Regina Tarasova — Graphic Designer",
+      "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design."
+    },
+    "work": {
+      "title": "Portfolio · Regina Tarasova",
+      "desc": "Portfolio of graphic designer Regina Tarasova — album covers, identity, print design."
+    },
+    "misc": {
+      "title": "Misc · Regina Tarasova",
+      "desc": "Misc — a feed of visual experiments and one-off works by Regina Tarasova."
+    },
+    "about": {
+      "title": "About · Regina Tarasova",
+      "desc": "About Regina Tarasova, graphic designer: music packaging, print, identity."
+    },
+    "experience": {
+      "title": "Experience · Regina Tarasova",
+      "desc": "Regina Tarasova's experience — graphic designer: concert industry, e-commerce, print."
+    },
+    "nebo": {
+      "title": "Concert tours · Regina Tarasova",
+      "desc": "Case: an advertising campaign for concert tours — a system of posters and adaptations for Nebo Records tours."
+    },
+    "cloud": {
+      "title": "Blog covers · Regina Tarasova",
+      "desc": "Case: a series of blog covers for the SaaS product Aspro.Cloud — one visual language."
+    },
+    "recuerdo": {
+      "title": "TINI — Recuerdo · Regina Tarasova",
+      "desc": "Case: design of the TINI Recuerdo album — cover, vinyl, cassette, CD, booklet, pre-save."
+    },
+    "e404": {
+      "title": "404 · Regina Tarasova",
+      "desc": "Page not found — Regina Tarasova, graphic designer portfolio."
+    }
   },
   "cards": {
     "recuerdoSub": "Album art & packaging · 2025",
@@ -54,13 +79,25 @@
     "h1": "Hi, I'm Regina.",
     "lead": "I'm a graphic designer. I make music packaging and identity where tactility matters: type with character, textured photography, a careful grid.",
     "body": "I don't like slick templates. I like a cover that smells of ink and a sleeve you want to turn over in your hands. My tools: Adobe CC, Figma, Cinema 4D, and a bit of code for the web.",
-    "specialties": "Specialties", "specialtiesVal": "Music packaging · Print · Identity",
+    "specialties": "Specialties",
+    "specialtiesVal": "Music packaging · Print · Identity",
     "tools": "Tools",
-    "languages": "Languages", "languagesVal": "Russian · English",
-    "location": "Location", "locationVal": "Russia"
+    "languages": "Languages",
+    "languagesVal": "Russian · English",
+    "location": "Location",
+    "locationVal": "Russia"
   },
-  "metaLabel": { "client": "Client", "role": "Role", "scope": "Scope", "years": "Years", "year": "Year" },
-  "next": { "back": "Back to selected work", "all": "All projects" },
+  "metaLabel": {
+    "client": "Client",
+    "role": "Role",
+    "scope": "Scope",
+    "years": "Years",
+    "year": "Year"
+  },
+  "next": {
+    "back": "Back to selected work",
+    "all": "All projects"
+  },
   "exp": {
     "eyebrow": "Resume",
     "eyebrowDates": "2018 — now",
@@ -87,37 +124,63 @@
     "r3n3": "Also — backstage manager on tours (Zveri, Basta, Anna Asti, Egor Kreed, Lolita, Shaman)"
   },
   "nebo": {
-    "eyebrow0": "Case 02 / 03", "eyebrow1": "2024 — now",
+    "eyebrow0": "Case 02 / 03",
+    "eyebrow1": "2024 — now",
     "h1": "Concert <br>tours",
     "sub": "An advertising campaign for Nebo Records tours — a system of posters and adaptations for cities, venues and formats. Over a hundred concerts a year, one visual language.",
-    "mClient": "Nebo Records", "mRole": "Senior designer", "mScope": "Posters · Digital · Print · Motion", "mYears": "2024 — now",
+    "mClient": "Nebo Records",
+    "mRole": "Senior designer",
+    "mScope": "Posters · Digital · Print · Motion",
+    "mYears": "2024 — now",
     "processH": "How the work was built",
-    "s1t": "Brief and materials", "s1p": "I get photos of the artist, logos, fonts, and sometimes a ready key layout from the artist's team.",
-    "s2t": "Foundation", "s2p": "I build or adapt the master layout into a single system. I make digital and print poster versions in several aspect ratios for approval.",
-    "s3t": "Standard promo pack", "s3p": "I prepare resizes for every required platform. Digital first, then print formats. What's left is to repeat this step for all the tour dates.",
-    "s4t": "Support", "s4p": "I make new formats during the promo campaign. Usually these are print surfaces; sometimes animated digital screens and TV ads come in.",
+    "s1t": "Brief and materials",
+    "s1p": "I get photos of the artist, logos, fonts, and sometimes a ready key layout from the artist's team.",
+    "s2t": "Foundation",
+    "s2p": "I build or adapt the master layout into a single system. I make digital and print poster versions in several aspect ratios for approval.",
+    "s3t": "Standard promo pack",
+    "s3p": "I prepare resizes for every required platform. Digital first, then print formats. What's left is to repeat this step for all the tour dates.",
+    "s4t": "Support",
+    "s4p": "I make new formats during the promo campaign. Usually these are print surfaces; sometimes animated digital screens and TV ads come in.",
     "postersH": "Posters",
     "motionH": "Motion and screens"
   },
   "cloud": {
-    "eyebrow0": "Case 03 / 03", "eyebrow1": "2023 — 2026",
+    "eyebrow0": "Case 03 / 03",
+    "eyebrow1": "2023 — 2026",
     "h1": "Blog <br>covers",
     "sub": "A series of blog covers for the SaaS product Aspro.Cloud. One visual language at scale: 3D renders, clean typography and a recognizable blue-lavender palette.",
-    "mClient": "Aspro.Cloud", "mRole": "Graphic designer", "mScope": "Blog covers · Social · Promo", "mYears": "2023 — 2026",
+    "mClient": "Aspro.Cloud",
+    "mRole": "Graphic designer",
+    "mScope": "Blog covers · Social · Promo",
+    "mYears": "2023 — 2026",
     "systemH": "How the covers work",
-    "c1t": "Single format", "c1p": "All covers are 16:9 on one grid: a place for the headline, an area for the main object, the product caption.",
-    "c2t": "3D + flat", "c2p": "Volumetric glass and metal renders on a clean gradient — this keeps the series recognizable.",
-    "c3t": "Typography", "c3p": "A large, dense headline on the grid: the article topic reads even in a small feed preview.",
-    "c4t": "Palette", "c4p": "A blue-lavender gradient with a pink accent — the product's brand colors, shared across the whole series.",
-    "c5t": "Light and dark", "c5p": "Promo and light topics are light; analytics and summaries are dark. The tone follows the article's meaning.",
-    "c6t": "Flow", "c6p": "Templates and render presets let me assemble a new cover for an article fast, without losing the style.",
+    "c1t": "Single format",
+    "c1p": "All covers are 16:9 on one grid: a place for the headline, an area for the main object, the product caption.",
+    "c2t": "3D + flat",
+    "c2p": "Volumetric glass and metal renders on a clean gradient — this keeps the series recognizable.",
+    "c3t": "Typography",
+    "c3p": "A large, dense headline on the grid: the article topic reads even in a small feed preview.",
+    "c4t": "Palette",
+    "c4p": "A blue-lavender gradient with a pink accent — the product's brand colors, shared across the whole series.",
+    "c5t": "Light and dark",
+    "c5p": "Promo and light topics are light; analytics and summaries are dark. The tone follows the article's meaning.",
+    "c6t": "Flow",
+    "c6p": "Templates and render presets let me assemble a new cover for an article fast, without losing the style.",
     "galleryH": "Cover gallery"
   },
   "recuerdo": {
-    "eyebrow0": "Case 01 / 03", "eyebrow1": "2025",
+    "eyebrow0": "Case 01 / 03",
+    "eyebrow1": "2025",
     "h1": "TINI <br>Recuerdo",
     "sub": "Cover and physical-format design for TINI's new studio album: vinyl in four colors, cassette, CD, booklet and a pre-save page.",
-    "mClient": "TINI · Sony Music", "mRole": "Art direction · Design", "mScope": "Cover · Vinyl · Cassette · CD · Booklet · Pre-save", "mYear": "2025"
+    "mClient": "TINI · Sony Music",
+    "mRole": "Art direction · Design",
+    "mScope": "Cover · Vinyl · Cassette · CD · Booklet · Pre-save",
+    "mYear": "2025"
   },
-  "e404": { "msg": "page not found", "link": "back to home", "homeUrl": "/?lang=en" }
+  "e404": {
+    "msg": "page not found",
+    "link": "back to home",
+    "homeUrl": "/?lang=en"
+  }
 }

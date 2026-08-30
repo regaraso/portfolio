@@ -1440,6 +1440,12 @@ button { font: inherit; cursor: pointer; }
     color: var(--ink);
     border-bottom: 1px solid var(--hair-dark);
   }
+  .home-side:not(.home-side--inv).is-header {
+    background: rgba(249, 251, 254, .92);
+    backdrop-filter: saturate(140%) blur(14px);
+    -webkit-backdrop-filter: saturate(140%) blur(14px);
+    border-bottom: 1px solid var(--hair-dark);
+  }
   .home-side.is-header .home-side__brand { font-size: 0; white-space: nowrap; }
   .home-side.is-header .home-side__brand span { display: none; }
   .home-side.is-header .home-side__brand::after { content: "R."; font-size: 16px; }
