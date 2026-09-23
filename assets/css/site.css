@@ -666,7 +666,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 
   /* Portfolio */
   .portfolio { padding: 80px 0 0; }
-  .portfolio__label { padding: 0 clamp(30px, 7.8vw, 80px); font-size: clamp(20px, 5.5vw, 56px); margin-bottom: 32px; }
+  .portfolio__label { padding: 0 var(--side-pad); font-size: clamp(20px, 5.5vw, 56px); margin-bottom: 32px; }
   .case { padding: 0 var(--side-pad) 60px; }
   .case--dark,
   .case--accent { padding: 60px var(--side-pad); }
@@ -698,7 +698,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   }
 
   /* Experience */
-  .experience { padding: 0 clamp(30px, 7.8vw, 80px) clamp(60px, 10vw, 100px); }
+  .experience { padding: 0 var(--side-pad) clamp(60px, 10vw, 100px); }
   .experience__label { font-size: clamp(20px, 5.5vw, 56px); margin-bottom: 32px; }
   .exp-list { gap: 0; }
   .exp-row { grid-template-columns: 1fr; gap: clamp(15px, 3.9vw, 40px); padding: 24px 0; }
