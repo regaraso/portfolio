@@ -1,140 +1,187 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>La Triple T · Regina Tarasova</title>
-  <meta name="robots" content="noindex, nofollow">
   <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
-  <link rel="stylesheet" href="../assets/css/site.css?v=136">
+  <link rel="preload" as="font" href="../assets/fonts/GeistMono-latin.woff2" crossorigin>
+  <link rel="preload" as="font" href="../assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/css/site.css">
   <style>
-    .misc-wall__item img { outline: 1px solid var(--hair-dark); }
+    .case-page { padding: 160px var(--side-pad) 120px; }
+    .case-page__title {
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 80px;
+    }
+    .latriplet-grid {
+      columns: 3;
+      column-gap: 16px;
+    }
+    .latriplet-grid__item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+    }
+    .latriplet-grid__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 12px;
+      border: 1px solid rgba(24, 24, 24, 0.8);
+    }
+    @media (max-width: 1200px) { .latriplet-grid { columns: 2; } }
+    @media (max-width: 768px) {
+      .case-page { padding: 100px 20px 80px; }
+      .case-page__title { font-size: 28px; margin-bottom: 40px; }
+      .latriplet-grid { columns: 1; }
+    }
   </style>
-  <!-- Яндекс.Метрика -->
-  <script type="text/javascript">
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-   ym(110603570, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/110603570" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 </head>
 <body>
-<a class="skip-link" href="#main-content">Перейти к содержимому</a>
 
-  <header class="site-header">
-    <a class="site-header__brand" href="../index.html">Regina</a>
-    <nav class="site-header__nav" aria-label="Главная навигация" data-i18n-aria-label="a11y.mainNav">
-      <a href="../index.html#work" data-i18n="nav.portfolio">Портфолио</a>
-      <a href="../work/misc/" data-i18n="nav.misc">Misc</a>
-      <a href="../experience.html" data-i18n="nav.experience">Опыт работы</a>
-      <a href="../index.html#contact" data-i18n="nav.contacts">Контакты</a>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <a href="../"><img src="../assets/img/logo.svg" alt="" class="header__logo"></a>
+    <nav class="header__nav" id="header-nav">
+      <a href="../#portfolio" class="pill js-scroll-link">
+        <span class="nav-link"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
+      </a>
+      <button class="pill pill--accent" id="btn-contacts">
+        <span class="nav-link"><span class="nav-out">СВЯЗАТЬСЯ</span><span class="nav-in">СВЯЗАТЬСЯ</span></span>
+      </button>
+      <a href="../#experience" class="pill js-scroll-link">
+        <span class="nav-link"><span class="nav-out">ОПЫТ РАБОТЫ</span><span class="nav-in">ОПЫТ РАБОТЫ</span></span>
+      </a>
     </nav>
-    <div class="site-header__lang" data-lang-switch>
-      <a data-lang="ru" class="is-active">RU</a>
-      <a data-lang="en">EN</a>
-    </div>
+    <span class="header__lang">RU</span>
+    <button class="header__contact-mobile pill pill--accent" id="btn-contacts-mobile">СВЯЗАТЬСЯ</button>
+    <button class="header__burger" id="btn-burger" aria-label="Меню">
+      <img src="../assets/icon/mobile/burger.svg" alt="">
+    </button>
   </header>
 
-  <main id="main-content">
-    <section class="misc-section">
-      <div class="misc-wall" data-lightbox-group="latriplet">
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/01.png"><picture><source srcset="../assets/latriplet/01.webp" type="image/webp"><img src="../assets/latriplet/01.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/16.png"><picture><source srcset="../assets/latriplet/16.webp" type="image/webp"><img src="../assets/latriplet/16.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/02.png"><picture><source srcset="../assets/latriplet/02.webp" type="image/webp"><img src="../assets/latriplet/02.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/03.png"><picture><source srcset="../assets/latriplet/03.webp" type="image/webp"><img src="../assets/latriplet/03.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/17.png"><picture><source srcset="../assets/latriplet/17.webp" type="image/webp"><img src="../assets/latriplet/17.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/04.png"><picture><source srcset="../assets/latriplet/04.webp" type="image/webp"><img src="../assets/latriplet/04.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/05.png"><picture><source srcset="../assets/latriplet/05.webp" type="image/webp"><img src="../assets/latriplet/05.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/06.png"><picture><source srcset="../assets/latriplet/06.webp" type="image/webp"><img src="../assets/latriplet/06.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/19.png"><picture><source srcset="../assets/latriplet/19.webp" type="image/webp"><img src="../assets/latriplet/19.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/07.png"><picture><source srcset="../assets/latriplet/07.webp" type="image/webp"><img src="../assets/latriplet/07.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/08.png"><picture><source srcset="../assets/latriplet/08.webp" type="image/webp"><img src="../assets/latriplet/08.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/20.png"><picture><source srcset="../assets/latriplet/20.webp" type="image/webp"><img src="../assets/latriplet/20.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/09.png"><picture><source srcset="../assets/latriplet/09.webp" type="image/webp"><img src="../assets/latriplet/09.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/10.png"><picture><source srcset="../assets/latriplet/10.webp" type="image/webp"><img src="../assets/latriplet/10.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/21.png"><picture><source srcset="../assets/latriplet/21.webp" type="image/webp"><img src="../assets/latriplet/21.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/11.png"><picture><source srcset="../assets/latriplet/11.webp" type="image/webp"><img src="../assets/latriplet/11.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/22.png"><picture><source srcset="../assets/latriplet/22.webp" type="image/webp"><img src="../assets/latriplet/22.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/12.png"><picture><source srcset="../assets/latriplet/12.webp" type="image/webp"><img src="../assets/latriplet/12.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/13.png"><picture><source srcset="../assets/latriplet/13.webp" type="image/webp"><img src="../assets/latriplet/13.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/23.png"><picture><source srcset="../assets/latriplet/23.webp" type="image/webp"><img src="../assets/latriplet/23.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/25.png"><picture><source srcset="../assets/latriplet/25.webp" type="image/webp"><img src="../assets/latriplet/25.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/14.png"><picture><source srcset="../assets/latriplet/14.webp" type="image/webp"><img src="../assets/latriplet/14.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/15.png"><picture><source srcset="../assets/latriplet/15.webp" type="image/webp"><img src="../assets/latriplet/15.png" alt="" loading="lazy"></picture></a>
-        </div>
-        <div class="misc-wall__item">
-          <a href="../assets/latriplet/24.png"><picture><source srcset="../assets/latriplet/24.webp" type="image/webp"><img src="../assets/latriplet/24.png" alt="" loading="lazy"></picture></a>
-        </div>
-      </div>
-    </section>
-
-    <footer id="contact" class="site-footer">
-      <div class="site-footer__row">
-        <span class="site-footer__brand">Regina&nbsp;Tarasova</span>
-        <div class="site-footer__links">
-          <a href="mailto:reedgini@gmail.com" target="_blank">Email</a>
-          <a href="https://t.me/redgini" rel="noopener" target="_blank">Telegram</a>
-          <a href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">Behance</a>
-        </div>
-        <span class="site-footer__copy">© 2026</span>
-      </div>
-    </footer>
+  <!-- CONTENT -->
+  <main class="case-page">
+    <div class="latriplet-grid">
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/01.webp" type="image/webp"><img src="../assets/latriplet/01.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/16.webp" type="image/webp"><img src="../assets/latriplet/16.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/02.webp" type="image/webp"><img src="../assets/latriplet/02.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/03.webp" type="image/webp"><img src="../assets/latriplet/03.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/17.webp" type="image/webp"><img src="../assets/latriplet/17.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/04.webp" type="image/webp"><img src="../assets/latriplet/04.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/05.webp" type="image/webp"><img src="../assets/latriplet/05.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/06.webp" type="image/webp"><img src="../assets/latriplet/06.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/19.webp" type="image/webp"><img src="../assets/latriplet/19.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/07.webp" type="image/webp"><img src="../assets/latriplet/07.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/08.webp" type="image/webp"><img src="../assets/latriplet/08.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/20.webp" type="image/webp"><img src="../assets/latriplet/20.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/09.webp" type="image/webp"><img src="../assets/latriplet/09.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/10.webp" type="image/webp"><img src="../assets/latriplet/10.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/21.webp" type="image/webp"><img src="../assets/latriplet/21.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/11.webp" type="image/webp"><img src="../assets/latriplet/11.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/22.webp" type="image/webp"><img src="../assets/latriplet/22.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/12.webp" type="image/webp"><img src="../assets/latriplet/12.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/13.webp" type="image/webp"><img src="../assets/latriplet/13.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/23.webp" type="image/webp"><img src="../assets/latriplet/23.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/25.webp" type="image/webp"><img src="../assets/latriplet/25.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/14.webp" type="image/webp"><img src="../assets/latriplet/14.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/15.webp" type="image/webp"><img src="../assets/latriplet/15.png" alt="" loading="lazy"></picture></div>
+      <div class="latriplet-grid__item"><picture><source srcset="../assets/latriplet/24.webp" type="image/webp"><img src="../assets/latriplet/24.png" alt="" loading="lazy"></picture></div>
+    </div>
   </main>
 
-  <script src="../assets/js/i18n.js?v=1" defer></script>
-  <script src="../assets/js/site.js?v=88" defer></script>
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__nav">
+        <a href="../#portfolio" class="nav-link">
+          <span class="nav-out">ПОРТФОЛИО</span>
+          <span class="nav-in">ПОРТФОЛИО</span>
+        </a>
+        <a href="../#experience" class="nav-link">
+          <span class="nav-out">ОПЫТ РАБОТЫ</span>
+          <span class="nav-in">ОПЫТ РАБОТЫ</span>
+        </a>
+        <button class="nav-link" id="btn-contacts-footer">
+          <span class="nav-out">СВЯЗАТЬСЯ</span>
+          <span class="nav-in">СВЯЗАТЬСЯ</span>
+        </button>
+        <a href="#" class="nav-link js-scroll-top">
+          <span class="nav-out">НАВЕРХ <picture><source media="(max-width: 768px)" srcset="../assets/icon/mobile/arrow_up.svg"><img src="../assets/icon/desktop/arrow_up.svg" alt="" class="footer__up-icon"></picture></span>
+          <span class="nav-in">НАВЕРХ <picture><source media="(max-width: 768px)" srcset="../assets/icon/mobile/arrow_up.svg"><img src="../assets/icon/desktop/arrow_up.svg" alt="" class="footer__up-icon"></picture></span>
+        </a>
+      </div>
+      <div class="footer__contacts">
+        <a href="https://t.me/redgini" target="_blank" rel="noopener" class="nav-link">
+          <span class="nav-out">TELEGRAM</span>
+          <span class="nav-in">TELEGRAM</span>
+        </a>
+        <a href="mailto:reedgini@gmail.com" class="nav-link">
+          <span class="nav-out">EMAIL</span>
+          <span class="nav-in">EMAIL</span>
+        </a>
+        <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="nav-link">
+          <span class="nav-out">LINKEDIN</span>
+          <span class="nav-in">LINKEDIN</span>
+        </a>
+      </div>
+      <div class="footer__meta">
+        <p class="footer__fun">Если вы долистали до этого футера и решили закрыть страницу, то у вас не будет работать дизайнер, который работал с Егором Кридом. Думайте.</p>
+        <span class="footer__copy">© 2026</span>
+      </div>
+    </div>
+    <div class="footer__brand">
+      <img src="../assets/img/footer_regina.svg" alt="regina">
+    </div>
+  </footer>
+
+  <!-- POPUP: CONTACTS -->
+  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true">
+    <div class="popup__header">
+      <img src="../assets/img/logo.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
+        <span class="popup__close-x">×</span>
+        <img class="popup__close-img" src="../assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <div class="contacts-list">
+      <a href="https://t.me/redgini" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">TELEGRAM</span>
+        <span class="contact-row__value">@redgini</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="../assets/icon/mobile/arrow_up.svg"><img src="../assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+      <a href="mailto:reedgini@gmail.com" class="contact-row">
+        <span class="contact-row__label">EMAIL</span>
+        <span class="contact-row__value">reedgini@gmail.com</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="../assets/icon/mobile/arrow_up.svg"><img src="../assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+      <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">LINKEDIN</span>
+        <span class="contact-row__value">reginatarasova</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="../assets/icon/mobile/arrow_up.svg"><img src="../assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- POPUP: BURGER (mobile) -->
+  <div class="popup popup--burger" id="popup-burger" aria-hidden="true">
+    <div class="popup__header">
+      <img src="../assets/img/logo.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
+        <img src="../assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <nav class="burger-nav">
+      <a href="../#portfolio" class="burger-nav__item js-close-burger">ПОРТФОЛИО</a>
+      <a href="#" class="burger-nav__item js-open-contacts js-close-burger">СВЯЗАТЬСЯ</a>
+      <a href="../#experience" class="burger-nav__item js-close-burger">ОПЫТ РАБОТЫ</a>
+    </nav>
+    <span class="burger-lang">RU</span>
+  </div>
+
+  <script src="../assets/js/lenis.min.js"></script>
+  <script src="../assets/js/site.js"></script>
 </body>
 </html>

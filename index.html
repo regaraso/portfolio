@@ -1,201 +1,271 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title data-i18n="meta.home.title">Regina Tarasova — Графический дизайнер</title>
-  <meta name="description" data-i18n-content="meta.home.desc" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Regina Tarasova — Graphic Designer</title>
+  <meta name="description" content="Графический дизайнер с опытом 7+ лет. Специализируюсь на digital и концертной индустрии.">
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="stylesheet" href="assets/css/site.css?v=177">
-  <style>html.lenis,html.lenis body{height:auto}.lenis.lenis-smooth{scroll-behavior:auto!important}.lenis.lenis-stopped{overflow:hidden}.lenis.lenis-smooth iframe{pointer-events:none}</style>
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://reginatarasova.com/">
-  <meta property="og:title" content="REGINA TARASOVA — Графический дизайнер">
-  <meta property="og:description" content="Портфолио графического дизайнера — концертная индустрия, e‑commerce и печать">
+  <meta property="og:title" content="Regina Tarasova — Graphic Designer">
+  <meta property="og:description" content="Графический дизайнер с опытом 7+ лет.">
   <meta property="og:image" content="https://reginatarasova.com/assets/og.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:image" content="https://reginatarasova.com/assets/og.png">
-  <!-- Яндекс.Метрика -->
-  <script type="text/javascript">
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-   ym(110603570, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/110603570" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <link rel="preload" as="font" href="assets/fonts/GeistMono-latin.woff2" crossorigin>
+  <link rel="preload" as="font" href="assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css">
 </head>
-<body class="page-home">
-<a class="skip-link" href="#main-content">Перейти к содержимому</a>
+<body>
 
-
-  <aside class="home-side home-side--inv is-entering" id="home-sidebar">
-    <div class="home-side__top">
-      <a class="home-side__brand" href="#hero">
-        <span>Regina</span>
-        <span>Tarasova</span>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <img src="assets/img/logo.svg" alt="" class="header__logo">
+    <nav class="header__nav" id="header-nav">
+      <a href="#portfolio" class="pill js-scroll-link">
+        <span class="nav-link" data-i18n="nav-portfolio"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
       </a>
-      <span class="home-side__role" data-i18n="role">(Графический дизайнер)</span>
-    </div>
-
-    <nav class="home-side__nav" aria-label="Главная навигация" data-i18n-aria-label="a11y.mainNav">
-      <a href="#work" aria-current="page" data-i18n="nav.portfolio">Портфолио</a>
-      <a href="work/misc/" data-i18n="nav.misc">Misc</a>
-      <a href="experience.html" data-i18n="nav.experience">Опыт работы</a>
-      <a href="#" data-contacts-open data-i18n="nav.contacts">Контакты</a>
+      <button class="pill pill--accent" id="btn-contacts">
+        <span class="nav-link" data-i18n="nav-contact"><span class="nav-out">СВЯЗАТЬСЯ</span><span class="nav-in">СВЯЗАТЬСЯ</span></span>
+      </button>
+      <a href="#experience" class="pill js-scroll-link">
+        <span class="nav-link" data-i18n="nav-experience"><span class="nav-out">ОПЫТ РАБОТЫ</span><span class="nav-in">ОПЫТ РАБОТЫ</span></span>
+      </a>
     </nav>
+    <a href="?lang=en" class="header__lang" id="lang-switch">EN</a>
+    <button class="header__contact-mobile pill pill--accent" id="btn-contacts-mobile" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</button>
+    <button class="header__burger" id="btn-burger" aria-label="Меню">
+      <img src="assets/icon/mobile/burger.svg" alt="">
+    </button>
+  </header>
 
-    <div class="home-side__lang" data-lang-switch>
-      <a data-lang="ru" class="is-active">RU</a>
-      <a data-lang="en">EN</a>
+  <!-- HERO -->
+  <section class="hero">
+    <img src="assets/img/hero_regina.svg" alt="" class="hero__bg--desktop" aria-hidden="true">
+    <img src="assets/img/hero_regina_mobile.svg" alt="" class="hero__bg--mobile" aria-hidden="true">
+    <div class="hero__text">
+      <p data-i18n="hero-intro">МЕНЯ ЗОВУТ</p>
+      <div class="hero__text-bottom">
+        <p data-i18n="hero-p1">Я ГРАФИЧЕСКИЙ <br class="br-m">ДИЗАЙНЕР <br class="br-d">С ОПЫТОМ <span class="accent">7+ ЛЕТ</span></p>
+        <p data-i18n="hero-p2">РАБОТАЮ В DIGITAL <br class="br-m">И КОНЦЕРТНОЙ <br class="br-d">ИНДУСТРИИ <br class="br-m">(И НЕ ТОЛЬКО)</p>
+      </div>
     </div>
-  </aside>
+  </section>
 
-  <main id="main-content" class="home-main">
-    <div class="hero-shell" id="hero">
-     <div class="hero-inner">
-      <a class="hero-frame" href="#work" data-slideshow aria-label="Смотреть портфолио">
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/Egor_02_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/Egor_02.webp" type="image/webp">
-          <img class="home-cover__slide is-active" src="assets/slideshow/Egor_02.png" alt="" data-theme="light">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/R_07_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/R_07.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/R_07.png" alt="" data-theme="dark">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/DQ_01_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/DQ_01.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/DQ_01.jpg" alt="" data-theme="light">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/Jony_03_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/Jony_03.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Jony_03.jpg" alt="" data-theme="light">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/Cloud_04_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/Cloud_04.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Cloud_04.png" alt="" data-theme="light">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/Tini_05_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/Tini_05.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Tini_05.png" alt="" data-theme="dark">
-        </picture>
-        <picture>
-          <source media="(max-width: 768px)" srcset="assets/slideshow/Posta_06_m.webp" type="image/webp">
-          <source srcset="assets/slideshow/Posta_06.webp" type="image/webp">
-          <img class="home-cover__slide" src="assets/slideshow/Posta_06.jpg" alt="" data-theme="light">
-        </picture>
-      </a>
-      <button class="home-cover__zone home-cover__zone--prev" type="button" data-slide-prev aria-label="Предыдущий слайд" data-i18n-aria-label="a11y.slidePrev"></button>
-      <button class="home-cover__zone home-cover__zone--next" type="button" data-slide-next aria-label="Следующий слайд" data-i18n-aria-label="a11y.slideNext"></button>
-     </div>
-     <div class="hero-scroll-hint" aria-hidden="true">
-       <span class="hero-scroll-hint__line"></span>
-     </div>
+  <!-- CAROUSEL -->
+  <div class="carousel" aria-hidden="true">
+    <div class="carousel__track" id="carousel-track">
+      <!-- Cards injected by JS -->
     </div>
+  </div>
 
-    <section class="home-about reveal">
-      <p class="home-about__text" data-i18n-html="home.intro1">МЕНЯ ЗОВУТ РЕГИНА,<br>Я ГРАФИЧЕСКИЙ ДИЗАЙНЕР<br>С&nbsp;ОПЫТОМ 7+ ЛЕТ</p>
-      <p class="home-about__text" data-i18n-html="home.intro2">СПЕЦИАЛИЗИРУЮСЬ<br><span class="home-about__accent">(НО НЕ&nbsp;ОГРАНИЧИВАЮСЬ)</span> НА&nbsp;DIGITAL И&nbsp;КОНЦЕРТНОЙ ИНДУСТРИИ</p>
-    </section>
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="portfolio">
+    <p class="portfolio__label" data-i18n="portfolio-label">ПОРТФОЛИО</p>
+    <div class="cases">
 
-    <section id="work" class="home-work">
-      <div class="work">
-          <a class="case-card reveal" href="work/recuerdo/" aria-label="Открыть кейс TINI — Recuerdo" data-i18n-aria-label="a11y.openRecuerdo">
-            <div class="case-card__media">
-              <picture><source srcset="assets/case_recuerdo/cover_detail.webp" type="image/webp"><img src="assets/case_recuerdo/cover_detail.jpg" alt="TINI Recuerdo — packaging overview" fetchpriority="high"></picture>
-            </div>
-            <img class="case-card__img-sub" src="assets/case_recuerdo/cover_detail_02.jpg" alt="" loading="lazy">
-            <div class="case-card__meta">
-              <h3 class="case-card__name">TINI — Recuerdo<small data-i18n="cards.recuerdoSub">Обложка и упаковка · 2025</small></h3>
-              <span class="case-card__cta" data-i18n="cards.cta">Подробнее</span>
-            </div>
-          </a>
-
-          <a class="case-card reveal" href="work/nebo/" aria-label="Открыть кейс «Концертные туры»" data-i18n-aria-label="a11y.openNebo">
-            <div class="case-card__media">
-              <picture><source srcset="assets/case_nebo/cover_detail_nebo.webp" type="image/webp"><img src="assets/case_nebo/cover_detail_nebo.jpg" alt="Концертные туры — кампания Небо Рекордс" loading="lazy"></picture>
-            </div>
-            <div class="case-card__meta">
-              <h3 class="case-card__name"><span data-i18n="cards.neboName">Концертные туры</span><small data-i18n="cards.neboSub">Небо Рекордс · 2024 — сейчас</small></h3>
-              <span class="case-card__cta" data-i18n="cards.cta">Подробнее</span>
-            </div>
-          </a>
-
-          <a class="case-card reveal" href="work/cloud/" aria-label="Открыть кейс «Обложки для блога»" data-i18n-aria-label="a11y.openCloud">
-            <div class="case-card__media">
-              <img src="assets/case_cloud/cloud_cover.gif" alt="Обложки для блога — SaaS Аспро" loading="lazy">
-            </div>
-            <div class="case-card__meta">
-              <h3 class="case-card__name"><span data-i18n="cards.cloudName">Обложки для блога</span><small data-i18n="cards.cloudSub">Аспро.Cloud · 2023 — 2026</small></h3>
-              <span class="case-card__cta" data-i18n="cards.cta">Подробнее</span>
-            </div>
-          </a>
-
-          <a class="case-card reveal" href="https://www.behance.net/gallery/248591759/Landing-pages-system-for-SaaS-platform" target="_blank" rel="noopener" aria-label="Открыть проект «Landing pages system for SaaS platform» на Behance (новая вкладка)" data-i18n-aria-label="a11y.openSaas">
-            <div class="case-card__media">
-              <picture><source srcset="assets/main/сase_cover_saas.webp" type="image/webp"><img src="assets/main/сase_cover_saas.png" alt="Landing pages system for SaaS platform — обложка проекта на Behance" loading="lazy"></picture>
-            </div>
-            <div class="case-card__meta">
-              <h3 class="case-card__name"><span data-i18n-html="cards.saasName">Система лендингов для SaaS-платформы</span><small data-i18n="cards.saasSub">Аспро.Cloud · 2023 — 2026</small></h3>
-              <span class="case-card__cta case-card__cta--external" data-i18n="cards.ctaExternal">Подробнее на Behance</span>
-            </div>
-          </a>
+      <article class="case">
+        <div class="case__header">
+          <h2 class="case__title" data-i18n="case1-title">Айдентика и развитие системы Аспро.Cloud</h2>
+          <p class="case__desc" data-i18n="case1-desc">Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.</p>
         </div>
+        <div class="case__image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/Img_cloud_mobile.png">
+            <img src="assets/img/Img_cloud.png" alt="Айдентика Аспро.Cloud" loading="lazy">
+          </picture>
+        </div>
+      </article>
 
-    </section>
+      <article class="case">
+        <div class="case__header">
+          <h2 class="case__title" data-i18n="case2-title">Егор Крид, Звери, Баста<br class="br-d"> и другие — рекламные кампании гастрольных туров</h2>
+          <p class="case__desc" data-i18n="case2-desc">Разрабатывала визуальную систему рекламной кампании гастрольных туров Небо Рекордс: создавала серию афиш и адаптировала их под разные города, площадки и форматы. Выстраивала единый визуальный язык, который позволил сохранять целостность кампании при выпуске более ста концертов в год.</p>
+        </div>
+        <div class="case__image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/Img_nebo_mobile.png">
+            <img src="assets/img/Img_nebo.png" alt="Концертные туры Небо Рекордс" loading="lazy">
+          </picture>
+        </div>
+      </article>
 
-    <footer class="site-footer">
-      <div class="site-footer__row">
-        <span class="site-footer__brand">Regina&nbsp;Tarasova</span>
-        <span class="site-footer__copy">© 2026</span>
+      <article class="case">
+        <div class="case__header">
+          <h2 class="case__title" data-i18n="case3-title">TINI — визуальный проект<br class="br-d"> альбома Recuerdo</h2>
+          <p class="case__desc" data-i18n="case3-desc">Разрабатывала комплексный визуальный проект для альбома TINI «Recuerdo»: дизайн обложки, физических форматов, буклета и пре-сейв страницы. Выстраивала единый визуальный язык, который работал на разных носителях — от виниловой пластинки до digital-форматов.</p>
+        </div>
+        <div class="case__image">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/Img_recuerdo_mobile.png">
+            <img src="assets/img/Img_recuerdo.png" alt="TINI — Recuerdo" loading="lazy">
+          </picture>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="experience">
+    <p class="experience__label" data-i18n="exp-label">ОПЫТ РАБОТЫ</p>
+    <div class="exp-list">
+
+      <div class="exp-row">
+        <div class="exp-row__left">
+          <span class="exp-row__dates">2024 — 2026</span>
+          <div class="exp-row__company">
+            <img src="assets/icon/desktop/nebo.svg" alt="" class="exp-row__icon">
+            <span class="exp-row__name" data-i18n="exp1-name">Небо Рекордс</span>
+          </div>
+          <p class="exp-row__about" data-i18n="exp1-about">Концертное агентство, гастрольные туры популярных артистов</p>
+        </div>
+        <div class="exp-row__right">
+          <span class="exp-row__role" data-i18n="exp1-role">Старший дизайнер</span>
+          <p class="exp-row__notes" data-i18n="exp1-notes">Делала афиши концертов и материалы для интернет-рекламы (Егор Крид, Звери, Баста, Artik&nbsp;&amp;&nbsp;Asti, Xolidayboy, Алиса, Евгений Чебатков). Наружная реклама к печати: биллборды 6×3, ситиформаты, пиллары. ТВ-ролики и анимация для диджитал-экранов. Вела 100+ мероприятий в год, разработала собственную систему оперативного обновления макетов.</p>
+        </div>
       </div>
-      <div class="home-side__lang" data-lang-switch>
-        <a data-lang="ru" class="is-active">RU</a>
-        <a data-lang="en">EN</a>
-      </div>
-    </footer>
-  </main>
+      <div class="exp-divider"></div>
 
-  <div class="contacts-popup" id="contacts-popup" aria-modal="true" role="dialog" aria-label="Контакты">
-    <button class="contacts-popup__close" data-contacts-close aria-label="Закрыть">✕</button>
-    <div class="contacts contacts-popup__inner">
-      <a class="contacts__row" href="mailto:reedgini@gmail.com" target="_blank">
-        <span class="contacts__name">Email</span>
-        <span class="contacts__val">reedgini@gmail.com</span>
-        <span class="contacts__arrow">↗</span>
+      <div class="exp-row">
+        <div class="exp-row__left">
+          <span class="exp-row__dates">2023 — 2026</span>
+          <div class="exp-row__company">
+            <img src="assets/icon/desktop/aspro.svg" alt="" class="exp-row__icon">
+            <span class="exp-row__name" data-i18n="exp2-name">Аспро</span>
+          </div>
+          <p class="exp-row__about" data-i18n="exp2-about">Готовые сайты, интернет-магазины и облачная CRM-платформа для российского и зарубежного рынка</p>
+        </div>
+        <div class="exp-row__right">
+          <span class="exp-row__role" data-i18n="exp2-role">Графический дизайнер</span>
+          <p class="exp-row__notes" data-i18n="exp2-notes">Делала digital-креативы для B2B-клиентов из разных отраслей: лендинги, баннеры, обложки для блога. Собрала 30 сложных лендингов для отдела SEO за месяц. Внедрила AI-инструменты в рабочие процессы команды: сократила время создания обложки с 5 часов до 1,5 по данным тайм-трекера. Прошла испытательный срок за 2 месяца вместо стандартных 3.</p>
+        </div>
+      </div>
+      <div class="exp-divider"></div>
+
+      <div class="exp-row">
+        <div class="exp-row__left">
+          <span class="exp-row__dates">2022 — 2023</span>
+          <div class="exp-row__company">
+            <img src="assets/icon/desktop/kassy.svg" alt="" class="exp-row__icon">
+            <span class="exp-row__name">Kassy.ru</span>
+          </div>
+          <p class="exp-row__about" data-i18n="exp3-about">Онлайн-сервис по продаже билетов на мероприятия и концертный организатор</p>
+        </div>
+        <div class="exp-row__right">
+          <span class="exp-row__role" data-i18n="exp3-role">Графический дизайнер</span>
+          <p class="exp-row__notes" data-i18n="exp3-notes">Создавала афиши и рекламные материалы для концертов, театра, стендапа и детских шоу. Готовила макеты наружной рекламы к печати, монтировала ТВ-ролики и анимацию для диджитал-экранов. Закрыла потребность компании во фрилансере по видеомонтажу, взяла его обязанности на себя. Сопровождала артистов в турах по России в роли бэкстейдж-менеджера.</p>
+        </div>
+      </div>
+      <div class="exp-divider"></div>
+
+      <div class="exp-row">
+        <div class="exp-row__left">
+          <span class="exp-row__dates">2018 — 2021</span>
+          <div class="exp-row__company">
+            <img src="assets/icon/desktop/photo.svg" alt="" class="exp-row__icon">
+            <span class="exp-row__name" data-i18n="exp4-name">Типография</span>
+          </div>
+          <p class="exp-row__about" data-i18n="exp4-about">Фотопечать, ретушь и сувенирная продукция</p>
+        </div>
+        <div class="exp-row__right">
+          <span class="exp-row__role" data-i18n="exp4-role">Графический дизайнер / Оператор печати</span>
+          <p class="exp-row__notes" data-i18n="exp4-notes">Обрабатывала заказы на печать, ретушь и восстановление фотографий, создавала коллажи и макеты сувенирной продукции. Обучала новых сотрудников работе в Photoshop. Обрабатывала от 30 до 50 заказов за смену, рекорд — 112 клиентов.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <div class="footer__nav">
+        <a href="#portfolio" class="nav-link js-scroll-link" data-i18n="footer-portfolio">
+          <span class="nav-out">ПОРТФОЛИО</span>
+          <span class="nav-in">ПОРТФОЛИО</span>
+        </a>
+        <a href="#experience" class="nav-link js-scroll-link" data-i18n="footer-experience">
+          <span class="nav-out">ОПЫТ РАБОТЫ</span>
+          <span class="nav-in">ОПЫТ РАБОТЫ</span>
+        </a>
+        <button class="nav-link" id="btn-contacts-footer" data-i18n="footer-contact">
+          <span class="nav-out">СВЯЗАТЬСЯ</span>
+          <span class="nav-in">СВЯЗАТЬСЯ</span>
+        </button>
+        <a href="#" class="nav-link js-scroll-top">
+          <span class="nav-out"><span data-i18n="footer-top">НАВЕРХ</span> <picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt="" class="footer__up-icon"></picture></span>
+          <span class="nav-in"><span data-i18n="footer-top">НАВЕРХ</span> <picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt="" class="footer__up-icon"></picture></span>
+        </a>
+      </div>
+      <div class="footer__contacts">
+        <a href="https://t.me/redgini" target="_blank" rel="noopener" class="nav-link">
+          <span class="nav-out">TELEGRAM</span>
+          <span class="nav-in">TELEGRAM</span>
+        </a>
+        <a href="mailto:reedgini@gmail.com" class="nav-link">
+          <span class="nav-out">EMAIL</span>
+          <span class="nav-in">EMAIL</span>
+        </a>
+        <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="nav-link">
+          <span class="nav-out">LINKEDIN</span>
+          <span class="nav-in">LINKEDIN</span>
+        </a>
+      </div>
+      <div class="footer__meta">
+        <p class="footer__fun" data-hide-en>Если вы долистали до этого футера и решили закрыть страницу, то у вас не будет работать дизайнер, который работал с Егором Кридом. Думайте.</p>
+        <span class="footer__copy">© 2026</span>
+      </div>
+    </div>
+    <div class="footer__brand">
+      <img src="assets/img/footer_regina.svg" alt="regina">
+    </div>
+  </footer>
+
+  <!-- POPUP: CONTACTS -->
+  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true">
+    <div class="popup__header">
+      <img src="assets/img/logo.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
+        <img class="popup__close-x" src="assets/icon/desktop/close.svg" alt="×">
+        <img class="popup__close-img" src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <div class="contacts-list">
+      <a href="https://t.me/redgini" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">TELEGRAM</span>
+        <span class="contact-row__value">@redgini</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
       </a>
-      <a class="contacts__row" href="https://t.me/redgini" rel="noopener" target="_blank">
-        <span class="contacts__name">Telegram</span>
-        <span class="contacts__val">@redgini</span>
-        <span class="contacts__arrow">↗</span>
+      <a href="mailto:reedgini@gmail.com" class="contact-row">
+        <span class="contact-row__label">EMAIL</span>
+        <span class="contact-row__value">reedgini@gmail.com</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
       </a>
-      <a class="contacts__row" href="https://www.behance.net/reginatarasova" rel="noopener" target="_blank">
-        <span class="contacts__name">Behance</span>
-        <span class="contacts__val">reginatarasova</span>
-        <span class="contacts__arrow">↗</span>
+      <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">LINKEDIN</span>
+        <span class="contact-row__value">reginatarasova</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
       </a>
     </div>
   </div>
 
-  <script src="assets/js/i18n.js?v=1" defer></script>
-  <script src="assets/js/site.js?v=97" defer></script>
+  <!-- POPUP: BURGER (mobile) -->
+  <div class="popup popup--burger" id="popup-burger" aria-hidden="true">
+    <div class="popup__header">
+      <img src="assets/img/logo.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
+        <img src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <nav class="burger-nav">
+      <a href="#portfolio" class="burger-nav__item js-scroll-link js-close-burger" data-i18n="nav-portfolio-plain">ПОРТФОЛИО</a>
+      <a href="#" class="burger-nav__item js-open-contacts js-close-burger" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</a>
+      <a href="#experience" class="burger-nav__item js-scroll-link js-close-burger" data-i18n="nav-experience-plain">ОПЫТ РАБОТЫ</a>
+    </nav>
+    <a href="?lang=en" class="burger-lang" id="burger-lang-switch">EN</a>
+  </div>
+
   <script src="assets/js/lenis.min.js"></script>
-  <script>
-    var lenis = new Lenis({ lerp: 0.1, wheelMultiplier: 1, touchMultiplier: 1 });
-    function raf(t) { lenis.raf(t); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-  </script>
+  <script src="assets/js/site.js"></script>
 </body>
 </html>
