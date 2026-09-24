@@ -7,111 +7,113 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link rel="preload" as="font" href="assets/fonts/GeistMono-latin.woff2" crossorigin>
   <link rel="preload" as="font" href="assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/site.css?v=9">
   <style>
-    @font-face {
-      font-family: 'Geist Mono';
-      src: url('assets/fonts/GeistMono-latin.woff2') format('woff2');
-      font-weight: 100 900;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-    }
-    @font-face {
-      font-family: 'Geist Mono';
-      src: url('assets/fonts/GeistMono-cyrillic.woff2') format('woff2');
-      font-weight: 100 900;
-      font-style: normal;
-      font-display: swap;
-      unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html, body { height: 100%; }
-    body {
-      font-family: 'Geist Mono', monospace;
-      background: #FAFBFE;
-      color: #181818;
-      display: flex;
-      flex-direction: column;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    .header {
-      position: fixed;
-      top: 32px;
-      left: 80px;
-      right: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      z-index: 100;
-    }
-    .header__logo { height: 16px; display: block; }
-
-    main {
-      flex: 1;
+    .page-404 {
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 40px 24px;
+      padding: 120px clamp(20px, 5vw, 80px) 80px;
     }
-
-    .num {
+    .page-404__num {
       font-size: clamp(120px, 20vw, 260px);
       font-weight: 400;
       line-height: 1;
       letter-spacing: -0.04em;
       text-transform: uppercase;
-      color: #181818;
     }
-    .num span { color: #BADD13; }
-
-    .msg {
+    .page-404__num span { color: #BADD13; }
+    .page-404__msg {
       margin-top: 24px;
       font-size: clamp(14px, 1.5vw, 18px);
       line-height: 1.5;
       text-transform: uppercase;
-      color: #181818;
       opacity: 0.5;
     }
-
-    .back {
+    .page-404__back {
       margin-top: 48px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 28px;
-      border: 1px solid #181818;
-      font-family: inherit;
-      font-size: 14px;
-      text-transform: uppercase;
-      background: #FAFBFE;
-      color: #181818;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .back:hover { background: #BADD13; }
-
-    @media (max-width: 768px) {
-      .header { top: 20px; left: 20px; right: 20px; }
     }
   </style>
 </head>
 <body>
 
-  <header class="header">
-    <a href="/" aria-label="На главную">
-      <img src="assets/img/logo_16.svg" alt="" class="header__logo">
-    </a>
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <a href="/" class="js-scroll-top" aria-label="На главную"><img src="assets/img/logo_16.svg" alt="" class="header__logo"></a>
+    <nav class="header__nav" id="header-nav">
+      <a href="/#portfolio" class="pill js-scroll-link">
+        <span class="nav-link" data-i18n="nav-portfolio"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
+      </a>
+      <button class="pill pill--accent" id="btn-contacts">
+        <span class="nav-link" data-i18n="nav-contact"><span class="nav-out">СВЯЗАТЬСЯ</span><span class="nav-in">СВЯЗАТЬСЯ</span></span>
+      </button>
+      <a href="/#experience" class="pill js-scroll-link">
+        <span class="nav-link" data-i18n="nav-experience"><span class="nav-out">ОПЫТ РАБОТЫ</span><span class="nav-in">ОПЫТ РАБОТЫ</span></span>
+      </a>
+    </nav>
+    <a href="?lang=en" class="header__lang" id="lang-switch">EN</a>
+    <button class="header__contact-mobile pill pill--accent" id="btn-contacts-mobile" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</button>
+    <button class="header__burger" id="btn-burger" aria-label="Меню">
+      <img src="assets/icon/mobile/burger.svg" alt="">
+    </button>
   </header>
 
-  <main>
-    <p class="num">4<span>0</span>4</p>
-    <p class="msg">Страница не найдена</p>
-    <a href="/" class="back">На главную</a>
+  <main class="page-404">
+    <p class="page-404__num">4<span>0</span>4</p>
+    <p class="page-404__msg">Страница не найдена</p>
+    <div class="page-404__back">
+      <a href="/" class="pill pill--accent">На главную</a>
+    </div>
   </main>
 
+  <!-- POPUP: CONTACTS -->
+  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true" inert>
+    <div class="popup__header">
+      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
+        <img class="popup__close-x" src="assets/icon/desktop/close.svg" alt="×">
+        <img class="popup__close-img" src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <div class="contacts-list">
+      <a href="https://t.me/redgini" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">TELEGRAM</span>
+        <span class="contact-row__value">@redgini</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+      <a href="mailto:reedgini@gmail.com" class="contact-row">
+        <span class="contact-row__label">EMAIL</span>
+        <span class="contact-row__value">reedgini@gmail.com</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+      <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="contact-row">
+        <span class="contact-row__label">LINKEDIN</span>
+        <span class="contact-row__value">reginatarasova</span>
+        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
+      </a>
+    </div>
+  </div>
+
+  <!-- POPUP: BURGER (mobile) -->
+  <div class="popup popup--burger" id="popup-burger" aria-hidden="true" inert>
+    <div class="popup__header">
+      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
+      <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
+        <img src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
+      </button>
+    </div>
+    <nav class="burger-nav">
+      <a href="/#portfolio" class="burger-nav__item js-close-burger" data-i18n="nav-portfolio-plain">ПОРТФОЛИО</a>
+      <a href="#" class="burger-nav__item js-open-contacts js-close-burger" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</a>
+      <a href="/#experience" class="burger-nav__item js-close-burger" data-i18n="nav-experience-plain">ОПЫТ РАБОТЫ</a>
+    </nav>
+    <a href="?lang=en" class="burger-lang" id="burger-lang-switch">EN</a>
+  </div>
+
+  <script src="assets/js/lenis.min.js" defer></script>
+  <script src="assets/js/site.js?v=10" defer></script>
 </body>
 </html>
