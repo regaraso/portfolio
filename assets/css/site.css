@@ -53,8 +53,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   --bg: #FAFBFE;
   --text: #181818;
   --font: 'Geist Mono', monospace;
-  --side-pad: clamp(40px, 14.58vw, 280px);
-  --footer-margin: clamp(8px, 2.92vw, 56px);
+  --side-pad: clamp(40px, 8.33vw, 120px);
+  --footer-margin: clamp(8px, 3.89vw, 56px);
 }
 
 /* ===== PILL ===== */
@@ -62,12 +62,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 40px;
-  padding: 0 24px;
+  height: auto;
+  padding: 10px 22px;
   border-radius: 0;
   border: 1px solid #181818;
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0;
@@ -105,8 +105,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 }
 .header > * { pointer-events: auto; }
 .header__logo {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   display: block;
   flex-shrink: 0;
 }
@@ -126,7 +126,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   gap: clamp(16px, 4.57vw, 56px);
 }
 .header__lang {
-  font-size: 16px;
+  font-size: 14px;
   text-transform: uppercase;
   flex-shrink: 0;
   transition: opacity 0.3s;
@@ -156,11 +156,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 }
 .hero__bg--desktop {
   position: absolute;
-  top: -168px;
+  top: -392px;
   left: 50%;
   transform: translateX(-50%);
-  width: 1920px;
-  height: 1032px;
+  width: 3000px;
+  height: auto;
+  max-width: none;
   pointer-events: none;
   display: block;
   z-index: 0;
@@ -176,16 +177,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  text-transform: uppercase;
   font-size: 40px;
   font-weight: 400;
   line-height: 52px;
   letter-spacing: 0;
   flex-shrink: 0;
+  text-transform: uppercase;
 }
 .hero__text-bottom {
   display: flex;
   flex-direction: column;
+  gap: 40px;
 }
 .accent { color: #94AD1D; white-space: nowrap; }
 .br-d { display: initial; }
@@ -222,8 +224,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 }
 .portfolio__label {
   padding: 0 var(--side-pad);
-  font-size: 40px;
-  line-height: 1.3;
+  font-size: 36px;
+  line-height: 46px;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 56px;
@@ -254,15 +256,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   align-items: flex-start;
 }
 .case__title {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 46px;
   flex: 1;
 }
 .case__desc {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 400;
-  line-height: 1.4;
+  line-height: 20px;
   flex: 1;
   opacity: 0.8;
 }
@@ -277,6 +279,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   display: block;
 }
 .case__image a { display: block; }
+
+
 
 /* ===== CTA BLOCK ===== */
 .cta-block {
@@ -311,8 +315,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   background: var(--bg);
 }
 .experience__label {
-  font-size: 40px;
-  line-height: 1.3;
+  font-size: 36px;
+  line-height: 46px;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 80px;
@@ -352,14 +356,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   flex-shrink: 0;
 }
 .exp-row__name {
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 400;
-  line-height: 1.3;
+  line-height: 46px;
 }
 .exp-row__about {
-  font-size: 16px;
+  font-size: 14px;
   opacity: 0.8;
-  line-height: 1.375;
+  line-height: 20px;
 }
 .exp-row__right {
   display: flex;
@@ -367,13 +371,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   gap: 24px;
 }
 .exp-row__role {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.375;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
 }
 .exp-row__notes {
-  font-size: 16px;
-  line-height: 1.375;
+  font-size: 14px;
+  line-height: 20px;
   opacity: 0.8;
 }
 
@@ -592,7 +596,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 .nav-link:hover .nav-in { transform: translateY(0); }
 .pill .nav-link {
   display: inline-flex;
-  line-height: inherit;
+  line-height: 1;
 }
 .pill .nav-link .nav-out,
 .pill .nav-link .nav-in {
@@ -666,12 +670,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 
   /* Portfolio */
   .portfolio { padding: 80px 0 0; }
-  .portfolio__label { padding: 0 var(--side-pad); font-size: clamp(20px, 5.5vw, 56px); margin-bottom: 32px; }
-  .case { padding: 0 var(--side-pad) 60px; }
+  .portfolio__label { padding: 0 var(--side-pad); font-size: clamp(20px, 5.5vw, 56px); line-height: 1.2; margin-bottom: 32px; }
+  .case { padding: 0 var(--side-pad) 60px; gap: 24px; }
   .case--dark,
   .case--accent { padding: 60px var(--side-pad); }
-  .case__header { flex-direction: column; gap: clamp(12px, 3.1vw, 32px); margin-bottom: clamp(16px, 4.3vw, 44px); }
-  .case__title { font-size: clamp(20px, 5.5vw, 56px); }
+  .case__header { flex-direction: column; gap: clamp(12px, 3.1vw, 32px); }
+  .case__title { font-size: clamp(20px, 5.5vw, 56px); line-height: 1.2; }
   .case__desc { font-size: clamp(12px, 3.1vw, 32px); line-height: 1.5; }
 
   /* CTA */
@@ -699,14 +703,15 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 
   /* Experience */
   .experience { padding: 0 var(--side-pad) clamp(60px, 10vw, 100px); }
-  .experience__label { font-size: clamp(20px, 5.5vw, 56px); margin-bottom: 32px; }
+  .experience__label { font-size: clamp(20px, 5.5vw, 56px); line-height: 1.2; margin-bottom: 32px; }
   .exp-list { gap: 0; }
   .exp-row { grid-template-columns: 1fr; gap: clamp(15px, 3.9vw, 40px); padding: 24px 0; }
+  .exp-row:first-child { padding-top: 0; }
   .exp-row__left { gap: clamp(9px, 2.3vw, 24px); }
   .exp-row__right { gap: clamp(9px, 2.3vw, 24px); }
   .exp-row__company { gap: clamp(12px, 3.1vw, 32px); }
   .exp-row__icon { width: clamp(20px, 5.5vw, 56px); height: clamp(20px, 5.5vw, 56px); }
-  .exp-row__name { font-size: clamp(20px, 5.5vw, 56px); }
+  .exp-row__name { font-size: clamp(20px, 5.5vw, 56px); line-height: 1.2; }
   .exp-row__dates { font-size: clamp(12px, 3.1vw, 32px); }
   .exp-row__about { font-size: clamp(12px, 3.1vw, 32px); }
   .exp-row__role { font-size: clamp(12px, 3.1vw, 32px); }
@@ -767,7 +772,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 
 @media (max-width: 1200px) and (min-width: 769px) {
   .hero__text { font-size: clamp(24px, 3.3333vw, 40px); }
-  .case__title { font-size: clamp(24px, 3.3333vw, 40px); }
-  .exp-row__name { font-size: clamp(24px, 3.3333vw, 40px); }
-  .experience__label { font-size: clamp(24px, 3.3333vw, 40px); }
+  .case__title { font-size: clamp(24px, 3vw, 36px); }
+  .exp-row__name { font-size: clamp(24px, 3vw, 36px); }
+  .experience__label { font-size: clamp(24px, 3vw, 36px); }
 }

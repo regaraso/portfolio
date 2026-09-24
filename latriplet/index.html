@@ -28,7 +28,6 @@
       width: 100%;
       height: auto;
       display: block;
-      border-radius: 12px;
       border: 1px solid rgba(24, 24, 24, 0.8);
     }
     @media (max-width: 1200px) { .latriplet-grid { columns: 2; } }
@@ -43,7 +42,7 @@
 
   <!-- HEADER -->
   <header class="header" id="header">
-    <a href="../"><img src="../assets/img/logo.svg" alt="" class="header__logo"></a>
+    <a href="../"><img src="../assets/img/logo_16.svg" alt="" class="header__logo"></a>
     <nav class="header__nav" id="header-nav">
       <a href="../#portfolio" class="pill js-scroll-link">
         <span class="nav-link"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
@@ -55,7 +54,7 @@
         <span class="nav-link"><span class="nav-out">ОПЫТ РАБОТЫ</span><span class="nav-in">ОПЫТ РАБОТЫ</span></span>
       </a>
     </nav>
-    <span class="header__lang">RU</span>
+    <a href="?lang=en" class="header__lang" id="lang-switch">EN</a>
     <button class="header__contact-mobile pill pill--accent" id="btn-contacts-mobile">СВЯЗАТЬСЯ</button>
     <button class="header__burger" id="btn-burger" aria-label="Меню">
       <img src="../assets/icon/mobile/burger.svg" alt="">
@@ -140,7 +139,7 @@
   <!-- POPUP: CONTACTS -->
   <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true">
     <div class="popup__header">
-      <img src="../assets/img/logo.svg" alt="" class="popup__logo">
+      <img src="../assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
         <span class="popup__close-x">×</span>
         <img class="popup__close-img" src="../assets/icon/mobile/close.svg" width="8" height="8" alt="×">
@@ -168,7 +167,7 @@
   <!-- POPUP: BURGER (mobile) -->
   <div class="popup popup--burger" id="popup-burger" aria-hidden="true">
     <div class="popup__header">
-      <img src="../assets/img/logo.svg" alt="" class="popup__logo">
+      <img src="../assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
         <img src="../assets/icon/mobile/close.svg" width="8" height="8" alt="×">
       </button>
@@ -178,7 +177,7 @@
       <a href="#" class="burger-nav__item js-open-contacts js-close-burger">СВЯЗАТЬСЯ</a>
       <a href="../#experience" class="burger-nav__item js-close-burger">ОПЫТ РАБОТЫ</a>
     </nav>
-    <span class="burger-lang">RU</span>
+    <a href="?lang=en" class="burger-lang" id="burger-lang-switch">EN</a>
   </div>
 
   <script src="../assets/js/lenis.min.js"></script>

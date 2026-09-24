@@ -13,13 +13,13 @@
   <meta property="og:image" content="https://reginatarasova.com/assets/og.png">
   <link rel="preload" as="font" href="assets/fonts/GeistMono-latin.woff2" crossorigin>
   <link rel="preload" as="font" href="assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css">
+  <link rel="stylesheet" href="assets/css/site.css?v=9">
 </head>
 <body>
 
   <!-- HEADER -->
   <header class="header" id="header">
-    <img src="assets/img/logo.svg" alt="" class="header__logo">
+    <a href="/" class="js-scroll-top"><img src="assets/img/logo_16.svg" alt="" class="header__logo"></a>
     <nav class="header__nav" id="header-nav">
       <a href="#portfolio" class="pill js-scroll-link">
         <span class="nav-link" data-i18n="nav-portfolio"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
@@ -40,13 +40,13 @@
 
   <!-- HERO -->
   <section class="hero">
-    <img src="assets/img/hero_regina.svg" alt="" class="hero__bg--desktop" aria-hidden="true">
-    <img src="assets/img/hero_regina_mobile.svg" alt="" class="hero__bg--mobile" aria-hidden="true">
+    <img src="assets/img/Q4TaqL4Yl0pP.png" alt="" class="hero__bg--desktop" aria-hidden="true">
+    <img src="assets/img/KRhhb0RUfEIF.png" alt="" class="hero__bg--mobile" aria-hidden="true">
     <div class="hero__text">
-      <p data-i18n="hero-intro">МЕНЯ ЗОВУТ</p>
+      <p data-i18n="hero-intro">Меня зовут</p>
       <div class="hero__text-bottom">
-        <p data-i18n="hero-p1">Я ГРАФИЧЕСКИЙ <br class="br-m">ДИЗАЙНЕР <br class="br-d">С ОПЫТОМ <span class="accent">7+ ЛЕТ</span></p>
-        <p data-i18n="hero-p2">РАБОТАЮ В DIGITAL <br class="br-m">И КОНЦЕРТНОЙ <br class="br-d">ИНДУСТРИИ <br class="br-m">(И НЕ ТОЛЬКО)</p>
+        <p data-i18n="hero-p1">Я графический <br class="br-m">дизайнер <br class="br-d">с опытом <span class="accent">7+ лет</span></p>
+        <p data-i18n="hero-p2">Работаю в digital <br class="br-m">и концертной <br class="br-d">индустрии <br class="br-m">(и не только)</p>
       </div>
     </div>
   </section>
@@ -63,15 +63,15 @@
     <p class="portfolio__label" data-i18n="portfolio-label">ПОРТФОЛИО</p>
     <div class="cases">
 
-      <article class="case">
+      <article class="case" id="case-aspro">
         <div class="case__header">
           <h2 class="case__title" data-i18n="case1-title">Айдентика и развитие системы Аспро.Cloud</h2>
           <p class="case__desc" data-i18n="case1-desc">Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.</p>
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/Img_cloud_mobile.png">
-            <img src="assets/img/Img_cloud.png" alt="Айдентика Аспро.Cloud" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/vQaEGyhBTiPg.webp">
+            <img src="assets/img/cDfoUDm23CQF.webp" alt="Айдентика Аспро.Cloud" loading="lazy">
           </picture>
         </div>
       </article>
@@ -83,8 +83,8 @@
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/Img_nebo_mobile.png">
-            <img src="assets/img/Img_nebo.png" alt="Концертные туры Небо Рекордс" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/CQxvlh2UZyMN.webp">
+            <img src="assets/img/MLoiUE5pbqVi.webp" alt="Концертные туры Небо Рекордс" loading="lazy">
           </picture>
         </div>
       </article>
@@ -96,8 +96,8 @@
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/Img_recuerdo_mobile.png">
-            <img src="assets/img/Img_recuerdo.png" alt="TINI — Recuerdo" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/uFOsBF3a5DUr.webp">
+            <img src="assets/img/LuBCrehVAfOd.webp" alt="TINI — Recuerdo" loading="lazy">
           </picture>
         </div>
       </article>
@@ -224,7 +224,7 @@
   <!-- POPUP: CONTACTS -->
   <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true">
     <div class="popup__header">
-      <img src="assets/img/logo.svg" alt="" class="popup__logo">
+      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
         <img class="popup__close-x" src="assets/icon/desktop/close.svg" alt="×">
         <img class="popup__close-img" src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
@@ -252,7 +252,7 @@
   <!-- POPUP: BURGER (mobile) -->
   <div class="popup popup--burger" id="popup-burger" aria-hidden="true">
     <div class="popup__header">
-      <img src="assets/img/logo.svg" alt="" class="popup__logo">
+      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
         <img src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
       </button>
@@ -266,6 +266,6 @@
   </div>
 
   <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/site.js"></script>
+  <script src="assets/js/site.js?v=9"></script>
 </body>
 </html>

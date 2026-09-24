@@ -12,9 +12,9 @@
     'nav-contact-plain':   'CONTACT',
     'nav-experience':      'EXPERIENCE',
     'nav-experience-plain':'EXPERIENCE',
-    'hero-intro': 'MY NAME IS',
-    'hero-p1':    'I\'M A GRAPHIC <br class="br-m">DESIGNER <br class="br-d">WITH <span class="accent">7+ YEARS</span>',
-    'hero-p2':    'I WORK IN DIGITAL <br class="br-m">AND CONCERT <br class="br-d">INDUSTRY <br class="br-m">(AND BEYOND)',
+    'hero-intro': 'My name is',
+    'hero-p1':    'I\'m a graphic <br class="br-m">designer <br class="br-d">with <span class="accent">7+ years</span> of experience',
+    'hero-p2':    'I work in digital <br class="br-m">and concert <br class="br-d">industry <br class="br-m">(and beyond)',
     'portfolio-label': 'PORTFOLIO',
     'case1-title': 'Identity and Development of the Aspro.Cloud System',
     'case1-desc':  'Developed and systematised the brand\'s visual identity: worked on graphic solutions, communication style and key visual assets. Together with the team, built a unified design language that made the brand more consistent and recognisable in the digital space.',
@@ -62,10 +62,10 @@
   });
 
   const langSwitch = document.getElementById('lang-switch');
-  if (langSwitch) { langSwitch.textContent = 'RU'; langSwitch.href = '/'; }
+  if (langSwitch) { langSwitch.textContent = 'RU'; langSwitch.href = window.location.pathname; }
 
   const burgerLang = document.getElementById('burger-lang-switch');
-  if (burgerLang) { burgerLang.textContent = 'RU'; burgerLang.href = '/'; }
+  if (burgerLang) { burgerLang.textContent = 'RU'; burgerLang.href = window.location.pathname; }
 })();
 
 /* ===== LENIS SMOOTH SCROLL ===== */
@@ -107,16 +107,16 @@ document.querySelectorAll('.js-scroll-top').forEach(el => {
   if (!track) return;
 
   const SLIDES = [
-    'assets/img/hero/slide_01.png',
-    'assets/img/hero/slide_02.png',
-    'assets/img/hero/slide_03.png',
-    'assets/img/hero/slide_04.png',
-    'assets/img/hero/slide_05.png',
-    'assets/img/hero/slide_06.png',
-    'assets/img/hero/slide_07.png',
-    'assets/img/hero/slide_08.png',
-    'assets/img/hero/slide_09.png',
-    'assets/img/hero/slide_10.png',
+    'assets/img/hero/KRE4F0J4c5TJ.webp',
+    'assets/img/hero/Dqc47Kh8s3xa.webp',
+    'assets/img/hero/HYVSgxoOJKeF.webp',
+    'assets/img/hero/x4ant9qAqCql.webp',
+    'assets/img/hero/KHoPf2pVmhJW.webp',
+    'assets/img/hero/9n15Be4MYfgR.webp',
+    'assets/img/hero/AzHy11hHpsi4.webp',
+    'assets/img/hero/WH8vCn0t7GOA.webp',
+    'assets/img/hero/4CQvTz2qJwW2.webp',
+    'assets/img/hero/l5eEpxy3LiMr.webp',
   ];
   const COUNT = SLIDES.length;
   const isMobile = window.innerWidth <= 768;
@@ -253,3 +253,140 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
     }
   });
 });
+
+
+/* ===== HERO LENS DISTORTION ===== */
+(function initHeroLens() {
+  const heroImg = document.querySelector('.hero__bg--desktop');
+  if (!heroImg || heroImg.tagName !== 'IMG') return;
+
+  const canvas = document.createElement('canvas');
+  canvas.className = heroImg.className;
+  canvas.setAttribute('aria-hidden', 'true');
+
+  const gl = canvas.getContext('webgl2', { alpha: true, premultipliedAlpha: false });
+  if (!gl) return;
+
+  heroImg.parentNode.replaceChild(canvas, heroImg);
+
+  const W = 3000, H = 1500;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width  = Math.round(W * dpr);
+  canvas.height = Math.round(H * dpr);
+  canvas.style.cssText = 'width:' + W + 'px;height:' + H + 'px;max-width:none;';
+
+  const vs = `#version 300 es
+    in vec2 a_pos; in vec2 a_uv; out vec2 v_uv;
+    void main() { gl_Position = vec4(a_pos,0,1); v_uv = a_uv; }
+  `;
+  const fs = `#version 300 es
+    precision highp float;
+    in vec2 v_uv; out vec4 out_color;
+    uniform sampler2D u_tex;
+    uniform vec2 u_center, u_dims;
+    uniform float u_amount, u_aberration;
+    vec2 lensDistort(vec2 localPos, float amt) {
+      vec2 center = u_center * u_dims;
+      float radius = length(u_dims) * 0.5;
+      vec2 cp = localPos - center;
+      vec2 n = cp / radius;
+      float d2 = dot(n,n);
+      return cp * (1.0 + amt*(d2 + d2*d2)) + center;
+    }
+    vec4 sampleAt(vec2 localPos, float amt) {
+      vec2 uv = lensDistort(localPos, amt) / u_dims;
+      bool ok = uv.x>=0.0&&uv.x<=1.0&&uv.y>=0.0&&uv.y<=1.0;
+      return ok ? texture(u_tex, uv) : vec4(0.0);
+    }
+    void main() {
+      vec2 localPos = v_uv * u_dims;
+      float chroma = (1.0 + abs(u_amount)) * u_aberration;
+      vec4 tapColor = vec4(0.0);
+      for (int i = 0; i < 8; i++) {
+        float fi = float(i) * 0.142857143 - 0.5;
+        float w = 1.0 - abs(fi * 2.0);
+        vec4 rs = sampleAt(localPos, u_amount + (fi + 0.5) * chroma);
+        vec4 gs = sampleAt(localPos, u_amount + fi * chroma);
+        vec4 bs = sampleAt(localPos, u_amount + (fi - 0.5) * chroma);
+        float r_s = rs.a > 0.01 ? rs.r / max(0.001, rs.a) : 1.0;
+        float g_s = gs.a > 0.01 ? gs.g / max(0.001, gs.a) : 1.0;
+        float b_s = bs.a > 0.01 ? bs.b / max(0.001, bs.a) : 1.0;
+        float alpha = max(max(rs.a, gs.a), bs.a);
+        tapColor += vec4(r_s*alpha, g_s*alpha, b_s*alpha, alpha) * w;
+      }
+      out_color = tapColor / 3.428571429;
+    }
+  `;
+
+  function mkShader(type, src) {
+    const s = gl.createShader(type);
+    gl.shaderSource(s, src); gl.compileShader(s); return s;
+  }
+  const prog = gl.createProgram();
+  gl.attachShader(prog, mkShader(gl.VERTEX_SHADER, vs));
+  gl.attachShader(prog, mkShader(gl.FRAGMENT_SHADER, fs));
+  gl.linkProgram(prog); gl.useProgram(prog);
+
+  const vao = gl.createVertexArray(); gl.bindVertexArray(vao);
+  const vbuf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, vbuf);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
+    -1,-1,0,1,  1,-1,1,1,  -1,1,0,0,
+    -1, 1,0,0,  1,-1,1,1,   1,1,1,0,
+  ]), gl.STATIC_DRAW);
+  const pL = gl.getAttribLocation(prog,'a_pos'), uL = gl.getAttribLocation(prog,'a_uv');
+  gl.enableVertexAttribArray(pL); gl.enableVertexAttribArray(uL);
+  gl.vertexAttribPointer(pL, 2, gl.FLOAT, false, 16, 0);
+  gl.vertexAttribPointer(uL, 2, gl.FLOAT, false, 16, 8);
+
+  const uCenter = gl.getUniformLocation(prog,'u_center');
+  gl.uniform2f(gl.getUniformLocation(prog,'u_dims'), W, H);
+  gl.uniform1f(gl.getUniformLocation(prog,'u_amount'), 0.09);
+  gl.uniform1f(gl.getUniformLocation(prog,'u_aberration'), 0.03);
+  gl.uniform1i(gl.getUniformLocation(prog,'u_tex'), 0);
+
+  const tex = gl.createTexture();
+  gl.bindTexture(gl.TEXTURE_2D, tex);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
+  gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+  gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, 1, 1, 0, gl.RGBA, gl.UNSIGNED_BYTE, new Uint8Array([0,0,0,0]));
+
+  let texReady = false;
+  const src = new Image();
+  src.onload = () => {
+    gl.bindTexture(gl.TEXTURE_2D, tex);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
+    texReady = true;
+  };
+  src.src = heroImg.src;
+
+  let mx = 0.5, my = 0.5, cx = 0.5, cy = 0.5;
+  let px = 0, py = 0, pcx = 0, pcy = 0;
+  window.addEventListener('mousemove', e => {
+    const rect = canvas.getBoundingClientRect();
+    const rx = (e.clientX - rect.left) / rect.width;
+    const ry = (e.clientY - rect.top)  / rect.height;
+    mx = 0.5 + (rx - 0.5) * 0.3;
+    my = 0.5 + (ry - 0.5) * 0.3;
+    px = (e.clientX / window.innerWidth - 0.5) * 60;
+    py = (e.clientY / window.innerHeight - 0.5) * 32;
+  }, { passive: true });
+
+  gl.viewport(0, 0, canvas.width, canvas.height);
+  gl.clearColor(0, 0, 0, 0);
+
+  (function frame() {
+    cx  += (mx - cx)   * 0.06;
+    cy  += (my - cy)   * 0.06;
+    pcx += (px - pcx)  * 0.04;
+    pcy += (py - pcy)  * 0.04;
+    canvas.style.transform = 'translateX(calc(-50% + ' + pcx + 'px)) translateY(' + pcy + 'px)';
+    if (texReady) {
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.uniform2f(uCenter, cx, cy);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+    }
+    requestAnimationFrame(frame);
+  })();
+})();
