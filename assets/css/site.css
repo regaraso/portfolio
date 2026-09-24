@@ -151,6 +151,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
+  clip-path: inset(0 0 80px 0);
   padding-bottom: 256px;
   flex-shrink: 0;
 }

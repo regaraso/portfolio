@@ -340,8 +340,8 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
 
   const uCenter = gl.getUniformLocation(prog,'u_center');
   gl.uniform2f(gl.getUniformLocation(prog,'u_dims'), W, H);
-  gl.uniform1f(gl.getUniformLocation(prog,'u_amount'), 0.09);
-  gl.uniform1f(gl.getUniformLocation(prog,'u_aberration'), 0.03);
+  gl.uniform1f(gl.getUniformLocation(prog,'u_amount'), 0.13);
+  gl.uniform1f(gl.getUniformLocation(prog,'u_aberration'), 0.05);
   gl.uniform1i(gl.getUniformLocation(prog,'u_tex'), 0);
 
   const tex = gl.createTexture();
@@ -363,14 +363,22 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
 
   let mx = 0.5, my = 0.5, cx = 0.5, cy = 0.5;
   let px = 0, py = 0, pcx = 0, pcy = 0;
+  const heroSection = document.querySelector('.hero');
   window.addEventListener('mousemove', e => {
+    const heroRect = heroSection ? heroSection.getBoundingClientRect() : null;
+    const inHero = heroRect && e.clientY >= heroRect.top && e.clientY <= heroRect.bottom;
     const rect = canvas.getBoundingClientRect();
-    const rx = (e.clientX - rect.left) / rect.width;
-    const ry = (e.clientY - rect.top)  / rect.height;
-    mx = 0.5 + (rx - 0.5) * 0.3;
-    my = 0.5 + (ry - 0.5) * 0.3;
-    px = (e.clientX / window.innerWidth - 0.5) * 60;
-    py = (e.clientY / window.innerHeight - 0.5) * 32;
+    if (inHero) {
+      const rx = (e.clientX - rect.left) / rect.width;
+      const ry = (e.clientY - rect.top)  / rect.height;
+      mx = 0.5 + (rx - 0.5) * 0.3;
+      my = 0.5 + (ry - 0.5) * 0.3;
+      px = (e.clientX / window.innerWidth - 0.5) * 90;
+      py = (e.clientY / window.innerHeight - 0.5) * 48;
+    } else {
+      mx = 0.5; my = 0.5;
+      px = 0;   py = 0;
+    }
   }, { passive: true });
 
   gl.viewport(0, 0, canvas.width, canvas.height);
