@@ -157,11 +157,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
 }
 .hero__bg--desktop {
   position: absolute;
-  top: max(-340px, -17.71vw);
+  top: max(-480px, -25vw);
   left: 50%;
   transform: translateX(-50%);
-  width: min(3300px, 171.875vw);
+  width: max(2900px, min(3300px, 171.875vw));
   height: auto;
+  aspect-ratio: 2 / 1;
   max-width: none;
   pointer-events: none;
   display: block;

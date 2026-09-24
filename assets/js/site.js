@@ -346,7 +346,7 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
   const uCenter = gl.getUniformLocation(prog,'u_center');
   gl.uniform2f(gl.getUniformLocation(prog,'u_dims'), W, H);
   gl.uniform1f(gl.getUniformLocation(prog,'u_amount'), 0.13);
-  gl.uniform1f(gl.getUniformLocation(prog,'u_aberration'), 0.05);
+  gl.uniform1f(gl.getUniformLocation(prog,'u_aberration'), 0.08);
   gl.uniform1i(gl.getUniformLocation(prog,'u_tex'), 0);
 
   const tex = gl.createTexture();
