@@ -11,6 +11,7 @@
   <meta property="og:title" content="Regina Tarasova — Graphic Designer">
   <meta property="og:description" content="Графический дизайнер с опытом 7+ лет.">
   <meta property="og:image" content="https://reginatarasova.com/assets/og.png">
+  <link rel="preload" as="image" href="assets/img/Q4TaqL4Yl0pP.webp" type="image/webp">
   <link rel="preload" as="font" href="assets/fonts/GeistMono-latin.woff2" crossorigin>
   <link rel="preload" as="font" href="assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/site.css?v=9">
@@ -19,7 +20,7 @@
 
   <!-- HEADER -->
   <header class="header" id="header">
-    <a href="/" class="js-scroll-top"><img src="assets/img/logo_16.svg" alt="" class="header__logo"></a>
+    <a href="/" class="js-scroll-top" aria-label="На главную"><img src="assets/img/logo_16.svg" alt="" class="header__logo"></a>
     <nav class="header__nav" id="header-nav">
       <a href="#portfolio" class="pill js-scroll-link">
         <span class="nav-link" data-i18n="nav-portfolio"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
@@ -37,6 +38,8 @@
       <img src="assets/icon/mobile/burger.svg" alt="">
     </button>
   </header>
+
+  <main>
 
   <!-- HERO -->
   <section class="hero">
@@ -70,8 +73,8 @@
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/vQaEGyhBTiPg.webp">
-            <img src="assets/img/cDfoUDm23CQF.webp" alt="Айдентика Аспро.Cloud" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/vQaEGyhBTiPg.webp" width="1080" height="1454">
+            <img src="assets/img/cDfoUDm23CQF.webp" alt="Айдентика Аспро.Cloud" loading="lazy" width="1361" height="1380">
           </picture>
         </div>
       </article>
@@ -83,8 +86,8 @@
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/CQxvlh2UZyMN.webp">
-            <img src="assets/img/MLoiUE5pbqVi.webp" alt="Концертные туры Небо Рекордс" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/CQxvlh2UZyMN.webp" width="1080" height="1351">
+            <img src="assets/img/MLoiUE5pbqVi.webp" alt="Концертные туры Небо Рекордс" loading="lazy" width="1361" height="658">
           </picture>
         </div>
       </article>
@@ -96,8 +99,8 @@
         </div>
         <div class="case__image">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/uFOsBF3a5DUr.webp">
-            <img src="assets/img/LuBCrehVAfOd.webp" alt="TINI — Recuerdo" loading="lazy">
+            <source media="(max-width: 768px)" srcset="assets/img/uFOsBF3a5DUr.webp" width="1080" height="1931">
+            <img src="assets/img/LuBCrehVAfOd.webp" alt="TINI — Recuerdo" loading="lazy" width="1361" height="678">
           </picture>
         </div>
       </article>
@@ -176,6 +179,8 @@
     </div>
   </section>
 
+  </main>
+
   <!-- FOOTER -->
   <footer class="footer">
     <div class="footer__top">
@@ -222,7 +227,7 @@
   </footer>
 
   <!-- POPUP: CONTACTS -->
-  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true">
+  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true" inert>
     <div class="popup__header">
       <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
@@ -250,7 +255,7 @@
   </div>
 
   <!-- POPUP: BURGER (mobile) -->
-  <div class="popup popup--burger" id="popup-burger" aria-hidden="true">
+  <div class="popup popup--burger" id="popup-burger" aria-hidden="true" inert>
     <div class="popup__header">
       <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
       <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
@@ -265,7 +270,7 @@
     <a href="?lang=en" class="burger-lang" id="burger-lang-switch">EN</a>
   </div>
 
-  <script src="assets/js/lenis.min.js"></script>
-  <script src="assets/js/site.js?v=9"></script>
+  <script src="assets/js/lenis.min.js" defer></script>
+  <script src="assets/js/site.js?v=9" defer></script>
 </body>
 </html>

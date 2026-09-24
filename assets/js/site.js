@@ -178,11 +178,13 @@ const popupContacts = document.getElementById('popup-contacts');
 function openContacts() {
   popupContacts.classList.add('is-open');
   popupContacts.setAttribute('aria-hidden', 'false');
+  popupContacts.removeAttribute('inert');
   lenis.stop();
 }
 function closeContacts() {
   popupContacts.classList.remove('is-open');
   popupContacts.setAttribute('aria-hidden', 'true');
+  popupContacts.setAttribute('inert', '');
   lenis.start();
 }
 
@@ -211,11 +213,13 @@ const popupBurger = document.getElementById('popup-burger');
 function openBurger() {
   popupBurger.classList.add('is-open');
   popupBurger.setAttribute('aria-hidden', 'false');
+  popupBurger.removeAttribute('inert');
   lenis.stop();
 }
 function closeBurger() {
   popupBurger.classList.remove('is-open');
   popupBurger.setAttribute('aria-hidden', 'true');
+  popupBurger.setAttribute('inert', '');
   lenis.start();
 }
 
@@ -235,6 +239,7 @@ document.querySelectorAll('.js-open-contacts').forEach(el => {
     e.preventDefault();
     popupBurger.classList.remove('is-open');
     popupBurger.setAttribute('aria-hidden', 'true');
+    popupBurger.setAttribute('inert', '');
     openContacts();
   });
 });
@@ -397,7 +402,8 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
     const npcy = pcy + (py - pcy) * 0.04;
     const moved = Math.abs(ncx-cx) + Math.abs(ncy-cy) + Math.abs(npcx-pcx) + Math.abs(npcy-pcy) > 0.0001;
     cx = ncx; cy = ncy; pcx = npcx; pcy = npcy;
-    if (heroVisible && texReady && moved) {
+    if (heroVisible && texReady && (moved || !frame.rendered)) {
+      frame.rendered = true;
       canvas.style.transform = 'translateX(calc(-50% + ' + pcx + 'px)) translateY(' + pcy + 'px)';
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(uCenter, cx, cy);
