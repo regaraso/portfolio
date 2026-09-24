@@ -151,16 +151,16 @@ button { cursor: pointer; border: none; background: none; font: inherit; color: 
   justify-content: flex-end;
   align-items: center;
   overflow: hidden;
-  clip-path: inset(0 0 80px 0);
+  clip-path: inset(0 0 120px 0);
   padding-bottom: 256px;
   flex-shrink: 0;
 }
 .hero__bg--desktop {
   position: absolute;
-  top: -392px;
+  top: max(-340px, -17.71vw);
   left: 50%;
   transform: translateX(-50%);
-  width: 3000px;
+  width: min(3300px, 171.875vw);
   height: auto;
   max-width: none;
   pointer-events: none;

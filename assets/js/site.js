@@ -270,10 +270,10 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
   heroImg.parentNode.replaceChild(canvas, heroImg);
 
   const W = 3000, H = 1500;
-  const dpr = Math.min(window.devicePixelRatio || 1, 2);
-  canvas.width  = Math.round(W * dpr);
-  canvas.height = Math.round(H * dpr);
-  canvas.style.cssText = 'width:' + W + 'px;height:' + H + 'px;max-width:none;';
+  const dpr = 1;
+  canvas.width  = W;
+  canvas.height = H;
+  canvas.style.maxWidth = 'none';
 
   const vs = `#version 300 es
     in vec2 a_pos; in vec2 a_uv; out vec2 v_uv;
@@ -359,7 +359,7 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, src);
     texReady = true;
   };
-  src.src = heroImg.src;
+  src.src = heroImg.src.replace(/\.png$/, '.webp');
 
   let mx = 0.5, my = 0.5, cx = 0.5, cy = 0.5;
   let px = 0, py = 0, pcx = 0, pcy = 0;
@@ -384,13 +384,21 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
   gl.viewport(0, 0, canvas.width, canvas.height);
   gl.clearColor(0, 0, 0, 0);
 
+  let heroVisible = true;
+  const observer = new IntersectionObserver(entries => {
+    heroVisible = entries[0].isIntersecting;
+  }, { threshold: 0 });
+  observer.observe(canvas);
+
   (function frame() {
-    cx  += (mx - cx)   * 0.06;
-    cy  += (my - cy)   * 0.06;
-    pcx += (px - pcx)  * 0.04;
-    pcy += (py - pcy)  * 0.04;
-    canvas.style.transform = 'translateX(calc(-50% + ' + pcx + 'px)) translateY(' + pcy + 'px)';
-    if (texReady) {
+    const ncx  = cx  + (mx - cx)  * 0.06;
+    const ncy  = cy  + (my - cy)  * 0.06;
+    const npcx = pcx + (px - pcx) * 0.04;
+    const npcy = pcy + (py - pcy) * 0.04;
+    const moved = Math.abs(ncx-cx) + Math.abs(ncy-cy) + Math.abs(npcx-pcx) + Math.abs(npcy-pcy) > 0.0001;
+    cx = ncx; cy = ncy; pcx = npcx; pcy = npcy;
+    if (heroVisible && texReady && moved) {
+      canvas.style.transform = 'translateX(calc(-50% + ' + pcx + 'px)) translateY(' + pcy + 'px)';
       gl.clear(gl.COLOR_BUFFER_BIT);
       gl.uniform2f(uCenter, cx, cy);
       gl.drawArrays(gl.TRIANGLES, 0, 6);
