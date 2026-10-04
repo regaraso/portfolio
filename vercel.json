@@ -1,4 +1,7 @@
 {
+  "redirects": [
+    { "source": "/quack", "destination": "/quack/", "permanent": false }
+  ],
   "rewrites": [
     { "source": "/en/:path*", "destination": "/:path*" }
   ]

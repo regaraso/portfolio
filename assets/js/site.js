@@ -412,3 +412,83 @@ document.querySelectorAll('.popup--burger .js-scroll-link').forEach(el => {
     requestAnimationFrame(frame);
   })();
 })();
+
+/* ===== PIXEL REVEAL ===== */
+(function initPixelReveal() {
+  const STEPS = [6, 12, 24, 48, 96];
+  const STEP_MS = 80;
+
+  function runReveal(img, canvas) {
+    const ctx = canvas.getContext('2d');
+    const ratio = img.naturalHeight / Math.max(img.naturalWidth, 1);
+    let step = 0;
+
+    function tick() {
+      if (step >= STEPS.length) {
+        canvas.style.opacity = '0';
+        img.style.opacity = '1';
+        setTimeout(() => canvas.remove(), 400);
+        return;
+      }
+      const w = STEPS[step];
+      const h = Math.max(1, Math.round(w * ratio));
+      canvas.width = w;
+      canvas.height = h;
+      ctx.drawImage(img, 0, 0, w, h);
+      step++;
+      setTimeout(tick, STEP_MS);
+    }
+
+    tick();
+  }
+
+  function attachReveal(img) {
+    const container = img.parentElement;
+    const prev = container.style.position;
+    if (!prev || prev === 'static') container.style.position = 'relative';
+
+    const canvas = document.createElement('canvas');
+    canvas.width = 6;
+    canvas.height = 4;
+    canvas.style.cssText = [
+      'position:absolute',
+      'inset:0',
+      'width:100%',
+      'height:100%',
+      'object-fit:cover',
+      'image-rendering:pixelated',
+      'opacity:1',
+      'transition:opacity 0.35s',
+      'pointer-events:none',
+      'z-index:2',
+    ].join(';');
+
+    img.style.opacity = '0';
+    img.style.transition = 'opacity 0.35s';
+    container.appendChild(canvas);
+
+    function onLoad() {
+      runReveal(img, canvas);
+    }
+
+    if (img.complete && img.naturalWidth) {
+      onLoad();
+    } else {
+      img.addEventListener('load', onLoad, { once: true });
+    }
+  }
+
+  const targets = document.querySelectorAll(
+    '.case__image img, .hero__bg--mobile, .footer__brand img'
+  );
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      obs.unobserve(entry.target);
+      attachReveal(entry.target);
+    });
+  }, { threshold: 0.05 });
+
+  targets.forEach(img => io.observe(img));
+})();
