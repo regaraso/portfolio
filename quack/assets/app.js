@@ -290,7 +290,8 @@
     return new Promise(done => {
       const step = now => {
         if (id !== tweenId) return done(false);
-        const k = Math.min(1, (now - t0) / dur), e = ease(k);
+        // rAF timestamp can precede t0; negative k would extrapolate the fold past the corner
+        const k = Math.max(0, Math.min(1, (now - t0) / dur)), e = ease(k);
         const q = via ? { x: (1-e)*(1-e)*from.x + 2*(1-e)*e*via.x + e*e*to.x, y: (1-e)*(1-e)*from.y + 2*(1-e)*e*via.y + e*e*to.y }
                       : { x: from.x + (to.x - from.x) * e, y: from.y + (to.y - from.y) * e };
         curl.set(q); onK && onK(e);

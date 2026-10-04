@@ -57,8 +57,8 @@ body.m .tagline{left:0;top:455px;width:360px;line-height:28px}
 .card{position:absolute;left:854px;top:193px;width:480px;height:568px;perspective:2200px;opacity:0}
 body.m .card{left:0;top:507px;width:360px;height:592px}
 .sheet{position:absolute;inset:0;padding:24px;display:flex;flex-direction:column;gap:16px;
-  background-color:#fff;box-shadow:0 24px 48px rgba(11,30,74,.35);transform-origin:0 50%}
-body.m .sheet{padding:16px;box-shadow:0 -12px 32px rgba(11,30,74,.3)}
+  background-color:#fff;transform-origin:0 50%}
+body.m .sheet{padding:16px}
 .sheet::after{content:"";position:absolute;inset:0;pointer-events:none;background:url("paper.jpg") 0 0/330px;mix-blend-mode:multiply}
 
 /* шторка на мобилке: ручка и зоны жестов */
