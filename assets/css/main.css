@@ -115,7 +115,6 @@ body.on-green,body.revealed,body.foot-open{--hc:var(--ink);--cb:var(--ink);--ct:
 #portfolio ~ .sec{position:relative;background:var(--bg)}
 .case{background:var(--ink);border:0}
 /* backdrop behind the cards fades to the page colour, so the next sections continue it seamlessly */
-.hero-shade{background:var(--bg)}
 @media (min-width:821px){.case{grid-template-columns:minmax(0,.52fr) minmax(0,1fr)}.case-info h3{font-size:clamp(24px,2vw,38px)}}
 #portfolio .cases{margin:0 calc(var(--top) - var(--pad))}
 
@@ -129,7 +128,7 @@ body.on-green,body.revealed,body.foot-open{--hc:var(--ink);--cb:var(--ink);--ct:
 .title .desc{position:absolute;left:var(--pad);right:var(--pad);top:50%;transform:translateY(-50%);font-size:clamp(16px,1.5625vw,30px);line-height:1.08;letter-spacing:-.01em;color:var(--acc);visibility:hidden}
 .title .desc .line{padding-bottom:.08em}
 /* scroll room while the hero is pinned: works fade out, the description opens, then the first case slides in */
-.hero-hold{height:180vh}
+.hero-hold{height:140vh}
 /* invisible vertical strips: each one shows its own slide while the cursor is over it */
 .zones{position:absolute;inset:0;z-index:4;display:grid;grid-auto-flow:column;grid-auto-columns:1fr}
 
