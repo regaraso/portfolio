@@ -150,6 +150,7 @@ const imgs = (HOVER ? ART : []).map((art, i) => {
   const video = art.src.endsWith('.mp4'), im = document.createElement(video ? 'video' : 'img');
   if (video) Object.assign(im, { muted: true, loop: true, playsInline: true, preload: 'auto' }); else im.alt = '';
   im.src = art.src; im._art = art; im._spot = order[i];
+  window.ldTrack?.(im);   // the loader counts each work
   if (!video) im.decode?.().catch(() => {});   // decode up front so the first hover doesn't blink
   flash.appendChild(im); return im;
 });

@@ -274,3 +274,19 @@ body.revealed footer.reveal-foot{background:var(--acc)}
 .touch .title{mix-blend-mode:normal}
 .touch .title h1{color:#4522ec}
 .touch .title .desc{color:var(--ink)}
+/* loader: a thin outlined bar with the percent beside it; the green fill follows the real loading, then grows out of the bar
+   into the whole green hero and the name comes up. Hidden after 10 s by CSS alone, in case the script never runs */
+.loader{position:fixed;inset:0;z-index:100;background:var(--bg);animation:loader-off 0s linear 10s forwards}
+@keyframes loader-off{to{visibility:hidden}}
+.ld-row{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;gap:16px;transition:opacity .2s ease}
+.ld-bar{position:relative;width:min(48vw,700px);height:12px;border:1px solid var(--text)}
+.ld-bar i{position:absolute;inset:0;background:var(--acc);transform:scaleX(0);transform-origin:left}
+.ld-pct{min-width:3ch;font-size:15px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;color:var(--text)}
+.ld-fill{position:absolute;inset:0;background:var(--acc);visibility:hidden}
+@media (max-width:820px){.ld-bar{width:60vw}}
+/* the name waits under the loader, then rises; translate and filter keep clear of the transform and opacity GSAP animates later */
+html:not(.seen):not(.ld-done) .title h1{filter:opacity(0)}
+.ld-done .title h1{animation:name-in .7s cubic-bezier(.22,1,.36,1) both}
+@keyframes name-in{from{translate:0 30%;filter:opacity(0)}to{translate:0 0;filter:opacity(1)}}
+.seen .loader{display:none}
+@media (prefers-reduced-motion:reduce){.loader{display:none}.ld-done .title h1{animation:none}}
