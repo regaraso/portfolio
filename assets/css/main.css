@@ -270,3 +270,7 @@ html.home{background:var(--acc)}
 /* Safari tints its bars from fixed elements' background-color; until the footer is open its green is an image, so it is ignored */
 footer.reveal-foot{background:linear-gradient(var(--acc),var(--acc))}
 body.revealed footer.reveal-foot{background:var(--acc)}
+/* phones: no works under the hero text, so no blend mode (it forces a full repaint on every scroll frame on iOS) */
+.touch .title{mix-blend-mode:normal}
+.touch .title h1{color:#4522ec}
+.touch .title .desc{color:var(--ink)}

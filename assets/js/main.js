@@ -129,8 +129,9 @@ const ART = [
 const SPOTS = [[.04,.9],[.12,.15],[.2,.6],[.28,0],[.35,.85],[.42,.3],[.5,.7],[.56,.1],[.62,.95],[.68,.4],[.74,.75],[.8,.05],[.86,.55],[.92,.2],[.97,.8],[.3,.45],[.7,.6],[.16,.35],[.45,0],[.85,0],
   [.08,.4],[.24,.95],[.38,.15],[.52,.5],[.6,.35],[.66,1],[.78,.3],[.9,.95],[.95,.45],[.02,.1],[.48,.9],[.72,.15],[.33,.7]];
 // keep the hero pinned behind the whole case stack, the next sections slide over it
-if (!reduce) {
-  if (HOVER) ScrollTrigger.create({ trigger: '.hero', start: 'top top', endTrigger: '#portfolio', end: 'bottom top', pin: true, pinSpacing: false });
+// (phones skip both: the cards simply slide over the sticky hero, nothing is redrawn while the finger scrolls)
+if (!reduce && HOVER) {
+  ScrollTrigger.create({ trigger: '.hero', start: 'top top', endTrigger: '#portfolio', end: 'bottom top', pin: true, pinSpacing: false });
   // the hero shrinks a little as the first card comes in; the description leaves before the cards start fading over it
   gsap.timeline({ scrollTrigger: { trigger: '.sheet', start: 'top bottom', end: 'top top', scrub: true } })
     .to('.hero-in', { scale: .9, ease: 'none', duration: 1 }, 0)
@@ -187,6 +188,21 @@ const desc = document.getElementById('desc'), heroName = document.querySelector(
 const descSrc = desc.innerHTML, descHTML = () => matchMedia('(max-width: 820px)').matches ? descSrc : descSrc.replace(/<br class="m-br">/g, '');
 gsap.registerPlugin(SplitText);
 if (reduce) { gsap.set(heroName, { display: 'none' }); gsap.set(desc, { visibility: 'visible' }); }
+else if (!HOVER) {
+  // phones: no scrubbing — once the page is scrolled a little, the name fades and the description lines rise in one short go (and back)
+  let split, tl, st;
+  const buildTouch = () => {
+    st?.kill(); tl?.kill(); split?.revert(); desc.innerHTML = descHTML(); gsap.set(heroName, { clearProps: 'opacity,transform' });
+    split = SplitText.create(desc, { type: 'lines', mask: 'lines', linesClass: 'line' });
+    gsap.set(split.lines, { yPercent: 120 }); desc.style.visibility = 'visible';
+    tl = gsap.timeline({ paused: true })
+      .to(heroName, { opacity: 0, yPercent: -20, duration: .4, ease: 'power2.out' }, 0)
+      .to(split.lines, { yPercent: 0, duration: .7, stagger: .08, ease: 'power3.out' }, .2);
+    st = ScrollTrigger.create({ start: () => innerHeight * .2, end: 'max', onEnter: () => tl.play(), onLeaveBack: () => tl.reverse() });
+  };
+  document.fonts.ready.then(buildTouch);
+  onWidth(buildTouch);
+}
 else {
   gsap.timeline({ scrollTrigger: { start: 0, end: () => innerHeight * .4, scrub: true, invalidateOnRefresh: true,
       onUpdate: s => { const off = s.progress > .3; document.getElementById('zones').style.pointerEvents = off ? 'none' : ''; if (off) hideAll(); } } })
@@ -282,7 +298,9 @@ const restText = () => {
   rows(document.querySelectorAll('.formats.skills li'), '.formats.skills');
   rows(document.querySelectorAll('#experience .exp'), '#experience .exps');
 };
-document.fonts.ready.then(() => { caseText(); restText(); });
+// these entrance animations are all below the fold, so they are set up when the browser is idle, not during the first load
+const idle = window.requestIdleCallback || (fn => setTimeout(fn, 200));
+document.fonts.ready.then(() => idle(() => { caseText(); restText(); }));
 onWidth(() => { caseText(); restText(); }, 250);
 
 // measure once the bento images are in; rebuild after a resize
