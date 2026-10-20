@@ -43,6 +43,8 @@ const T = {
 const t = k => T[k][EN ? 1 : 0];
 const [CASES, JOBS, SKILLS, BENTO] = EN ? [CASES_EN, JOBS_EN, SKILLS_EN, BENTO_EN] : [CASES_RU, JOBS_RU, SKILLS_RU, BENTO_RU];
 const A = 'assets/img/';
+// bento with no @2x file: the Aspro one exists only at 1728 px (from the original), so every screen gets that one
+const NO2X = ['cases/aspro-bento'];
 // Regina's own arrow icon (assets/icon/desktop/arrow_up.svg), inline so it takes the text colour
 const ARROW = '<svg class="arr" viewBox="0 0 14 14" aria-hidden="true"><path fill="currentColor" d="M13 0C13.5523 2.41412e-08 14 0.448692 14 1.00098V13.001C13.9997 13.553 13.5521 14.001 13 14.001C12.4477 14.001 12 13.5523 12 13V3.41406L1.70703 13.708C1.31652 14.0981 0.683369 14.0973 0.292969 13.707C-0.0973982 13.3166 -0.0973106 12.6835 0.292969 12.293L10.5859 2H1C0.447716 2 -2.41411e-08 1.55228 0 1C0.000255835 0.447933 0.447873 -5.17162e-10 1 0H13Z"/></svg>';
 
@@ -64,7 +66,7 @@ document.getElementById('sheet').innerHTML = `
     ${CASES.map(([t, d], i) => { const [dk, dw, dh, mb, mw, mh, alt] = BENTO[i];
       // the browser picks the 1x file on regular screens and the @2x one on retina
       return `<article class="case bento"><div class="case-inner"><div class="case-head"><h2>${t}</h2><div><p>${d}</p></div></div>
-        <picture><source media="(max-width: 768px)" srcset="${A + mb}.webp 540w, ${A + mb}@1.5x.webp 810w, ${A + mb}@2x.webp 1080w" sizes="100vw" width="${mw}" height="${mh}"><img loading="lazy" decoding="async" src="${A + dk}.webp" srcset="${A + dk}.webp ${dw}w, ${A + dk}@2x.webp ${dw * 2}w" sizes="(min-width: 1920px) calc(100vw - 192px), 90vw" alt="${alt}" width="${dw}" height="${dh}"></picture></div></article>`; }).join('')}
+        <picture><source media="(max-width: 768px)" srcset="${A + mb}.webp 540w, ${A + mb}@1.5x.webp 810w, ${A + mb}@2x.webp 1080w" sizes="100vw" width="${mw}" height="${mh}"><img loading="lazy" decoding="async" src="${A + dk}.webp" srcset="${A + dk}.webp ${dw}w${NO2X.includes(dk) ? '' : `, ${A + dk}@2x.webp ${dw * 2}w`}" sizes="(min-width: 1920px) calc(100vw - 192px), 90vw" alt="${alt}" width="${dw}" height="${dh}"></picture></div></article>`; }).join('')}
   </div></section>
   <section class="sec"><h2 class="h2">${t('works')}</h2><ul class="formats skills">
     ${SKILLS.map(([n, img]) => `<li>${n}${img ? `<img src="${A}skills/${img}.webp" alt="" loading="lazy">` : ''}</li>`).join('')}
