@@ -1,9 +1,8 @@
 // Регина Тарасова · reginatarasova.com
 // content
-// language: /en/ is the same page (vercel.json rewrite) with the texts swapped; ?lang=en does the same locally
+// language: ?lang=en is the same page with the texts swapped (GitHub Pages has no rewrites; old /en/ links are sent here by 404.html)
 const EN = location.pathname.startsWith('/en') || new URLSearchParams(location.search).get('lang') === 'en';
-const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-const URL_RU = LOCAL ? location.pathname : '/', URL_EN = LOCAL ? '?lang=en' : '/en/';
+const URL_RU = location.pathname, URL_EN = location.pathname + '?lang=en';
 const CASES_RU = [
   ['Айдентика и развитие системы Аспро.Cloud', 'Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.'],
   ['Егор Крид, Звери, Баста и другие — рекламные кампании гастрольных туров', 'Разрабатывала визуальную систему рекламной кампании гастрольных туров Небо Рекордс: создавала серию афиш и адаптировала их под разные города, площадки и форматы. Выстраивала единый визуальный язык, который позволил сохранять целостность кампании при выпуске более ста концертов в год.'],
@@ -64,8 +63,8 @@ document.getElementById('sheet').innerHTML = `
   <section class="sec" id="portfolio"><div class="cases">
     ${CASES.map(([t, d], i) => { const [dk, dw, dh, mb, mw, mh, alt] = BENTO[i];
       // the browser picks the 1x file on regular screens and the @2x one on retina
-      return `<article class="case bento"><div class="case-inner"><div class="case-head"><h3>${t}</h3><div><p>${d}</p></div></div>
-        <picture><source media="(max-width: 768px)" srcset="${A + mb}.webp" width="${mw}" height="${mh}"><img src="${A + dk}.webp" srcset="${A + dk}.webp ${dw}w, ${A + dk}@2x.webp ${dw * 2}w" sizes="(min-width: 1920px) calc(100vw - 192px), 90vw" alt="${alt}" width="${dw}" height="${dh}"></picture></div></article>`; }).join('')}
+      return `<article class="case bento"><div class="case-inner"><div class="case-head"><h2>${t}</h2><div><p>${d}</p></div></div>
+        <picture><source media="(max-width: 768px)" srcset="${A + mb}.webp 540w, ${A + mb}@1.5x.webp 810w, ${A + mb}@2x.webp 1080w" sizes="100vw" width="${mw}" height="${mh}"><img loading="lazy" decoding="async" src="${A + dk}.webp" srcset="${A + dk}.webp ${dw}w, ${A + dk}@2x.webp ${dw * 2}w" sizes="(min-width: 1920px) calc(100vw - 192px), 90vw" alt="${alt}" width="${dw}" height="${dh}"></picture></div></article>`; }).join('')}
   </div></section>
   <section class="sec"><h2 class="h2">${t('works')}</h2><ul class="formats skills">
     ${SKILLS.map(([n, img]) => `<li>${n}${img ? `<img src="${A}skills/${img}.webp" alt="" loading="lazy">` : ''}</li>`).join('')}
@@ -81,7 +80,14 @@ document.getElementById('foot').innerHTML = `
 
 // smooth scroll + anchors
 gsap.registerPlugin(ScrollTrigger);
+// iOS Safari resizes the window when its toolbar slides in and out; that must not re-measure the page mid-scroll
+ScrollTrigger.config({ ignoreMobileResize: true });
 const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+// phones and tablets: no hover, no works in the hero, and the hero is held by CSS sticky instead of a GSAP pin (smoother on touch)
+const HOVER = matchMedia('(hover: hover)').matches;
+document.documentElement.classList.toggle('touch', !HOVER);
+// run only when the width really changes (the toolbar of a phone browser changes just the height)
+const onWidth = (fn, wait = 200) => { let w = innerWidth, tm; addEventListener('resize', () => { if (innerWidth === w) return; w = innerWidth; clearTimeout(tm); tm = setTimeout(fn, wait); }); };
 const lenis = new Lenis({ lerp: .1 });
 window.lenis = lenis;
 lenis.on('scroll', ScrollTrigger.update);
@@ -124,7 +130,7 @@ const SPOTS = [[.04,.9],[.12,.15],[.2,.6],[.28,0],[.35,.85],[.42,.3],[.5,.7],[.5
   [.08,.4],[.24,.95],[.38,.15],[.52,.5],[.6,.35],[.66,1],[.78,.3],[.9,.95],[.95,.45],[.02,.1],[.48,.9],[.72,.15],[.33,.7]];
 // keep the hero pinned behind the whole case stack, the next sections slide over it
 if (!reduce) {
-  ScrollTrigger.create({ trigger: '.hero', start: 'top top', endTrigger: '#portfolio', end: 'bottom top', pin: true, pinSpacing: false });
+  if (HOVER) ScrollTrigger.create({ trigger: '.hero', start: 'top top', endTrigger: '#portfolio', end: 'bottom top', pin: true, pinSpacing: false });
   // the hero shrinks a little as the first card comes in; the description leaves before the cards start fading over it
   gsap.timeline({ scrollTrigger: { trigger: '.sheet', start: 'top bottom', end: 'top top', scrub: true } })
     .to('.hero-in', { scale: .9, ease: 'none', duration: 1 }, 0)
@@ -139,7 +145,6 @@ for (let i = 2; i < order.length; i += 3) { const j = (i + Math.floor(order.leng
 // first work sits at the far left, last one at the far right
 order[0] = [0, order[0][1]]; order[ART.length - 1] = [1, order[ART.length - 1][1]];
 // phones and tablets get no works at all: the hero is just the name and the description there
-const HOVER = matchMedia('(hover: hover)').matches;
 const imgs = (HOVER ? ART : []).map((art, i) => {
   const video = art.src.endsWith('.mp4'), im = document.createElement(video ? 'video' : 'img');
   if (video) Object.assign(im, { muted: true, loop: true, playsInline: true, preload: 'auto' }); else im.alt = '';
@@ -200,7 +205,7 @@ else {
         onRefresh: st => { desc.style.visibility = st.progress > 0 ? 'visible' : 'hidden'; } } });
   };
   document.fonts.ready.then(buildDesc);
-  let descT; addEventListener('resize', () => { clearTimeout(descT); descT = setTimeout(buildDesc, 200); });
+  onWidth(buildDesc);
 }
 if (HOVER) {
   zones.innerHTML = imgs.map(() => '<div></div>').join('');
@@ -257,8 +262,8 @@ const caseText = () => {
   caseSplits = [];
   if (reduce) return;
   document.querySelectorAll('.case.bento .case-head').forEach(head => {
-    const h3 = head.querySelector('h3'), p = head.querySelector('p');
-    const split = SplitText.create(h3, { type: 'lines', mask: 'lines' });
+    const h2 = head.querySelector('h2'), p = head.querySelector('p');
+    const split = SplitText.create(h2, { type: 'lines', mask: 'lines' });
     const st = { trigger: head, start: 'top 85%', toggleActions: 'play none none reverse' };
     const tw = [gsap.from(split.lines, { yPercent: 105, duration: .8, ease: 'power3.out', stagger: .08, scrollTrigger: st }),
       gsap.from(p, { y: 24, opacity: 0, duration: .8, ease: 'power3.out', delay: .15, scrollTrigger: { ...st } })];
@@ -278,13 +283,13 @@ const restText = () => {
   rows(document.querySelectorAll('#experience .exp'), '#experience .exps');
 };
 document.fonts.ready.then(() => { caseText(); restText(); });
-let caseTextT; addEventListener('resize', () => { clearTimeout(caseTextT); caseTextT = setTimeout(() => { caseText(); restText(); }, 250); });
+onWidth(() => { caseText(); restText(); }, 250);
 
 // measure once the bento images are in; rebuild after a resize
-const caseImgs = [...document.querySelectorAll('.case.bento img')];
-Promise.all(caseImgs.map(i => i.complete ? 0 : new Promise(r => { i.onload = i.onerror = r; }))).then(setupCases);
+// the bento images load lazily; their width/height attributes already hold the right proportions, so the cards can be measured right away
+setupCases();
 let caseT; const resetCases = () => { clearTimeout(caseT); caseT = setTimeout(setupCases, 200); };
-addEventListener('resize', resetCases);
+onWidth(resetCases, 0);
 // a narrower window swaps the bento for its mobile file, which has a different height; the pin keeps the card at its old height,
 // so watch the content itself and re-measure whenever it changes
 const caseH = new WeakMap();

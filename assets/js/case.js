@@ -1,10 +1,8 @@
 // Регина Тарасова · reginatarasova.com — case pages (La Triple T): header, phone menu, footer, language
-// language: /en/... is the same page (vercel.json rewrite) with the texts swapped; ?lang=en does the same locally
+// language: ?lang=en is the same page with the texts swapped (GitHub Pages has no rewrites)
 const EN = location.pathname.startsWith('/en') || new URLSearchParams(location.search).get('lang') === 'en';
-const LOCAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
-const HOME = EN ? (LOCAL ? '/?lang=en' : '/en/') : '/';
-const here = location.pathname.replace(/^\/en/, '');
-const URL_RU = LOCAL ? here : here, URL_EN = LOCAL ? here + '?lang=en' : '/en' + here;
+const HOME = EN ? '/?lang=en' : '/';
+const URL_RU = location.pathname, URL_EN = location.pathname + '?lang=en';
 const T = {
   portfolio: ['Портфолио', 'Portfolio'], exp: ['Опыт работы', 'Experience'], contact: ['Связаться', 'Contact'], top: ['Наверх', 'Top'],
   home: ['На главную', 'Home'], menu: ['Меню', 'Menu'], close: ['Закрыть', 'Close'], nav: ['Навигация', 'Navigation'],
