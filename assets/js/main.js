@@ -36,7 +36,7 @@ const T = {
   works: ['С чем работаю', 'What I work with'], exp: ['Опыт работы', 'Experience'], portfolio: ['Портфолио', 'Portfolio'],
   contact: ['Связаться', 'Contact'], menu: ['Меню', 'Menu'], close: ['Закрыть', 'Close'], top: ['Наверх', 'Top'], about: ['Обо мне', 'About me'], nav: ['Навигация', 'Navigation'],
   name: ['Регина<br>Тарасова', 'Regina<br>Tarasova'],
-  desc: ['Графический дизайнер<br class="m-br"> с опытом 7+ лет<br>Digital и концертная индустрия<br class="m-br"> (и не только)', 'Graphic designer<br class="m-br"> with 7+ years of experience<br>Digital and concert industry<br class="m-br"> (and beyond)'],
+  desc: ['Графический дизайнер<br class="m-br"> с опытом 7+ лет <br>Digital и концертная индустрия<br class="m-br"> (и не только)', 'Graphic designer<br class="m-br"> with 7+ years of experience <br>Digital and concert industry<br class="m-br"> (and beyond)'],
   joke: ['Если вы долистали до этого футера и решили закрыть страницу, то у вас не будет работать дизайнер, который работал с Егором Кридом. Думайте.', 'If you scrolled all the way down to this footer and decided to close the page, you won\'t have a designer who worked with Egor Kreed. Think about it.'],
   meta: ['Графический дизайнер с опытом 7+ лет. Специализируюсь на digital и концертной индустрии.', 'Graphic designer with 7+ years of experience. Specialising in the digital and concert industry.']
 };
@@ -188,13 +188,14 @@ const desc = document.getElementById('desc'), heroName = document.querySelector(
 // SplitText breaks at every <br>, even hidden ones, so the phone-only breaks are dropped from the text on wider screens
 const descSrc = desc.innerHTML, descHTML = () => matchMedia('(max-width: 820px)').matches ? descSrc : descSrc.replace(/<br class="m-br">/g, '');
 gsap.registerPlugin(SplitText);
+// aria: 'none' — SplitText would put aria-label on the split element, which is not allowed on <p>; the lines keep the real text anyway
 if (reduce) { gsap.set(heroName, { display: 'none' }); gsap.set(desc, { visibility: 'visible' }); }
 else if (!HOVER) {
   // phones: no scrubbing — once the page is scrolled a little, the name fades and the description lines rise in one short go (and back)
   let split, tl, st;
   const buildTouch = () => {
     st?.kill(); tl?.kill(); split?.revert(); desc.innerHTML = descHTML(); gsap.set(heroName, { clearProps: 'opacity,transform' });
-    split = SplitText.create(desc, { type: 'lines', mask: 'lines', linesClass: 'line' });
+    split = SplitText.create(desc, { type: 'lines', mask: 'lines', aria: 'none', linesClass: 'line' });
     gsap.set(split.lines, { yPercent: 120 }); desc.style.visibility = 'visible';
     tl = gsap.timeline({ paused: true })
       .to(heroName, { opacity: 0, yPercent: -20, duration: .4, ease: 'power2.out' }, 0)
@@ -213,7 +214,7 @@ else {
   let split, lineAnim;
   const buildDesc = () => {
     lineAnim?.scrollTrigger?.kill(); lineAnim?.kill(); split?.revert(); desc.innerHTML = descHTML();
-    split = SplitText.create(desc, { type: 'lines', mask: 'lines', linesClass: 'line' });
+    split = SplitText.create(desc, { type: 'lines', mask: 'lines', aria: 'none', linesClass: 'line' });
     gsap.set(split.lines, { yPercent: 120 });   // every line starts under its mask, including the ones still waiting for their stagger turn
     lineAnim = gsap.fromTo(split.lines, { yPercent: 120 }, { yPercent: 0, stagger: .1, ease: 'none',
       scrollTrigger: { start: () => innerHeight * .3, end: () => innerHeight * .9, scrub: true, invalidateOnRefresh: true,
@@ -280,7 +281,7 @@ const caseText = () => {
   if (reduce) return;
   document.querySelectorAll('.case.bento .case-head').forEach(head => {
     const h2 = head.querySelector('h2'), p = head.querySelector('p');
-    const split = SplitText.create(h2, { type: 'lines', mask: 'lines' });
+    const split = SplitText.create(h2, { type: 'lines', mask: 'lines', aria: 'none' });
     const st = { trigger: head, start: 'top 85%', toggleActions: 'play none none reverse' };
     const tw = [gsap.from(split.lines, { yPercent: 105, duration: .8, ease: 'power3.out', stagger: .08, scrollTrigger: st }),
       gsap.from(p, { y: 24, opacity: 0, duration: .8, ease: 'power3.out', delay: .15, scrollTrigger: { ...st } })];
@@ -291,7 +292,7 @@ const caseText = () => {
 const restText = () => {
   if (reduce) return;
   document.querySelectorAll('#sheet .sec > .h2').forEach(h => {
-    const split = SplitText.create(h, { type: 'lines', mask: 'lines' });
+    const split = SplitText.create(h, { type: 'lines', mask: 'lines', aria: 'none' });
     caseSplits.push({ split, tw: [gsap.from(split.lines, { yPercent: 105, duration: .8, ease: 'power3.out', stagger: .08, scrollTrigger: { trigger: h, start: 'top 85%', toggleActions: 'play none none reverse' } })] });
   });
   const rows = (items, trigger) => caseSplits.push({ split: { revert() {} }, tw: [gsap.from(items, { y: 24, opacity: 0, duration: .7, ease: 'power3.out', stagger: .06,
