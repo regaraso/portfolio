@@ -4,38 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 — Regina Tarasova</title>
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="preload" as="font" href="assets/fonts/GeistMono-latin.woff2" crossorigin>
-  <link rel="preload" as="font" href="assets/fonts/GeistMono-cyrillic.woff2" crossorigin>
-  <link rel="stylesheet" href="assets/css/site.css?v=9">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/main.css?v=7">
   <style>
-    .page-404 {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 120px clamp(20px, 5vw, 80px) 80px;
-    }
-    .page-404__num {
-      font-size: clamp(120px, 20vw, 260px);
-      font-weight: 400;
-      line-height: 1;
-      letter-spacing: -0.04em;
-      text-transform: uppercase;
-    }
-    .page-404__num span { color: #BADD13; }
-    .page-404__msg {
-      margin-top: 24px;
-      font-size: clamp(14px, 1.5vw, 18px);
-      line-height: 1.5;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
-    .page-404__back {
-      margin-top: 48px;
-    }
+    html,body{background:var(--acc)}
+    .nf{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;padding:0 var(--pad);color:var(--ink)}
+    .nf h1{font-weight:500;font-size:min(16vw,30vh);line-height:1;letter-spacing:-.02em;color:#4522ec}
+    .nf p{font-size:clamp(16px,1.5625vw,30px);line-height:1.08;letter-spacing:-.01em}
   </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
@@ -49,84 +26,15 @@
 </script>
 <!-- /Yandex.Metrika counter -->
 </head>
-<body>
+<body class="on-green">
 <noscript><div><img src="https://mc.yandex.ru/watch/110603570" style="position:absolute; left:-9999px;" alt=""></div></noscript>
 
+<a class="hd side-l h2-logo" href="/" aria-label="На главную"><svg viewBox="3 3 10 10" width="18" height="18" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10 3C11.6569 3 13 4.34315 13 6C13 7.65685 11.6569 9 10 9H9.93359L11 11H13V13H9.7998L7.66602 9H5V11H7V13H3V3H10ZM5 7H10C10.5523 7 11 6.55228 11 6C11 5.44772 10.5523 5 10 5H5V7Z"/></svg></a>
+<nav class="hd side-r h2-nav" aria-label="Навигация"><a class="cta" href="/">На главную</a></nav>
 
-  <!-- HEADER -->
-  <header class="header" id="header">
-    <a href="/" class="js-scroll-top" aria-label="На главную"><img src="assets/img/logo_16.svg" alt="" class="header__logo"></a>
-    <nav class="header__nav" id="header-nav">
-      <a href="/#portfolio" class="pill js-scroll-link">
-        <span class="nav-link" data-i18n="nav-portfolio"><span class="nav-out">ПОРТФОЛИО</span><span class="nav-in">ПОРТФОЛИО</span></span>
-      </a>
-      <button class="pill pill--accent" id="btn-contacts">
-        <span class="nav-link" data-i18n="nav-contact"><span class="nav-out">СВЯЗАТЬСЯ</span><span class="nav-in">СВЯЗАТЬСЯ</span></span>
-      </button>
-      <a href="/#experience" class="pill js-scroll-link">
-        <span class="nav-link" data-i18n="nav-experience"><span class="nav-out">ОПЫТ РАБОТЫ</span><span class="nav-in">ОПЫТ РАБОТЫ</span></span>
-      </a>
-    </nav>
-    <a href="?lang=en" class="header__lang" id="lang-switch">EN</a>
-    <button class="header__contact-mobile pill pill--accent" id="btn-contacts-mobile" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</button>
-    <button class="header__burger" id="btn-burger" aria-label="Меню">
-      <img src="assets/icon/mobile/burger.svg" alt="">
-    </button>
-  </header>
-
-  <main class="page-404">
-    <p class="page-404__num">4<span>0</span>4</p>
-    <p class="page-404__msg">Страница не найдена</p>
-    <div class="page-404__back">
-      <a href="/" class="pill pill--accent">На главную</a>
-    </div>
-  </main>
-
-  <!-- POPUP: CONTACTS -->
-  <div class="popup popup--contacts" id="popup-contacts" aria-hidden="true" inert>
-    <div class="popup__header">
-      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
-      <button class="popup__close" id="btn-contacts-close" aria-label="Закрыть">
-        <img class="popup__close-x" src="assets/icon/desktop/close.svg" alt="×">
-        <img class="popup__close-img" src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
-      </button>
-    </div>
-    <div class="contacts-list">
-      <a href="https://t.me/redgini" target="_blank" rel="noopener" class="contact-row">
-        <span class="contact-row__label">TELEGRAM</span>
-        <span class="contact-row__value">@redgini</span>
-        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
-      </a>
-      <a href="mailto:reedgini@gmail.com" class="contact-row">
-        <span class="contact-row__label">EMAIL</span>
-        <span class="contact-row__value">reedgini@gmail.com</span>
-        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
-      </a>
-      <a href="https://linkedin.com/in/reginatarasova" target="_blank" rel="noopener" class="contact-row">
-        <span class="contact-row__label">LINKEDIN</span>
-        <span class="contact-row__value">reginatarasova</span>
-        <span class="contact-row__arrow"><picture><source media="(max-width: 768px)" srcset="assets/icon/mobile/arrow_up.svg"><img src="assets/icon/desktop/arrow_up.svg" alt=""></picture></span>
-      </a>
-    </div>
-  </div>
-
-  <!-- POPUP: BURGER (mobile) -->
-  <div class="popup popup--burger" id="popup-burger" aria-hidden="true" inert>
-    <div class="popup__header">
-      <img src="assets/img/logo_16.svg" alt="" class="popup__logo">
-      <button class="popup__close" id="btn-burger-close" aria-label="Закрыть">
-        <img src="assets/icon/mobile/close.svg" width="8" height="8" alt="×">
-      </button>
-    </div>
-    <nav class="burger-nav">
-      <a href="/#portfolio" class="burger-nav__item js-close-burger" data-i18n="nav-portfolio-plain">ПОРТФОЛИО</a>
-      <a href="#" class="burger-nav__item js-open-contacts js-close-burger" data-i18n="nav-contact-plain">СВЯЗАТЬСЯ</a>
-      <a href="/#experience" class="burger-nav__item js-close-burger" data-i18n="nav-experience-plain">ОПЫТ РАБОТЫ</a>
-    </nav>
-    <a href="?lang=en" class="burger-lang" id="burger-lang-switch">EN</a>
-  </div>
-
-  <script src="assets/js/lenis.min.js" defer></script>
-  <script src="assets/js/site.js?v=11" defer></script>
+<main class="nf">
+  <h1>404</h1>
+  <p>Страница не найдена</p>
+</main>
 </body>
 </html>
