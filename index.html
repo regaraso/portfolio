@@ -18,7 +18,7 @@
   <style>html{background:#badd13}</style>
   <!-- the loader plays once per visit: later page views in the same tab skip it -->
   <script>try{if(sessionStorage.getItem('loaded'))document.documentElement.classList.add('seen');else sessionStorage.setItem('loaded','1')}catch(e){}</script>
-  <link rel="stylesheet" href="assets/css/main.css?v=12">
+  <link rel="stylesheet" href="assets/css/main.css?v=13">
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
   (function(m,e,t,r,i,k,a){
@@ -33,7 +33,7 @@
 </head>
 <body class="on-green">
 <noscript><div><img src="https://mc.yandex.ru/watch/110603570" style="position:absolute; left:-9999px;" alt=""></div></noscript>
-<div class="loader" aria-hidden="true"><div class="ld-row"><div class="ld-bar"><i></i></div><span class="ld-pct">00</span></div><div class="ld-fill"></div></div>
+<div class="loader" aria-hidden="true"><div class="ld-row"><div class="ld-bar"><i></i></div></div><div class="ld-fill"></div></div>
 <script>
 /* loader progress: the font, the page itself, everything it loads (window load) and, on desktop, each hero work (main.js reports them).
    The shown value follows the real one but takes at least ~1.3 s; after 6 s it finishes anyway */
@@ -41,14 +41,14 @@
   var h = document.documentElement, l = document.querySelector('.loader');
   if (h.classList.contains('seen')) { l.remove(); return; }   // already seen in this visit: the name just stands there
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) { h.classList.add('ld-done'); l.remove(); return; }
-  var total = 3, done = 0, shown = 0, t0 = performance.now(), fill = l.querySelector('.ld-bar i'), pc = l.querySelector('.ld-pct');
+  var total = 3, done = 0, shown = 0, t0 = performance.now(), fill = l.querySelector('.ld-bar i');
   var hit = function () { done++; };
   window.ldTrack = function (im) { total++; if (im.complete) done++; else { im.addEventListener('load', hit); im.addEventListener('error', hit); } };
   document.fonts.ready.then(hit); document.addEventListener('DOMContentLoaded', hit); addEventListener('load', hit);
   var frame = function (now) {
     var real = now - t0 > 6000 ? 1 : Math.min(1, done / total);
     shown = Math.min(real, shown + Math.max((real - shown) * .12, .004), (now - t0) / 1300);   // never ahead of 1.3 s, whatever the frame rate
-    fill.style.transform = 'scaleX(' + shown + ')'; pc.textContent = String(Math.round(shown * 100)).padStart(2, '0');
+    fill.style.transform = 'scaleX(' + shown + ')';
     if (shown >= .999) finish(); else requestAnimationFrame(frame);
   };
   requestAnimationFrame(frame);
