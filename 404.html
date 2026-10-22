@@ -5,16 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>404 — Regina Tarasova</title>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
-  <link rel="preload" href="/assets/fonts/onest-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="/assets/fonts/onest-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/assets/css/main.css?v=14">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap">
+  <link rel="stylesheet" href="/assets/css/home.css?v=7">
   <style>
-    html,body{background:var(--acc)}
-    .nf{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;text-align:center;padding:0 var(--pad);color:var(--ink)}
-    .nf h1{font-weight:500;font-size:min(16vw,30vh);line-height:1;letter-spacing:-.02em;color:#4522ec}
-    .nf p{font-size:clamp(16px,1.5625vw,30px);line-height:1.08;letter-spacing:-.01em}
+
+    .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; align-content: center; gap: 40px; padding: 96px var(--pad); text-align: center; }
+    .num { position: relative; font-size: 320px; line-height: 320px; font-weight: 200; letter-spacing: -8px; user-select: none; }
+
+    .num span { display: block; }
+    .num span + span { position: absolute; inset: 0;
+      -webkit-mask-image: radial-gradient(circle calc(var(--r, 140px) * var(--k)) at var(--x, 50%) var(--y, 50%), #000 0, transparent 100%);
+      mask-image: radial-gradient(circle calc(var(--r, 140px) * var(--k)) at var(--x, 50%) var(--y, 50%), #000 0, transparent 100%); }
+    .num .f4 { color: #a3a7ab; filter: blur(18px); }
+    .num .f3 { color: #8f9398; filter: blur(11px); --k: 2.2; }
+    .num .f2 { color: #6f7378; filter: blur(6px); --k: 1.7; }
+    .num .f1 { color: #45484c; filter: blur(2.5px); --k: 1.3; }
+    .num .f0 { color: var(--ink); --k: 1; }
+
+    .num .f1, .num .f2, .num .f3, .num .f4 { transition: opacity .6s var(--ease); }
+    .num.clear .f1, .num.clear .f2, .num.clear .f3, .num.clear .f4 { opacity: 0; }
+    .num.clear .f0 { -webkit-mask-image: none; mask-image: none; }
+    .nf .lbl { order: -1; }
+    .home { display: inline-flex; align-items: center; height: 40px; padding: 0 20px; background: var(--acc); color: var(--on-acc); font-size: 12px; letter-spacing: -.2px; transition: background .4s, color .4s; }
+    .home:hover, .home:focus-visible { background: var(--ink); color: var(--paper); }
+    @media (max-width: 1059px) { .num { font-size: 200px; line-height: 200px; letter-spacing: -5px; } }
+    @media (max-width: 760px) { .num { font-size: 140px; line-height: 140px; letter-spacing: -4px; } .num .f4 { filter: blur(12px); } .num .f3 { filter: blur(7px); } .num .f2 { filter: blur(4px); } }
   </style>
-<script>/* GitHub Pages has no rewrites: an old /en/... link goes to the same page with ?lang=en */ if (/^\/en(\/|$)/.test(location.pathname)) location.replace(location.pathname.replace(/^\/en/, '') .replace(/^$/, '/') + '?lang=en' + location.hash);</script>
+  <script>if (/^\/en(\/|$)/.test(location.pathname)) location.replace(location.pathname.replace(/^\/en/, '') .replace(/^$/, '/') + '?lang=en' + location.hash);</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
   (function(m,e,t,r,i,k,a){
@@ -27,15 +46,32 @@
 </script>
 <!-- /Yandex.Metrika counter -->
 </head>
-<body class="on-green">
+<body data-page="404" data-root="/">
 <noscript><div><img src="https://mc.yandex.ru/watch/110603570" style="position:absolute; left:-9999px;" alt=""></div></noscript>
-
-<a class="hd side-l h2-logo" href="/" aria-label="На главную"><svg viewBox="3 3 10 10" width="18" height="18" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10 3C11.6569 3 13 4.34315 13 6C13 7.65685 11.6569 9 10 9H9.93359L11 11H13V13H9.7998L7.66602 9H5V11H7V13H3V3H10ZM5 7H10C10.5523 7 11 6.55228 11 6C11 5.44772 10.5523 5 10 5H5V7Z"/></svg></a>
-<nav class="hd side-r h2-nav" aria-label="Навигация"><a class="cta" href="/">На главную</a></nav>
-
-<main class="nf">
-  <h1>404</h1>
-  <p>Страница не найдена</p>
+<main class="nf" id="top">
+  <div class="num" id="num" aria-hidden="true"><span class="f4">404</span><span class="f3">404</span><span class="f2">404</span><span class="f1">404</span><span class="f0">404</span></div>
+  <h1 class="lbl" id="nfl">Страница не найдена</h1>
+  <a class="home" id="home" href="/">На главную</a>
 </main>
+<script src="/assets/js/site.js?v=7"></script>
+<script>
+  $('nfl').textContent = EN ? 'Page not found' : 'Страница не найдена';
+  $('home').textContent = t('home'); $('home').href = HOME;
+  const num = $('num'), lens = { x: .5, y: .5, r: 140 }, aim = { x: .5, y: .5, r: 140 };
+  let idle = 0, wide = false;
+  addEventListener('pointermove', e => { const b = num.getBoundingClientRect(); aim.x = (e.clientX - b.left) / b.width; aim.y = (e.clientY - b.top) / b.height; idle = performance.now(); });
+  const setWide = on => { wide = on; num.classList.toggle('clear', on); };
+  $('home').addEventListener('pointerenter', () => setWide(true)); $('home').addEventListener('pointerleave', () => setWide(false));
+  $('home').addEventListener('focus', () => setWide(true)); $('home').addEventListener('blur', () => setWide(false));
+  const frame = now => {
+    if (now - idle > 1800) { const s = now / 1000; aim.x = .5 + .38 * Math.sin(s * .7); aim.y = .5 + .22 * Math.sin(s * 1.1); }
+    aim.r = wide ? num.offsetWidth * 2 : (innerWidth < 761 ? 80 : 130);
+    for (const k of ['x', 'y', 'r']) lens[k] += (aim[k] - lens[k]) * .08;
+    num.style.setProperty('--x', (lens.x * 100).toFixed(2) + '%'); num.style.setProperty('--y', (lens.y * 100).toFixed(2) + '%'); num.style.setProperty('--r', Math.round(lens.r) + 'px');
+    requestAnimationFrame(frame);
+  };
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) num.style.setProperty('--r', '9999px'); else requestAnimationFrame(frame);
+  noHang();
+</script>
 </body>
 </html>
