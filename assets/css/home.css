@@ -243,7 +243,7 @@ body { letter-spacing: -.4px; }
   .case h3 { font-size: 24px; line-height: 28px; letter-spacing: -.4px; }
 
   .sk h2 { top: 96px; }
-  .sk-list li { height: 64px; padding: 0 var(--pad); font-size: 24px; line-height: 28px; letter-spacing: -.4px; white-space: normal; text-wrap: balance; }
+  .sk-list li { height: 48px; padding: 0 var(--pad); font-size: 24px; line-height: 24px; letter-spacing: -.4px; white-space: normal; text-wrap: balance; }
   .grp img:nth-child(1) { width: 240px; height: 232px; }
   .grp img:nth-child(n+2) { width: 120px; height: 120px; }
 
@@ -280,12 +280,9 @@ body { letter-spacing: -.4px; }
   html[lang="en"] .f-ct b { font-size: 32px; line-height: 36px; letter-spacing: -.2px; }
 }
 
-/* iOS Safari draws the page under the status bar (viewport-fit=cover in the pages): the fixed layers now reach the very top,
-   and everything pinned to the top or bottom edge moves clear of the bars. env() is 0 everywhere else, so nothing changes there */
-.tl, .tr { top: env(safe-area-inset-top, 0px); }
-footer { padding-top: calc(160px + env(safe-area-inset-top, 0px)); padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
+/* iOS Safari tints the status bar with the background-color of a fixed layer at the top edge; the blur strip only had a gradient,
+   so the page showed through under the clock. A solid colour fixes that; over the open footer the strip is clear, so Safari takes its green */
 @media (max-width: 760px) {
-  body::before { height: calc(96px + env(safe-area-inset-top, 0px)); }
-  .menu { padding-top: calc(16px + env(safe-area-inset-top, 0px)); padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
-  footer { padding-top: calc(88px + env(safe-area-inset-top, 0px)); padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
+  body::before { background-color: var(--paper); }
+  body.on-foot::before, html.intro body::before { background-color: transparent; }
 }
