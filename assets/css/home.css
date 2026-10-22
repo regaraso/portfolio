@@ -76,7 +76,7 @@ body.on-foot .corner .cta { color: var(--acc); background: var(--on-acc); }
 .win p i { font-style: normal; visibility: hidden; }
 .win p i.t { visibility: visible; }
 
-.win p .caret { display: inline-block; position: relative; width: 0; height: 16px; vertical-align: top; }
+.win p .caret { display: inline; position: relative; }   /* inline, not inline-block: a block between letters would let the line break there while typing */
 .win p .caret::before { content: ''; position: absolute; left: 1px; top: 1px; width: 7px; height: 14px; background: var(--acc); animation: blink 1s steps(1) infinite; }
 @keyframes blink { 50% { opacity: 0; } }
 .vh { position: absolute; left: 0; top: 0; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
@@ -125,7 +125,7 @@ body.on-foot .corner .cta { color: var(--acc); background: var(--on-acc); }
 .job > div { display: contents; }
 .job .y { font-size: 12px; color: var(--mute); }
 .job .co { display: flex; gap: 12px; align-items: center; font-size: 24px; font-weight: 500; letter-spacing: -1px; line-height: 28px; }
-.job .co img { width: 32px; height: 32px; border-radius: 6px; }
+.job .co img { width: 32px; height: 32px; }
 .job .a, .job .t { font-size: 13px; line-height: 20px; color: var(--mute); }
 .job .r { font-size: 13px; font-weight: 600; margin-top: 20px; }
 
@@ -278,4 +278,14 @@ body { letter-spacing: -.4px; }
 @media (min-width: 761px) and (max-width: 907px) {
   html[lang="en"] :is(.line, .sk-list li) { font-size: 36px; letter-spacing: -.6px; } html[lang="en"] .line { line-height: 36px; } html[lang="en"] .sk-list li { height: 44px; }
   html[lang="en"] .f-ct b { font-size: 32px; line-height: 36px; letter-spacing: -.2px; }
+}
+
+/* iOS Safari draws the page under the status bar (viewport-fit=cover in the pages): the fixed layers now reach the very top,
+   and everything pinned to the top or bottom edge moves clear of the bars. env() is 0 everywhere else, so nothing changes there */
+.tl, .tr { top: env(safe-area-inset-top, 0px); }
+footer { padding-top: calc(160px + env(safe-area-inset-top, 0px)); padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px)); }
+@media (max-width: 760px) {
+  body::before { height: calc(96px + env(safe-area-inset-top, 0px)); }
+  .menu { padding-top: calc(16px + env(safe-area-inset-top, 0px)); padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px)); }
+  footer { padding-top: calc(88px + env(safe-area-inset-top, 0px)); padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px)); }
 }
