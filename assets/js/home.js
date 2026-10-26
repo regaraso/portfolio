@@ -3,6 +3,20 @@ document.querySelector('.hero h1').textContent = `${t('first')} ${t('last')}`;
 { const s = document.querySelectorAll('.line > span'); s[0].textContent = t('first'); s[4].textContent = t('last'); }
 document.querySelector('.cases').setAttribute('aria-label', t('portfolio'));
 $('skh').textContent = t('works'); document.querySelector('.ex-h').textContent = t('exp');
+$('abh').textContent = t('about'); // [[words|NN]] in the text are underlined; hovering them (a tap on phones) pops up about-NN above the words, the way the pictures come up in «С чем работаю»
+$('abt').innerHTML = C.about.map(p => `<p>${p.replace(/\[\[(.+?)\|(\d+)\]\]/g, (_, w, n) => `<span class="ab-w" tabindex="0" data-ph="${n}">${w}</span>`)}</p>`).join('');
+const ab = $('about'), abWords = [...ab.querySelectorAll('.ab-w')];
+const abPops = abWords.map(w => { const im = document.createElement('img'); im.className = 'ab-pop'; im.src = `${A}about/about-${w.dataset.ph}.webp`; im.alt = ''; im.loading = 'lazy'; ab.append(im); return im; });
+const abShow = (k, on) => { const w = abWords[k], im = abPops[k];
+  if (on) { const a = ab.getBoundingClientRect(), r = [...w.getClientRects()][0], pw = im.offsetWidth, pad = parseFloat(getComputedStyle(ab).paddingLeft);
+    im.style.left = Math.round(Math.min(Math.max(r.left + r.width / 2 - pw / 2 - a.left, pad), a.width - pad - pw)) + 'px';
+    im.style.top = Math.round(r.top - a.top - im.offsetHeight - 6) + 'px'; }
+  w.classList.toggle('on', on); im.classList.toggle('on', on); };
+abWords.forEach((w, k) => {
+  w.addEventListener('mouseenter', () => abShow(k, true)); w.addEventListener('mouseleave', () => abShow(k, false));
+  w.addEventListener('focus', () => abShow(k, true)); w.addEventListener('blur', () => abShow(k, false));
+  w.addEventListener('click', () => { if (matchMedia('(hover: none)').matches) abWords.forEach((_, j) => abShow(j, j === k && !w.classList.contains('on'))); }); });
+document.addEventListener('click', e => { if (!e.target.closest('.ab-w')) abWords.forEach((_, j) => abWords[j].classList.contains('on') && abShow(j, false)); });
 
 const DESC = C.desc.map(l => l.replace(/(?<=^|[\s(])([а-яё]{1,2}|\d+[+%]?) /gi, '$1\u00a0'));
 $('desc').textContent = DESC.join(' ');
@@ -32,7 +46,7 @@ const moveStrip = () => { let x;
   else { const enter = (VH + stripEl.offsetHeight) / 2; x = Math.min(Math.max(0, enter - pin.getBoundingClientRect().top), track.scrollWidth - VW); }
   track.style.transform = `translateX(${-Math.round(x)}px)`; };
 sizeStrip(); onWidth(sizeStrip); onFrame(moveStrip);
-document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map(c => `<article class="case"><div class="txt" data-in><h3>${c.t}</h3><p>${c.d}</p></div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
+document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map(c => `<article class="case"><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div></div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
 
 const SKW = [['aspro-brandbook', 'regina-script'], ['tini-cd', 'aspro-cases-collage'], ['aspro-chat', 'aspro-case'], ['aspro-bear', 'krid-poster', 'aspro-new-year'],
   ['aspro-banners'], ['aspro-dashboard'], ['aspro-sync-icon', 'tini-lines'], ['basta-poster', 'poster-high-infidelity'], [],
@@ -56,6 +70,11 @@ const onSk = () => { const r = sk.getBoundingClientRect(), p = Math.min(1, Math.
     const b = backLis[j]; b.style.opacity = on ? '0' : Math.max(.12, 1 - d * .28).toFixed(2); b.style.filter = on ? '' : `blur(${Math.min(d * 2.5, 9).toFixed(1)}px)`; });
   pics.forEach((g, j) => g.classList.toggle('on', j === i)); };
 onFrame(onSk);
+// the pinned panel ends with empty space under its last pictures: «Опыт работы» moves up into it, so the gap above the label is the same 200px (120px on phones) as before «Обо мне»
+const ex = document.querySelector('.ex');
+const exGap = () => { const H = sk.firstElementChild.offsetHeight, low = Math.max(H / 2 + lis[0].offsetHeight / 2, ...[...pics[pics.length - 1].children].map(im => im.offsetTop + im.offsetHeight / 2));
+  ex.style.marginTop = -Math.max(0, Math.floor(H - low)) + 'px'; };
+exGap(); onWidth(exGap);
 
 $('jobs').innerHTML = C.jobs.map(j => `<div class="job" data-in><div class="y">${j.y}</div><div><div class="co"><img src="${ICON + j.ic}.svg" alt="">${j.n}</div><p class="a">${j.a}</p></div><div><p class="r">${j.r}</p><p class="t">${j.t}</p></div></div>`).join('');
 const roundPics = () => document.querySelectorAll('.frame img').forEach(im => { const w = im.naturalWidth || +im.getAttribute('width'), h = im.naturalHeight || +im.getAttribute('height');
