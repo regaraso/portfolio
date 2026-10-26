@@ -199,11 +199,6 @@ body { letter-spacing: -.4px; }
   .corner .cta { height: 32px; display: grid; place-items: center; padding: 0 12px; }
   .tr > :not(.burger, .cta) { display: none; }
 
-  body::before { content: ''; position: fixed; inset: 0 0 auto; height: 96px; z-index: 49; pointer-events: none; transition: opacity .4s;
-    background: linear-gradient(to bottom, var(--paper) 0, color-mix(in srgb, var(--paper) 70%, transparent) 50%, transparent);
-    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
-    -webkit-mask-image: linear-gradient(to bottom, #000 40%, transparent); mask-image: linear-gradient(to bottom, #000 40%, transparent); }
-  body.on-foot::before, html.intro body::before { opacity: 0; }
   .burger, .menu-close { all: unset; box-sizing: border-box; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid currentColor; color: var(--ink); cursor: pointer; }
   .burger svg, .menu-close svg { width: 12px; height: 12px; }
   body.on-foot .burger { color: var(--on-acc); }
@@ -280,9 +275,23 @@ body { letter-spacing: -.4px; }
   html[lang="en"] .f-ct b { font-size: 32px; line-height: 36px; letter-spacing: -.2px; }
 }
 
-/* iOS Safari tints the status bar with the background-color of a fixed layer at the top edge; the blur strip only had a gradient,
-   so the page showed through under the clock. A solid colour fixes that; over the open footer the strip is clear, so Safari takes its green */
-@media (max-width: 760px) {
-  body::before { background-color: var(--paper); }
-  body.on-foot::before, html.intro body::before { background-color: transparent; }
 }
+
+/* easter egg in the description: a click adds one editable line (see home.js) */
+.win p { cursor: text; }
+.win p .egg { outline: none; caret-color: var(--acc); }
+.win p .egg:focus + .caret { display: none; }   /* while typing, the real caret takes over from the drawn one */
+@media (max-width: 760px) { .win { transition: width 1.2s var(--ease), min-height .6s var(--ease); } }   /* the names move apart smoothly when the easter-egg line appears */
+
+/* several pictures per case, one under another */
+.frame { display: grid; gap: 160px; }
+.frame picture { display: block; }
+@media (max-width: 760px) { .frame { gap: 64px; } }
+
+/* «С чем работаю»: the copy of the list under the pictures holds the inactive items (see home.js).
+   No blend there; the colour is what #575453 used to give in difference over the page white */
+.sk-list.sk-back { z-index: 0; mix-blend-mode: normal; }
+.sk-back li { color: #a3a7ab; }
+
+/* phones: the carousel scrolls with the page instead of being held in place (see home.js) */
+@media (max-width: 760px) { .strip-in { position: static; height: auto; } }

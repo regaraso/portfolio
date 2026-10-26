@@ -1,6 +1,7 @@
-// smooth wheel scrolling (Lenis) on top of the native scroll the site already listens to; touch scrolling stays native
+// smooth wheel scrolling (Lenis) on top of the native scroll the site already listens to; desktop only
 (() => {
-  if (!window.Lenis || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  // phones and tablets keep the native scroll: Lenis runs only with a mouse or trackpad
+  if (!window.Lenis || matchMedia('(prefers-reduced-motion: reduce)').matches || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
   const html = document.documentElement;
   html.style.scrollBehavior = 'auto';   // CSS smooth scrolling would fight Lenis
   const lenis = new Lenis({ lerp: .1, anchors: true, autoRaf: true,

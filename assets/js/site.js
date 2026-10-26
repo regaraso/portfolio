@@ -25,9 +25,10 @@ const T = {
 };
 const t = k => T[k][EN ? 1 : 0];
 
-const CASE_IMG = [['cases/aspro-bento', 1728, 1751], ['cases/nebo-bento', 1728, 835], ['cases/tini-bento', 1728, 861]];
+// case pictures, in order: [folder/prefix, [[width, height] of each desktop file]]; files are prefix-01.webp … and prefix-01@2x.webp …
+const CASE_IMG = [['cases/aspro', [[1210, 1123], [1208, 584], [1208, 760], [1208, 342], [1208, 677], [1208, 725]]], ['cases/nebo', [[1208, 789], [1208, 787], [1208, 1071]]], ['cases/tini', [[1208, 911], [1208, 603], [1206, 761], [1208, 1090]]]];
 const C = EN ? {
-  desc: ['Graphic designer with\u00a07+\u00a0years\u00a0of\u00a0experience.', 'Digital and concert industry (and\u00a0beyond)'],
+  desc: ['Graphic designer with\u00a07+\u00a0years\u00a0of\u00a0experience.', 'Digital and concert industry\u00a0(and\u00a0beyond)'],
   cases: [
     ['Identity and Development of the Aspro.Cloud System', 'Developed and systematised the brand\'s visual identity: worked on graphic solutions, communication style and key visual assets. Together with the team, built a unified design language that made the brand more consistent and recognisable in the digital space.', 'Aspro.Cloud identity'],
     ['Egor Kreed, Zveri, Basta and Others — Concert Tour Ad Campaigns', 'Developed the visual system for Nebo Records\' concert tour advertising campaigns: created a series of posters and adapted them for different cities, venues and formats. Built a unified visual language that maintained campaign cohesion across more than a hundred concerts per year.', 'Nebo Records concert tours'],
@@ -36,11 +37,11 @@ const C = EN ? {
     ['2023 — 2026', 'aspro', 'Aspro', 'Ready-made websites, online stores and cloud CRM platform for domestic and international markets', 'Graphic Designer', 'Created digital creatives for B2B clients across various industries: landing pages, banners, blog covers. Built 30 complex landing pages for the SEO team in one month. Introduced AI tools into team workflows: cut cover creation time from 5 hours to 1.5 according to time tracker data. Passed probation in 2 months instead of the standard 3.'],
     ['2024 — 2026', 'nebo', 'Nebo Records', 'Concert agency, nationwide tours of popular artists', 'Senior Designer', 'Created concert posters and digital advertising materials (Egor Kreed, Zveri, Basta, Artik &amp; Asti, Xolidayboy, Alisa, Evgeny Chebatkov). Print-ready outdoor advertising: 6×3 billboards, city formats, pillars. TV commercials and animations for digital screens. Managed 100+ events per year, developed a personal system for rapid layout updates.'],
     ['2022 — 2023', 'kassy', 'Kassy.ru', 'Online ticketing service for events and concert organiser', 'Graphic Designer', 'Created posters and advertising materials for concerts, theatre, stand-up and children\'s shows. Prepared print-ready outdoor advertising layouts, edited TV commercials and animations for digital screens. Took over video editing responsibilities, eliminating the need for a freelancer. Accompanied artists on tours across Russia as a backstage manager.'],
-    ['2018 — 2021', 'photo', 'Print Shop', 'Photo printing, retouching and souvenir products', 'Graphic Designer / Print Operator', 'Processed orders for printing, photo retouching and restoration, created collages and souvenir product layouts. Trained new employees in Photoshop. Handled 30 to 50 orders per shift, personal record — 112 clients.']],
+    ['2018 — 2021', 'photo', 'Print Shop', 'Photo printing, retouching and souvenir products', 'Graphic Designer / Print Operator', 'Processed orders for printing, photo retouching and restoration, created collages and souvenir product layouts. Trained new employees in Photoshop.']],
   skills: ['Brand design and identity', 'Adaptations across media', 'Communication design', 'Key visual', 'Digital creatives and banners', 'Presentations', 'Motion and video', 'Outdoor advertising', 'Merch', 'Retouching', 'AI', 'Landing pages'],
   joke: 'If you scrolled all the way down to this footer and decided to close the page, you won\'t have a designer who worked with Egor Kreed. Think about it.'
 } : {
-  desc: ['Графический дизайнер с опытом\u00a07+\u00a0лет.', 'Digital и концертная индустрия (и не только)'],
+  desc: ['Графический дизайнер с опытом\u00a07+\u00a0лет.', 'Digital и концертная индустрия\u00a0(и не только)'],
   cases: [
     ['Айдентика и развитие системы Аспро.Cloud', 'Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.', 'Айдентика Аспро.Cloud'],
     ['Егор Крид, Звери, Баста и другие — рекламные кампании гастрольных туров', 'Разрабатывала визуальную систему рекламной кампании гастрольных туров Небо Рекордс: создавала серию афиш и адаптировала их под разные города, площадки и форматы. Выстраивала единый визуальный язык, который позволил сохранять целостность кампании при выпуске более ста концертов в год.', 'Концертные туры Небо Рекордс'],
@@ -49,11 +50,11 @@ const C = EN ? {
     ['2023 — 2026', 'aspro', 'Аспро', 'Готовые сайты, интернет-магазины и облачная CRM-платформа для российского и зарубежного рынка', 'Графический дизайнер', 'Делала digital-креативы для B2B-клиентов из разных отраслей: лендинги, баннеры, обложки для блога. Собрала 30 сложных лендингов для отдела SEO за месяц. Внедрила AI-инструменты в рабочие процессы команды: сократила время создания обложки с 5 часов до 1,5 по данным тайм-трекера. Прошла испытательный срок за 2 месяца вместо стандартных 3.'],
     ['2024 — 2026', 'nebo', 'Небо Рекордс', 'Концертное агентство, гастрольные туры популярных артистов', 'Старший дизайнер', 'Делала афиши концертов и материалы для интернет-рекламы (Егор Крид, Звери, Баста, Artik &amp; Asti, Xolidayboy, Алиса, Евгений Чебатков). Наружная реклама к печати: биллборды 6×3, ситиформаты, пиллары. ТВ-ролики и анимация для диджитал-экранов. Вела 100+ мероприятий в год, разработала собственную систему оперативного обновления макетов.'],
     ['2022 — 2023', 'kassy', 'Kassy.ru', 'Онлайн-сервис по продаже билетов на мероприятия и концертный организатор', 'Графический дизайнер', 'Создавала афиши и рекламные материалы для концертов, театра, стендапа и детских шоу. Готовила макеты наружной рекламы к печати, монтировала ТВ-ролики и анимацию для диджитал-экранов. Закрыла потребность компании во фрилансере по видеомонтажу, взяла его обязанности на себя. Сопровождала артистов в турах по России в роли бэкстейдж-менеджера.'],
-    ['2018 — 2021', 'photo', 'Типография', 'Фотопечать, ретушь и сувенирная продукция', 'Графический дизайнер / Оператор печати', 'Обрабатывала заказы на печать, ретушь и восстановление фотографий, создавала коллажи и макеты сувенирной продукции. Обучала новых сотрудников работе в Photoshop. Обрабатывала от 30 до 50 заказов за смену, рекорд — 112 клиентов.']],
+    ['2018 — 2021', 'photo', 'Типография', 'Фотопечать, ретушь и сувенирная продукция', 'Графический дизайнер / Оператор печати', 'Обрабатывала заказы на печать, ретушь и восстановление фотографий, создавала коллажи и макеты сувенирной продукции. Обучала новых сотрудников работе в Photoshop.']],
   skills: ['Бренд-дизайн и айдентика', 'Адаптации на носители', 'Коммуникационный дизайн', 'Key visual', 'Digital-креативы и баннеры', 'Презентации', 'Моушен и видео', 'Наружная реклама', 'Мерч', 'Ретушь', 'AI', 'Лендинги'],
   joke: 'Если вы долистали до этого футера и решили закрыть страницу, то у вас не будет работать дизайнер, который работал с Егором Кридом. Думайте.'
 };
-C.cases = C.cases.map(([t, d, alt], i) => ({ t, d, alt, img: A + CASE_IMG[i][0], w: CASE_IMG[i][1], h: CASE_IMG[i][2] }));
+C.cases = C.cases.map(([t, d, alt], i) => ({ t, d, alt, imgs: CASE_IMG[i][1].map(([w, h], k) => ({ src: A + CASE_IMG[i][0] + '-' + String(k + 1).padStart(2, '0'), w, h })) }));
 C.jobs = C.jobs.map(([y, ic, n, a, r, t]) => ({ y, ic, n, a, r, t }));
 C.contacts = [{ k: 'Telegram', v: '@redgini', href: 'https://t.me/redgini' }, { k: 'Email', v: 'reedgini@gmail.com', href: 'mailto:reedgini@gmail.com' }, { k: 'LinkedIn', v: 'reginatarasova', href: 'https://linkedin.com/in/reginatarasova' }];
 
@@ -61,7 +62,10 @@ const ARROW = '<svg class="arr" viewBox="0 0 14 14" aria-hidden="true"><path fil
 const LOGO = '<svg viewBox="3 3 10 10" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10 3C11.6569 3 13 4.34315 13 6C13 7.65685 11.6569 9 10 9H9.93359L11 11H13V13H9.7998L7.66602 9H5V11H7V13H3V3H10ZM5 7H10C10.5523 7 11 6.55228 11 6C11 5.44772 10.5523 5 10 5H5V7Z"/></svg>';
 const BURGER = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M0 1.5h12M0 6h12M0 10.5h12" stroke="currentColor" stroke-width="1.5"/></svg>';
 const CLOSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5"/></svg>';
-const img = c => `<img src="${c.img}.webp" srcset="${c.img}.webp ${c.w}w, ${c.img}@2x.webp ${c.w * 2}w" sizes="80vw" width="${c.w}" height="${c.h}" alt="${c.alt}" loading="lazy" decoding="async">`;
+// one case picture: the same 1208 px file on every screen (scaled-down copies got fringes at the transparent edges);
+// the @2x file is swapped in later on retina desktops (home.js)
+const IV = '?v=3';   // bump when case pictures are replaced under the same names
+const img = (c, m) => `<picture><img src="${m.src}.webp${IV}" data-hi="${m.src}@2x.webp${IV}" width="${m.w}" height="${m.h}" alt="${c.alt}" loading="lazy" decoding="async"></picture>`;
 const watch = (sel = '[data-in]') => { const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -12% 0px' }); document.querySelectorAll(sel).forEach(el => io.observe(el)); };
 
 if (EN) { document.documentElement.lang = 'en'; document.querySelector('meta[name="description"]')?.setAttribute('content', t('meta')); }

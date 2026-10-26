@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap">
-  <link rel="stylesheet" href="/assets/css/home.css?v=11">
+  <link rel="stylesheet" href="/assets/css/home.css?v=17">
   <style>
 
     .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; align-content: center; gap: 40px; padding: 96px var(--pad); text-align: center; }
@@ -36,17 +36,14 @@
   <script>if (/^\/en(\/|$)/.test(location.pathname)) location.replace(location.pathname.replace(/^\/en/, '') .replace(/^$/, '/') + '?lang=en' + location.hash);</script>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
-   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-   m[i].l=1*new Date();
-   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-   ym(110603570, "init", {
-        clickmap:true,
-        trackLinks:true,
-        accurateTrackBounce:true,
-        webvisor:true
-   });
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=110603570', 'ym');
+
+    ym(110603570, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
 </script>
 <!-- /Yandex.Metrika counter -->
 </head>
@@ -57,7 +54,7 @@
   <h1 class="lbl" id="nfl">Страница не найдена</h1>
   <a class="home" id="home" href="/">На главную</a>
 </main>
-<script src="/assets/js/site.js?v=7"></script>
+<script src="/assets/js/site.js?v=13"></script>
 <script>
   $('nfl').textContent = EN ? 'Page not found' : 'Страница не найдена';
   $('home').textContent = t('home'); $('home').href = HOME;
