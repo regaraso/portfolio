@@ -28,6 +28,13 @@ const typeIn = () => { const chars = [...$('wtxt').querySelectorAll('i')], caret
 const win = $('win');
 const wait = ms => new Promise(r => setTimeout(r, ms));
 const INTRO = document.documentElement.classList.contains('intro');
+// a click anywhere on the first screen except the description window glides the page down to the carousel (the header sits outside the hero)
+document.querySelector('.hero').addEventListener('click', e => {
+  if (e.target.closest('#win') || document.documentElement.classList.contains('intro')) return;
+  const strip = document.querySelector('.strip-pin');
+  if (window.lenis) lenis.scrollTo(strip, { duration: 1.6, easing: x => x < .5 ? 4 * x ** 3 : 1 - (-2 * x + 2) ** 3 / 2 });
+  else strip.scrollIntoView({ behavior: REDUCE ? 'auto' : 'smooth' });
+});
 Promise.race([Promise.all([document.fonts.ready, wait(1900)]), wait(4500)]).then(() => {
   if (INTRO) scrollTo(0, 0); win.classList.add('open'); setTimeout(typeIn, 150);
   setTimeout(() => { const h = document.documentElement; h.classList.remove('intro'); h.classList.add('enter'); setTimeout(() => h.classList.remove('enter'), 1400); }, 900);
