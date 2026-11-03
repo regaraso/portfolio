@@ -334,3 +334,16 @@ body { letter-spacing: -.4px; }
 html.intro .hint { opacity: 0; }
 @media (prefers-reduced-motion: reduce) { .hint::after { animation: none; translate: 0 75%; } }
 @media (max-width: 760px) { .hint { bottom: 24px; height: 40px; } }
+
+/* Two rows share one compact passage through the viewport. */
+.strip-pin { height: auto; overflow: hidden; }
+.strip-in { position: relative; height: auto; padding: 40px 0; }
+.strip { display: grid; gap: 12px; padding: 24px 0; border: 0; }
+.strip .track { padding: 0 24px; gap: 12px; }
+.strip img { width: 276px; height: 160px; object-fit: cover; flex: none; }
+@media(max-width:760px) {
+  .strip-in { padding: 16px 0; }
+  .strip { gap: 8px; padding: 16px 0; }
+  .strip .track { gap: 8px; padding: 0 16px; }
+  .strip img { width: 207px; height: 120px; }
+}

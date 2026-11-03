@@ -40,19 +40,20 @@ Promise.race([Promise.all([document.fonts.ready, wait(1900)]), wait(4500)]).then
   setTimeout(() => { const h = document.documentElement; h.classList.remove('intro'); h.classList.add('enter'); setTimeout(() => h.classList.remove('enter'), 1400); }, 900);
 });
 
-const SLIDES = Array.from({ length: 10 }, (_, i) => `<img src="${A}carousel/slide_${String(i + 1).padStart(2, '0')}.webp" alt="" width="760" height="440" loading="lazy" decoding="async">`).join('');
-$('track').innerHTML = SLIDES.repeat(3);
-const track = $('track'), pin = document.querySelector('.strip-pin'), stripEl = document.querySelector('.strip');
-// phones: the strip is not held in place, it scrolls with the page and the track only drifts sideways while it passes the screen
-const PHONE = () => VW <= 760;
-const sizeStrip = () => { if (PHONE()) { pin.style.height = ''; return; }
-  const enter = (VH + stripEl.offsetHeight) / 2, release = track.children[11].offsetLeft - VW;
-  pin.style.height = VH + Math.max(0, Math.round(release - enter)) + 'px'; };
-const moveStrip = () => { let x;
-  if (PHONE()) { const r = pin.getBoundingClientRect(), p = Math.min(1, Math.max(0, (VH - r.top) / (VH + r.height))); x = p * Math.min(track.scrollWidth - VW, VW * 2); }
-  else { const enter = (VH + stripEl.offsetHeight) / 2; x = Math.min(Math.max(0, enter - pin.getBoundingClientRect().top), track.scrollWidth - VW); }
-  track.style.transform = `translateX(${-Math.round(x)}px)`; };
-sizeStrip(); onWidth(sizeStrip); onFrame(moveStrip);
+// Two-row carousel: a short scroll passage, no pinned screen.
+const track = $('track'), pin = document.querySelector('.strip-pin');
+const slide = i => `<img src="${A}carousel/slide_${String(i).padStart(2, '0')}.webp" alt="" width="760" height="440" loading="lazy" decoding="async">`;
+track.innerHTML = Array.from({length: 10}, (_, i) => slide(i + 1)).join('');
+const secondTrack = track.cloneNode(false); secondTrack.id = 'track-reverse';
+secondTrack.innerHTML = Array.from({length: 10}, (_, i) => slide((i + 5) % 10 + 1)).join('');
+track.after(secondTrack);
+const moveStrip = () => {
+  const r = pin.getBoundingClientRect(), p = Math.min(1, Math.max(0, (VH - r.top) / (VH + r.height)));
+  const distance = REDUCE ? 0 : Math.min(VW * .55, 640);
+  track.style.transform = `translateX(${-Math.round(p * distance)}px)`;
+  secondTrack.style.transform = `translateX(${-Math.round((1 - p) * distance)}px)`;
+};
+onFrame(moveStrip);
 document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map(c => `<article class="case"><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div></div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
 
 const SKW = [['aspro-brandbook', 'regina-script'], ['tini-cd', 'aspro-cases-collage'], ['aspro-chat', 'aspro-case'], ['aspro-bear', 'krid-poster', 'aspro-new-year'],
