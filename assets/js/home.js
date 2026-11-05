@@ -5,7 +5,7 @@ document.querySelector('.cases').setAttribute('aria-label', t('portfolio'));
 $('skh').textContent = t('works'); document.querySelector('.ex-h').textContent = t('exp');
 $('abh').textContent = t('about'); // [[words|NN]] in the text are underlined; hovering them (a tap on phones) pops up about-NN above the words, the way the pictures come up in «С чем работаю»
 $('abt').innerHTML = C.about.map(p => `<p>${p.replace(/\[\[(.+?)\|(\d+)\]\]/g, (_, w, n) => `<span class="ab-w" tabindex="0" data-ph="${n}">${w}</span>`)}</p>`).join('');
-const ab = $('about'), abWords = [...ab.querySelectorAll('.ab-w')];
+const ab = $('about-content'), abWords = [...ab.querySelectorAll('.ab-w')];
 const abPops = abWords.map(w => { const im = document.createElement('img'); im.className = 'ab-pop'; im.src = `${A}about/about-${w.dataset.ph}.webp`; im.alt = ''; im.loading = 'lazy'; ab.append(im); return im; });
 const abShow = (k, on) => { const w = abWords[k], im = abPops[k];
   if (on) { const a = ab.getBoundingClientRect(), r = [...w.getClientRects()][0], pw = im.offsetWidth, pad = parseFloat(getComputedStyle(ab).paddingLeft);
@@ -17,6 +17,39 @@ abWords.forEach((w, k) => {
   w.addEventListener('focus', () => abShow(k, true)); w.addEventListener('blur', () => abShow(k, false));
   w.addEventListener('click', () => { if (matchMedia('(hover: none)').matches) abWords.forEach((_, j) => abShow(j, j === k && !w.classList.contains('on'))); }); });
 document.addEventListener('click', e => { if (!e.target.closest('.ab-w')) abWords.forEach((_, j) => abWords[j].classList.contains('on') && abShow(j, false)); });
+
+const aboutDialog = $('about'), aboutClose = $('about-close');
+aboutClose.innerHTML = `<span>${t('close')}</span>${CLOSE}`;
+let aboutOpener = null;
+const openAbout = opener => {
+  if (aboutDialog.open) return;
+  aboutOpener = opener?.closest('.menu') ? $('burger') : opener;
+  aboutDialog.showModal();
+  document.documentElement.classList.add('about-open');
+  window.lenis?.stop();
+  aboutClose.focus({ preventScroll: true });
+};
+const closeAbout = () => aboutDialog.close();
+aboutClose.addEventListener('click', closeAbout);
+aboutDialog.addEventListener('click', e => {
+  if (e.target !== aboutDialog) return;
+  const r = aboutDialog.getBoundingClientRect();
+  if (e.clientX < r.left || e.clientX > r.right || e.clientY < r.top || e.clientY > r.bottom) closeAbout();
+});
+aboutDialog.addEventListener('close', () => {
+  document.documentElement.classList.remove('about-open');
+  if (!document.documentElement.classList.contains('menu-open')) window.lenis?.start();
+  abWords.forEach((_, j) => abShow(j, false));
+  aboutOpener?.focus({ preventScroll: true });
+  if (location.hash === '#about') history.replaceState(null, '', location.pathname + location.search);
+});
+document.addEventListener('click', e => {
+  const link = e.target.closest('a[href="#about"]');
+  if (!link) return;
+  e.preventDefault(); openAbout(link);
+});
+addEventListener('hashchange', () => { if (location.hash === '#about') openAbout(); });
+if (location.hash === '#about') openAbout();
 
 const DESC = C.desc.map(l => l.replace(/(?<=^|[\s(])([а-яё]{1,2}|\d+[+%]?) /gi, '$1\u00a0'));
 $('desc').textContent = DESC.join(' ');
@@ -97,7 +130,7 @@ addEventListener('load', upgradeAll); onWidth(upgradeAll);
 document.querySelectorAll('.frame img').forEach(im => im.addEventListener('load', roundPics));
 watch();
 noHang();
-if (location.hash) { const target = document.querySelector(location.hash); if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'instant' })); }
+if (location.hash && location.hash !== '#about') { const target = document.querySelector(location.hash); if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'instant' })); }
 
 // easter egg: a click on the description types one more paragraph, and that line really can be edited.
 // It lives only on this page: nothing is sent or saved, a reload brings the description back

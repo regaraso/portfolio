@@ -24,8 +24,13 @@ a:hover .arr { transform: translate(2px, -2px); }
 :focus-visible { outline: 1px solid var(--rose); outline-offset: 4px; }
 ::selection { background: var(--lime); color: var(--ink); }
 
-html { scrollbar-width: none; }
-::-webkit-scrollbar { display: none; }
+html { scrollbar-width: thin; scrollbar-color: var(--mute) var(--paper); scrollbar-gutter: stable; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--paper); }
+::-webkit-scrollbar-thumb { background: var(--mute); border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink); }
+.about-dialog { scrollbar-color: var(--mute) transparent; }
+.about-dialog::-webkit-scrollbar-track { background: transparent; }
 [data-in] { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
 [data-in].in { opacity: 1; transform: none; }
 
@@ -297,22 +302,31 @@ body { letter-spacing: -.4px; }
 /* phones: the carousel scrolls with the page instead of being held in place (see home.js) */
 @media (max-width: 760px) { .strip-in { position: static; height: auto; } }
 
-/* «Обо мне»: the same four columns as the experience cards above; the label in the first, the text from the line of the second card's text (25px = its padding and rule), set like the cards' text; read down the left column, then the right */
-.ab { position: relative; padding: 280px var(--pad) 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
-.ab-h { grid-column: 1; }
-.ab-txt { grid-column: 2 / 5; display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(3, auto); grid-auto-flow: column; gap: 32px 48px; padding-left: 25px; font-size: 13px; line-height: 20px; letter-spacing: .2px; color: var(--mute); }
-@media (min-width: 761px) and (max-width: 1124px) {
-  /* the cards turn into rows of two halves here: the text goes in the right half, under their role and notes */
-  .ab { grid-template-columns: 1fr 1fr; column-gap: 24px; }
-  .ab-txt { grid-column: 2; grid-template-columns: 1fr; row-gap: 16px; }
-  .ab-txt { padding-left: 0; grid-template-rows: none; grid-auto-flow: row; }
-}
+/* About is outside the page flow, in a native modal. */
+html.about-open body { overflow: hidden; }
+.about-dialog { border: 0; padding: 0; margin: auto; width: min(720px, calc(100% - 64px)); max-height: calc(100dvh - 96px); background: color-mix(in srgb, var(--acc) 88%, transparent); color: var(--on-acc); overflow: auto; overscroll-behavior: contain; }
+.about-dialog:focus-visible { outline: none; }
+.about-dialog::backdrop { background: #1213140d; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+.about-content { position: relative; padding: 40px 48px 48px; }
+.about-top { display: flex; justify-content: space-between; align-items: center; gap: 24px; margin-bottom: 40px; }
+.about-top .lbl { color: var(--on-acc); }
+.about-close { display: flex; align-items: center; gap: 12px; min-height: 32px; padding: 4px 0 4px 12px; border: 0; background: none; color: inherit; font: inherit; font-size: 12px; cursor: pointer; }
+.about-close svg { display: block; width: 8px; height: 8px; flex: none; }
+.about-close span { line-height: 20px; }
+.about-dialog[open] { animation: about-appear .38s var(--ease) both; }
+.about-dialog[open]::backdrop { animation: about-backdrop .38s ease-out both; }
+@keyframes about-appear { from { opacity: 0; filter: blur(8px); transform: translateY(8px); } to { opacity: 1; filter: blur(0); transform: translateY(0); } }
+@keyframes about-backdrop { from { background: #12131400; backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); } to { background: #1213140d; backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); } }
+@keyframes about-mobile { from { opacity: 0; } to { opacity: 1; } }
+.ab-txt { display: flex; flex-direction: column; gap: 24px; font-size: 14px; line-height: 22px; letter-spacing: 0; }
 @media (max-width: 760px) {
-  .ab { padding: 160px var(--pad) 0; grid-template-columns: 1fr; }
-  .ab-h { grid-column: 1; margin-bottom: 48px; }
-  .ab-txt { grid-column: 1; grid-template-columns: 1fr; row-gap: 16px; }
-  .ab-txt { padding-left: 0; grid-template-rows: none; grid-auto-flow: row; }
-  .ab-pop { width: 144px; height: 144px; }
+  .about-dialog { width: 100%; max-width: none; height: 100dvh; max-height: none; margin: 0; background: var(--acc); }
+  .about-dialog[open] { animation: about-mobile .2s ease-out both; }
+  .about-dialog[open]::backdrop { animation: none; }
+  .about-dialog::backdrop { background: var(--acc); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .about-content { min-height: 100%; padding: max(16px, env(safe-area-inset-top)) var(--pad) max(32px, env(safe-area-inset-bottom)); }
+  .about-top { margin-bottom: 48px; min-height: 32px; }
+  .ab-txt { font-size: 13px; line-height: 20px; gap: 24px; }
 }
 /* the photo words: a thin line under them; the photo comes up above the words and leaves them readable */
 .ab-w { text-decoration: underline 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent); transition: text-decoration-color .3s; cursor: default; outline: none; }
@@ -347,3 +361,12 @@ html.intro .hint { opacity: 0; }
   .strip .track { gap: 8px; padding: 0 16px; }
   .strip img { width: 207px; height: 120px; }
 }
+
+/* Persistent scrollbar on devices with a mouse or trackpad. */
+html.custom-scroll { scrollbar-width: none; scrollbar-gutter: auto; }
+html.custom-scroll::-webkit-scrollbar { display: none; }
+.page-scrollbar { position: fixed; z-index: 55; top: 8px; right: 5px; bottom: 8px; width: 10px; cursor: pointer; touch-action: none; user-select: none; }
+.page-scrollbar[hidden] { display: none; }
+.page-scrollbar-thumb { width: 3px; margin-left: 6px; border-radius: 3px; background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
+.page-scrollbar:hover .page-scrollbar-thumb, .page-scrollbar.dragging .page-scrollbar-thumb { background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
+html:is(.intro,.menu-open,.about-open) .page-scrollbar { visibility: hidden; }

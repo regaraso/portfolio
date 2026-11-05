@@ -9,6 +9,6 @@
     prevent: n => { const f = n.closest?.('footer'); return !!f && f.scrollHeight > f.clientHeight; } });
   window.lenis = lenis;
   // paused during the intro and while the menu is open, like the page itself
-  const sync = () => (html.classList.contains('intro') || html.classList.contains('menu-open')) ? lenis.stop() : lenis.start();
+  const sync = () => (html.classList.contains('intro') || html.classList.contains('menu-open') || html.classList.contains('about-open')) ? lenis.stop() : lenis.start();
   new MutationObserver(sync).observe(html, { attributes: true, attributeFilter: ['class'] }); sync();
 })();

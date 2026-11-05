@@ -101,8 +101,8 @@ let seq = order(); onWidth(() => { seq = order(); });
 const reveal = () => {
   const b = (cta.offsetWidth ? cta : burger).getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2;
   const R = Math.hypot(Math.max(x, VW - x), Math.max(y, VH - y)) + 20;
-  // the first quarter screen of the space only lets the last text scroll up; the footer starts opening after it
-  const lead = VH / 4, p = Math.min(1, Math.max(0, (VH - space.getBoundingClientRect().top - lead) / (space.offsetHeight - lead)));
+  // A short lead-in preserves the last section; the feather starts outside the reveal origin.
+  const lead = VH * .06, p = Math.min(1, Math.max(0, (VH - space.getBoundingClientRect().top - lead) / (space.offsetHeight - lead)));
   foot.style.visibility = p > 0 ? '' : 'hidden';
   foot.inert = p <= .85;
   const F = 360, r = inOut(p) * (R + F) - F, m = `radial-gradient(circle at ${x}px ${y}px, #000 ${r.toFixed(1)}px, transparent ${(r + F).toFixed(1)}px)`;
@@ -121,3 +121,58 @@ const noHang = () => {
   for (let n; (n = tw.nextNode());) { const s = n.nodeValue.replace(SHORT, '$1 ').replace(/ —/g, ' —'); if (s !== n.nodeValue) n.nodeValue = s; }
   reveal();
 };
+
+// A persistent desktop scrollbar, independent of OS overlay-scrollbar settings.
+(() => {
+  if (!matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  const bar = document.createElement('div'), thumb = document.createElement('div');
+  bar.className = 'page-scrollbar'; thumb.className = 'page-scrollbar-thumb';
+  bar.tabIndex = 0; bar.setAttribute('role', 'scrollbar');
+  bar.setAttribute('aria-label', EN ? 'Page scroll' : 'Прокрутка страницы');
+  bar.setAttribute('aria-orientation', 'vertical');
+  bar.setAttribute('aria-valuemin', '0'); bar.setAttribute('aria-valuemax', '100');
+  const main = document.querySelector('main');
+  if (main) { if (!main.id) main.id = 'page-content'; bar.setAttribute('aria-controls', main.id); }
+  bar.append(thumb); document.body.append(bar);
+  document.documentElement.classList.add('custom-scroll');
+  let thumbHeight = 40, dragging = false, grab = 0;
+  const maxScroll = () => Math.max(0, document.documentElement.scrollHeight - innerHeight);
+  const update = () => {
+    const max = maxScroll(), height = bar.clientHeight;
+    bar.hidden = max <= 0;
+    thumbHeight = Math.min(height, Math.max(40, height * innerHeight / (innerHeight + max)));
+    const p = max ? Math.min(1, Math.max(0, scrollY / max)) : 0;
+    thumb.style.height = thumbHeight + 'px';
+    thumb.style.transform = `translateY(${p * (height - thumbHeight)}px)`;
+    bar.setAttribute('aria-valuenow', String(Math.round(p * 100)));
+  };
+  const jump = y => {
+    const next = Math.max(0, Math.min(maxScroll(), y));
+    if (window.lenis) lenis.scrollTo(next, { immediate: true, force: true });
+    else window.scrollTo({ top: next, behavior: 'instant' });
+    update();
+  };
+  const dragTo = y => {
+    const r = bar.getBoundingClientRect(), travel = r.height - thumbHeight;
+    if (travel > 0) jump((y - r.top - grab) / travel * maxScroll());
+  };
+  bar.addEventListener('pointerdown', e => {
+    if (e.button !== 0) return;
+    e.preventDefault(); update();
+    dragging = true; grab = e.target === thumb ? e.clientY - thumb.getBoundingClientRect().top : thumbHeight / 2;
+    bar.setPointerCapture(e.pointerId); bar.classList.add('dragging'); window.lenis?.stop(); dragTo(e.clientY);
+  });
+  bar.addEventListener('pointermove', e => { if (dragging) dragTo(e.clientY); });
+  const release = () => {
+    if (!dragging) return; dragging = false; bar.classList.remove('dragging');
+    if (!document.documentElement.matches('.intro,.menu-open,.about-open')) window.lenis?.start();
+  };
+  bar.addEventListener('pointerup', release); bar.addEventListener('pointercancel', release);
+  bar.addEventListener('lostpointercapture', release);
+  bar.addEventListener('keydown', e => {
+    const offsets = { ArrowDown: 48, ArrowUp: -48, PageDown: innerHeight * .9, PageUp: -innerHeight * .9, Home: -maxScroll(), End: maxScroll() };
+    if (!(e.key in offsets)) return; e.preventDefault(); jump(scrollY + offsets[e.key]);
+  });
+  onFrame(update); addEventListener('resize', update);
+  new ResizeObserver(update).observe(document.body);
+})();
