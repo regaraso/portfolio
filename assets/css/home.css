@@ -19,8 +19,7 @@ body { font: 400 14px/22px 'Geist Mono', ui-monospace, monospace; letter-spacing
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; height: auto; }
 ul { list-style: none; }
-.arr { width: 10px; height: 10px; display: inline-block; vertical-align: 0; margin-left: 8px; transition: transform .5s var(--ease); }
-a:hover .arr { transform: translate(2px, -2px); }
+.arr { width: 10px; height: 10px; display: inline-block; vertical-align: 0; margin-left: 8px; }
 :focus-visible { outline: 1px solid var(--rose); outline-offset: 4px; }
 ::selection { background: var(--lime); color: var(--ink); }
 
@@ -328,13 +327,6 @@ html.about-open body { overflow: hidden; }
   .about-top { margin-bottom: 48px; min-height: 32px; }
   .ab-txt { font-size: 13px; line-height: 20px; gap: 24px; }
 }
-/* the photo words: a thin line under them; the photo comes up above the words and leaves them readable */
-.ab-w { text-decoration: underline 1px; text-underline-offset: 4px; text-decoration-color: color-mix(in srgb, var(--ink) 35%, transparent); transition: text-decoration-color .3s; cursor: default; outline: none; }
-.ab-w:is(:hover, .on, :focus-visible) { text-decoration-color: var(--ink); }
-.ab-pop { position: absolute; left: 0; top: 0; z-index: 2; width: 200px; height: 200px; object-fit: contain; pointer-events: none;
-  visibility: hidden; }
-.ab-pop.on { visibility: visible; }
-
 /* a case description can have several paragraphs */
 .case .d { display: grid; gap: 12px; }
 
@@ -370,3 +362,43 @@ html.custom-scroll::-webkit-scrollbar { display: none; }
 .page-scrollbar-thumb { width: 3px; margin-left: 6px; border-radius: 3px; background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
 .page-scrollbar:hover .page-scrollbar-thumb, .page-scrollbar.dragging .page-scrollbar-thumb { background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
 html:is(.intro,.menu-open,.about-open) .page-scrollbar { visibility: hidden; }
+
+.case-details{display:inline-flex;align-items:center;justify-self:start;width:fit-content;padding:6px 12px;background:var(--acc);color:var(--on-acc);font-size:12px}
+.case-details:hover{background:var(--ink);color:var(--paper)}
+
+.case#portfolio{scroll-margin-top:108px}
+@media(max-width:760px){.case#portfolio{scroll-margin-top:88px}}
+
+.case-details .arr{width:8px;height:8px}
+
+@media(min-width:761px){
+  .case .txt:has(.case-details){display:flex;flex-direction:column;min-height:calc(100svh - 256px)}
+  .case .txt:has(.case-details) .case-details{margin-top:auto;align-self:flex-start;flex:none}
+}
+
+.case-details{transition:color .4s,background .4s}
+
+.case-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+
+
+
+@media(min-width:761px){.case .txt:has(.case-details) .case-actions{margin-top:auto}.case-actions .case-details{margin-top:0!important}}
+
+/* Static HTML remains readable when scripting is unavailable. */
+html:not(.js) [data-in]{opacity:1;transform:none}
+html:not(.js) .hero{cursor:auto}
+html:not(.js) .win{width:360px}
+html:not(.js) .hint,html:not(.js) .burger,html:not(.js) .strip-pin{display:none}
+html:not(.js) .sk{height:auto;padding:100px var(--pad)}
+html:not(.js) .sk-in{position:static;height:auto;overflow:visible}
+html:not(.js) .sk h2{position:static;margin-bottom:32px}
+html:not(.js) .sk-pic{display:none}
+html:not(.js) .sk-list{position:static;mix-blend-mode:normal}
+html:not(.js) .sk-list ul{position:static;text-align:left}
+html:not(.js) .sk-list li{height:auto;display:block;padding:8px 0;font-size:20px;line-height:1.5;letter-spacing:0;white-space:normal;color:var(--ink)}
+html:not(.js) .reveal-space{display:none}
+html:not(.js) footer{position:relative;inset:auto;visibility:visible;pointer-events:auto;min-height:0;padding:72px var(--pad) 32px}
+html:not(.js) footer :is(.f-side>*,.f-ct,.fn){opacity:1;transform:none;filter:none}
+html:not(.js) .about-dialog:target{display:block;position:relative;inset:auto;margin:48px auto;background:var(--acc)}
+html:not(.js) .about-close{display:none}
+@media(max-width:760px){html:not(.js) .win{width:266px}html:not(.js) .sk{padding:64px var(--pad)}}

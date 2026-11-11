@@ -29,7 +29,7 @@ const t = k => T[k][EN ? 1 : 0];
 const CASE_IMG = [['cases/aspro', [[1210, 1123], [1208, 584], [1208, 760], [1208, 342], [1208, 677], [1208, 725]]], ['cases/nebo', [[1208, 789], [1208, 787], [1208, 1071]]], ['cases/tini', [[1208, 911], [1208, 603], [1206, 761], [1208, 1090]]]];
 const C = EN ? {
   desc: ['Graphic designer with\u00a07+\u00a0years\u00a0of\u00a0experience.', 'Digital and concert industry\u00a0(and\u00a0beyond)'],
-  about: ['I first opened Photoshop when I was 11. We\'ve been inseparable ever since.', 'I [[toured Russia|05]] with a rock band. With them I also worked a concert for [[30,000 people|02]] at Gazprom Arena.', 'Solo trips around Europe on a visa I got myself don\'t impress many people these days, so here\'s my ace: I flew to [[Argentina|01]].', 'For three years I led the [[office|04]] Halloween costume contest. Once I also brought the whole office to a halt for 15 minutes with a hunt for [[rubber ducks|03]]. One still hasn\'t been found to this day.', 'Nobody reads this text, so I can share that I once sliced cucumbers for Basta.', 'At 13, my design made it into a book published in ~10 languages (and Russian isn\'t even one of them).'],
+  about: ['Senior graphic designer with 7+ years of experience in the concert industry and IT. I create key visuals, advertising materials for digital and offline channels, landing pages and presentations. I work in Photoshop and Figma, edit TV commercials and create animations in After Effects.', 'Nobody reads this text, so I can share that I once sliced cucumbers for Basta.'],
   cases: [
     ['Identity and Development of the Aspro.Cloud System', 'Developed and systematised the brand\'s visual identity: worked on graphic solutions, communication style and key visual assets. Together with the team, built a unified design language that made the brand more consistent and recognisable in the digital space.', 'Aspro.Cloud identity'],
     ['Egor Kreed, Zveri, Basta and Others — Concert Tour Ad Campaigns', ['Developed the visual system for Nebo Records\' concert tour advertising campaigns: created a series of posters and adapted them for different cities, venues and formats. Built a unified visual language that maintained campaign cohesion across more than a hundred concerts per year.', 'Beyond print and online advertising, also created TV commercials and animations for digital screens.'], 'Nebo Records concert tours'],
@@ -43,7 +43,7 @@ const C = EN ? {
   joke: 'If you scrolled all the way down to this footer and decided to close the page, you won\'t have a designer who worked with Egor Kreed. Think about it.'
 } : {
   desc: ['Графический дизайнер с опытом\u00a07+\u00a0лет.', 'Digital и концертная индустрия\u00a0(и не только)'],
-  about: ['Фотошоп я в первый раз в жизни открыла, когда мне было 11 лет. До сих пор не расстаюсь с ним.', 'Ездила с рок-группой [[в туре|05]] по России. С ними же отработала концерт для [[30 000 зрителей|02]] на «Газпром Арене».', 'Соло-трипами по Европе с самостоятельно полученной визой сейчас мало кого удивишь, поэтому достану туз: я летала в [[Аргентину|01]].', 'Три года лидировала в конкурсе хеллоуинских костюмов [[в офисе|04]]. Еще как-то раз остановила работу всего офиса на 15 минут поиском [[резиновых уток|03]]. Одну так и не нашли.', 'Этот текст никто не читает, поэтому могу поделиться, что как-то раз я нарезала огурцы для Басты.', 'В 13 лет попала со своим дизайном в книгу, изданную на ~10 языках (и русского среди них даже нет).'],
+  about: ['Старший графический дизайнер с опытом 7+ лет в концертной индустрии и IT. Разрабатываю ключевые визуалы, рекламные материалы для digital и офлайн, лендинги и презентации. Работаю в Photoshop и Figma, монтирую ТВ-ролики и создаю анимацию в After Effects.', 'Этот текст никто не читает, поэтому могу поделиться, что как-то раз я нарезала огурцы для Басты.'],
   cases: [
     ['Айдентика и развитие системы Аспро.Cloud', 'Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.', 'Айдентика Аспро.Cloud'],
     ['Егор Крид, Звери, Баста и другие — рекламные кампании гастрольных туров', ['Разрабатывала визуальную систему рекламной кампании гастрольных туров Небо Рекордс: создавала серию афиш и адаптировала их под разные города, площадки и форматы. Выстраивала единый визуальный язык, который позволил сохранять целостность кампании при выпуске более ста концертов в год.', 'Кроме печати и интернет-рекламы делала ТВ-ролики и анимацию для диджитал-экранов.'], 'Концертные туры Небо Рекордс'],
@@ -60,7 +60,8 @@ C.cases = C.cases.map(([t, d, alt], i) => ({ t, d, alt, imgs: CASE_IMG[i][1].map
 C.jobs = C.jobs.map(([y, ic, n, a, r, t]) => ({ y, ic, n, a, r, t }));
 C.contacts = [{ k: 'Telegram', v: '@redgini', href: 'https://t.me/redgini' }, { k: 'Email', v: 'reedgini@gmail.com', href: 'mailto:reedgini@gmail.com' }, { k: 'LinkedIn', v: 'reginatarasova', href: 'https://linkedin.com/in/reginatarasova' }];
 
-const ARROW = '<svg class="arr" viewBox="0 0 14 14" aria-hidden="true"><path fill="currentColor" d="M13 0C13.5523 2.41412e-08 14 0.448692 14 1.00098V13.001C13.9997 13.553 13.5521 14.001 13 14.001C12.4477 14.001 12 13.5523 12 13V3.41406L1.70703 13.708C1.31652 14.0981 0.683369 14.0973 0.292969 13.707C-0.0973982 13.3166 -0.0973106 12.6835 0.292969 12.293L10.5859 2H1C0.447716 2 -2.41411e-08 1.55228 0 1C0.000255835 0.447933 0.447873 -5.17162e-10 1 0H13Z"/></svg>';
+const ARROW = '<svg class="arr" viewBox="0 0 14 14" aria-hidden="true"><path fill="currentColor" d="M0 12.586L10.586 2H0V0H14V14H12V3.414L1.414 14Z"/></svg>';
+const ARROW_UP = '<svg class="arr" viewBox="0 0 14 14" aria-hidden="true"><path fill="currentColor" d="M6 14V3.828L1.414 8.414 0 7l7-7 7 7-1.414 1.414L8 3.828V14Z"/></svg>';
 const LOGO = '<svg viewBox="3 3 10 10" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M10 3C11.6569 3 13 4.34315 13 6C13 7.65685 11.6569 9 10 9H9.93359L11 11H13V13H9.7998L7.66602 9H5V11H7V13H3V3H10ZM5 7H10C10.5523 7 11 6.55228 11 6C11 5.44772 10.5523 5 10 5H5V7Z"/></svg>';
 const BURGER = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M0 1.5h12M0 6h12M0 10.5h12" stroke="currentColor" stroke-width="1.5"/></svg>';
 const CLOSE = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5"/></svg>';
@@ -74,6 +75,8 @@ if (EN) { document.documentElement.lang = 'en'; document.querySelector('meta[nam
 
 const LANG = EN ? `<a href="${location.pathname}" lang="ru" hreflang="ru">RU</a><i>/</i><b>EN</b>` : `<b>RU</b><i>/</i><a href="${location.pathname}?lang=en" lang="en" hreflang="en">EN</a>`;
 const LOGO_LINK = (id = '') => `<a href="${HOME_PAGE ? '#top' : HOME}" aria-label="${t(HOME_PAGE ? 'top' : 'home')}"${id ? ` id="${id}"` : ''}>${LOGO}</a>`;
+// Replace the pre-rendered Russian shell before attaching the existing interactions.
+document.querySelectorAll('[data-static-shell]').forEach(node => node.remove());
 document.body.insertAdjacentHTML('afterbegin', `
 <div class="corner tl">${LOGO_LINK('logo')}</div>
 <nav class="corner tr" aria-label="${t('nav')}"><a href="${go('#portfolio')}">${t('portfolio')}</a><a href="${go('#experience')}">${t('exp')}</a><a href="${go('#about')}">${t('about')}</a><span class="lng">${LANG}</span><a class="cta" id="cta" href="#end">${t('contact')}</a><button class="burger" id="burger" type="button" aria-label="${t('menu')}" aria-expanded="false" aria-controls="menu">${BURGER}</button></nav>
@@ -83,7 +86,7 @@ document.body.insertAdjacentHTML('beforeend', `
 <footer id="contacts">
   <div class="f-side"><h2 class="lbl">${t('contact')}</h2><p>${C.joke}</p></div>
   <ul class="f-ct">${C.contacts.map(c => `<li><a href="${c.href}" ${c.href.startsWith('http') ? 'target="_blank" rel="noopener"' : ''}><small>${c.v}</small><b>${c.k}</b>${ARROW}</a></li>`).join('')}</ul>
-  <div class="fn"><div><a href="${go('#portfolio')}">${t('portfolio')}</a><a href="${go('#experience')}">${t('exp')}</a><a href="#top">${t('top')}${ARROW}</a></div><span>© 2026</span></div>
+  <div class="fn"><div><a href="${go('#portfolio')}">${t('portfolio')}</a><a href="${go('#experience')}">${t('exp')}</a><a href="#top">${t('top')}${ARROW_UP}</a></div><span>© 2026</span></div>
 </footer>`);
 
 const menu = $('menu'), burger = $('burger');
@@ -99,6 +102,7 @@ const inOut = x => x < .5 ? 2 * x * x : 1 - (-2 * x + 2) ** 2 / 2;
 const order = () => [...parts].sort((m, n) => m.offsetTop - n.offsetTop || m.offsetLeft - n.offsetLeft);
 let seq = order(); onWidth(() => { seq = order(); });
 const reveal = () => {
+  if (document.body.dataset.footer === 'static') { foot.inert = false; return; }
   const b = (cta.offsetWidth ? cta : burger).getBoundingClientRect(), x = b.left + b.width / 2, y = b.top + b.height / 2;
   const R = Math.hypot(Math.max(x, VW - x), Math.max(y, VH - y)) + 20;
   // A short lead-in preserves the last section; the feather starts outside the reveal origin.

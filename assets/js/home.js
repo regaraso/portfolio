@@ -3,20 +3,8 @@ document.querySelector('.hero h1').textContent = `${t('first')} ${t('last')}`;
 { const s = document.querySelectorAll('.line > span'); s[0].textContent = t('first'); s[4].textContent = t('last'); }
 document.querySelector('.cases').setAttribute('aria-label', t('portfolio'));
 $('skh').textContent = t('works'); document.querySelector('.ex-h').textContent = t('exp');
-$('abh').textContent = t('about'); // [[words|NN]] in the text are underlined; hovering them (a tap on phones) pops up about-NN above the words, the way the pictures come up in «С чем работаю»
-$('abt').innerHTML = C.about.map(p => `<p>${p.replace(/\[\[(.+?)\|(\d+)\]\]/g, (_, w, n) => `<span class="ab-w" tabindex="0" data-ph="${n}">${w}</span>`)}</p>`).join('');
-const ab = $('about-content'), abWords = [...ab.querySelectorAll('.ab-w')];
-const abPops = abWords.map(w => { const im = document.createElement('img'); im.className = 'ab-pop'; im.src = `${A}about/about-${w.dataset.ph}.webp`; im.alt = ''; im.loading = 'lazy'; ab.append(im); return im; });
-const abShow = (k, on) => { const w = abWords[k], im = abPops[k];
-  if (on) { const a = ab.getBoundingClientRect(), r = [...w.getClientRects()][0], pw = im.offsetWidth, pad = parseFloat(getComputedStyle(ab).paddingLeft);
-    im.style.left = Math.round(Math.min(Math.max(r.left + r.width / 2 - pw / 2 - a.left, pad), a.width - pad - pw)) + 'px';
-    im.style.top = Math.round(r.top - a.top - im.offsetHeight - 6) + 'px'; }
-  w.classList.toggle('on', on); im.classList.toggle('on', on); };
-abWords.forEach((w, k) => {
-  w.addEventListener('mouseenter', () => abShow(k, true)); w.addEventListener('mouseleave', () => abShow(k, false));
-  w.addEventListener('focus', () => abShow(k, true)); w.addEventListener('blur', () => abShow(k, false));
-  w.addEventListener('click', () => { if (matchMedia('(hover: none)').matches) abWords.forEach((_, j) => abShow(j, j === k && !w.classList.contains('on'))); }); });
-document.addEventListener('click', e => { if (!e.target.closest('.ab-w')) abWords.forEach((_, j) => abWords[j].classList.contains('on') && abShow(j, false)); });
+$('abh').textContent = t('about');
+$('abt').replaceChildren(...C.about.map(text => { const p = document.createElement('p'); p.textContent = text; return p; }));
 
 const aboutDialog = $('about'), aboutClose = $('about-close');
 aboutClose.innerHTML = `<span>${t('close')}</span>${CLOSE}`;
@@ -39,7 +27,6 @@ aboutDialog.addEventListener('click', e => {
 aboutDialog.addEventListener('close', () => {
   document.documentElement.classList.remove('about-open');
   if (!document.documentElement.classList.contains('menu-open')) window.lenis?.start();
-  abWords.forEach((_, j) => abShow(j, false));
   aboutOpener?.focus({ preventScroll: true });
   if (location.hash === '#about') history.replaceState(null, '', location.pathname + location.search);
 });
@@ -87,7 +74,7 @@ const moveStrip = () => {
   secondTrack.style.transform = `translateX(${-Math.round((1 - p) * distance)}px)`;
 };
 onFrame(moveStrip);
-document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map(c => `<article class="case"><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div></div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
+document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map((c, i) => `<article class="case"${i === 0 ? ' id="portfolio"' : ''}><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div>${i > 0 ? `<div class="case-actions"><a class="case-details" href="/work/${i === 0 ? 'aspro' : i === 1 ? 'nebo' : 'recuerdo'}/${EN ? '?lang=en' : ''}">${EN ? 'View project' : 'Подробнее'}</a></div>` : ''}</div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
 
 const SKW = [['aspro-brandbook', 'regina-script'], ['tini-cd', 'aspro-cases-collage'], ['aspro-chat', 'aspro-case'], ['aspro-bear', 'krid-poster', 'aspro-new-year'],
   ['aspro-banners'], ['aspro-dashboard'], ['aspro-sync-icon', 'tini-lines'], ['basta-poster', 'poster-high-infidelity'], [],
@@ -131,47 +118,3 @@ document.querySelectorAll('.frame img').forEach(im => im.addEventListener('load'
 watch();
 noHang();
 if (location.hash && location.hash !== '#about') { const target = document.querySelector(location.hash); if (target) requestAnimationFrame(() => target.scrollIntoView({ behavior: 'instant' })); }
-
-// easter egg: a click on the description types one more paragraph, and that line really can be edited.
-// It lives only on this page: nothing is sent or saved, a reload brings the description back
-const EGG = EN ? 'Yes, you can write anything here' : 'Да, тут можно написать что угодно', EGG_MAX = 42;   // 42 characters still fit the window on desktop
-let egg = null;
-// on phones the window is its own row between the two names: it grows with the extra lines, so the names move apart instead of overlapping
-const fitWin = () => { win.style.minHeight = egg && innerWidth <= 760 ? $('wtxt').offsetHeight + 16 + 'px' : ''; };
-onWidth(fitWin);
-const caretToEnd = el => { el.focus(); const r = document.createRange(); r.selectNodeContents(el); r.collapse(false); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
-$('wtxt').addEventListener('click', () => {
-  const p = $('wtxt'), caret = p.querySelector('.caret');
-  if (egg) { if (egg.isContentEditable && document.activeElement !== egg) caretToEnd(egg); return; }
-  if (p.querySelector('i:not(.t)')) return;   // the description is still being typed
-  p.insertAdjacentHTML('beforeend', '<br><br>');
-  egg = document.createElement('span'); egg.className = 'egg'; p.append(egg, caret); fitWin();
-  const done = () => {
-    egg.textContent = EGG; egg.spellcheck = false;
-    egg.contentEditable = 'plaintext-only'; if (egg.contentEditable !== 'plaintext-only') egg.contentEditable = 'true';
-    caretToEnd(egg);
-  };
-  if (REDUCE) return done();
-  const chars = [...EGG]; let n = 0;
-  const step = () => { if (n < chars.length) { egg.textContent += chars[n++]; fitWin(); setTimeout(step, chars[n - 1] === ' ' ? 24 : 12); } else done(); };
-  step();
-});
-// one line, a length that fits, plain text only; Enter just finishes
-$('wtxt').addEventListener('input', e => { if (e.target === egg) fitWin(); });
-$('wtxt').addEventListener('keydown', e => { if (e.target === egg && e.key === 'Enter') { e.preventDefault(); egg.blur(); } });
-$('wtxt').addEventListener('beforeinput', e => {
-  if (e.target !== egg || !e.inputType.startsWith('insert')) return;
-  if (e.inputType === 'insertParagraph' || e.inputType === 'insertLineBreak') return e.preventDefault();
-  const sel = getSelection(), picked = sel.rangeCount ? sel.getRangeAt(0).toString().length : 0, data = e.data ?? e.dataTransfer?.getData('text/plain') ?? '';
-  const room = EGG_MAX - egg.textContent.length + picked;
-  if (data.length <= room) return;
-  // too long (a pasted or auto-completed chunk): keep only what still fits
-  e.preventDefault();
-  if (room > 0) document.execCommand('insertText', false, data.replace(/\s+/g, ' ').slice(0, room));
-});
-$('wtxt').addEventListener('paste', e => {
-  if (e.target !== egg) return; e.preventDefault();
-  const sel = getSelection(), picked = sel.rangeCount ? sel.getRangeAt(0).toString().length : 0;
-  const text = (e.clipboardData?.getData('text/plain') || '').replace(/\s+/g, ' ').slice(0, Math.max(0, EGG_MAX - egg.textContent.length + picked));
-  if (text) document.execCommand('insertText', false, text);
-});
