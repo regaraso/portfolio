@@ -26,7 +26,7 @@ ul { list-style: none; }
 html { scrollbar-width: thin; scrollbar-color: var(--mute) var(--paper); scrollbar-gutter: stable; }
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--mute); border-radius: 6px; }
+::-webkit-scrollbar-thumb { background: var(--mute); border-radius:0; }
 ::-webkit-scrollbar-thumb:hover { background: var(--ink); }
 .about-dialog { scrollbar-color: var(--mute) transparent; }
 .about-dialog::-webkit-scrollbar-track { background: transparent; }
@@ -359,7 +359,7 @@ html.custom-scroll { scrollbar-width: none; scrollbar-gutter: auto; }
 html.custom-scroll::-webkit-scrollbar { display: none; }
 .page-scrollbar { position: fixed; z-index: 55; top: 8px; right: 5px; bottom: 8px; width: 10px; cursor: pointer; touch-action: none; user-select: none; }
 .page-scrollbar[hidden] { display: none; }
-.page-scrollbar-thumb { width: 3px; margin-left: 6px; border-radius: 3px; background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
+.page-scrollbar-thumb { width: 3px; margin-left: 6px; border-radius:0; background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
 .page-scrollbar:hover .page-scrollbar-thumb, .page-scrollbar.dragging .page-scrollbar-thumb { background: color-mix(in srgb, var(--acc) 85%, var(--ink)); }
 html:is(.intro,.menu-open,.about-open) .page-scrollbar { visibility: hidden; }
 

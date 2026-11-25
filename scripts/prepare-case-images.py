@@ -7,7 +7,9 @@ root = Path(__file__).resolve().parents[1]
 files = sorted((root / 'assets/img/recuerdo').glob('*.webp'))
 files += sorted((root / 'assets/img/recuerdo/collage').glob('*.webp'))
 files += sorted((root / 'assets/img/nebo').glob('*.webp'))
-files += [root / 'assets/img/cases/aspro-05@2x.webp']
+files += sorted((root / 'assets/img/aspro').glob('*.webp'))
+files += [root / 'assets/img/cases/aspro-05@2x.webp', root / 'assets/img/cases/aspro-04@2x.webp']
+files += [root / 'assets/img/works' / name for name in ('aspro-case.webp','aspro-molecule.webp','aspro-bear.webp','aspro-new-year.webp')]
 sources = {}
 for path in files:
     # Only files displayed in the current cases need responsive copies.

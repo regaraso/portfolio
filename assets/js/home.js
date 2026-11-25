@@ -74,7 +74,7 @@ const moveStrip = () => {
   secondTrack.style.transform = `translateX(${-Math.round((1 - p) * distance)}px)`;
 };
 onFrame(moveStrip);
-document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map((c, i) => `<article class="case"${i === 0 ? ' id="portfolio"' : ''}><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div>${i > 0 ? `<div class="case-actions"><a class="case-details" href="/work/${i === 0 ? 'aspro' : i === 1 ? 'nebo' : 'recuerdo'}/${EN ? '?lang=en' : ''}">${EN ? 'View project' : 'Подробнее'}</a></div>` : ''}</div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
+document.querySelector('.cases').innerHTML = `<h2 class="lbl">${t('portfolio')}</h2>` + C.cases.map((c, i) => `<article class="case"${i === 0 ? ' id="portfolio"' : ''}><div class="txt" data-in><h3>${c.t}</h3><div class="d">${[].concat(c.d).map(p => `<p>${p}</p>`).join('')}</div>${i >= 0 ? `<div class="case-actions"><a class="case-details" href="/work/${i === 0 ? 'aspro' : i === 1 ? 'nebo' : 'recuerdo'}/${EN ? '?lang=en' : ''}">${EN ? 'View project' : 'Подробнее'}</a></div>` : ''}</div><div class="frame" data-in>${c.imgs.map(m => img(c, m)).join('')}</div></article>`).join('');
 
 const SKW = [['aspro-brandbook', 'regina-script'], ['tini-cd', 'aspro-cases-collage'], ['aspro-chat', 'aspro-case'], ['aspro-bear', 'krid-poster', 'aspro-new-year'],
   ['aspro-banners'], ['aspro-dashboard'], ['aspro-sync-icon', 'tini-lines'], ['basta-poster', 'poster-high-infidelity'], [],

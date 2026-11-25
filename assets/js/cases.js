@@ -398,25 +398,308 @@ window.CASES = {
     "id": "aspro",
     "title": "Айдентика и развитие системы Аспро.Cloud",
     "artist": "",
-    "summary": "Развивала и систематизировала визуальную айдентику бренда: работала с графическими решениями, стилем коммуникаций и основными визуальными носителями. Совместно с командой выстраивала единый принцип оформления, который помог сделать бренд более последовательным и узнаваемым в цифровой среде.",
-    "description": "",
-    "placeholder": true,
+    "summary": "Развитие визуального языка Аспро.Cloud для блога, соцсетей и маркетинговых коммуникаций. От геометричных иллюстраций к более гибкому подходу с AI-графикой и общей библиотекой стилей.",
+    "description": "Работала внутри существующей айдентики: создавала графику и коммуникационные материалы, собирала шаблоны для блога и соцсетей, наводила порядок в файлах и настраивала общие стили и переменные между проектами. Развитие стиля: совместная работа с арт-директором.",
     "hero": {
       "src": "/assets/img/cases/aspro-05@2x.webp",
-      "alt": "Аспро.Cloud — визуальная система",
+      "alt": "Аспро.Cloud, визуальная система",
+      "altEn": "Aspro.Cloud visual system",
       "width": 2416,
-      "height": 1354,
-      "altEn": "Aspro.Cloud — visual system"
+      "height": 1354
     },
-    "meta": [],
-    "sections": [],
+    "meta": [
+      {
+        "label": "Роль",
+        "labelEn": "Role",
+        "value": "Графический дизайнер",
+        "valueEn": "Graphic Designer"
+      },
+      {
+        "label": "Направления",
+        "labelEn": "Scope",
+        "value": "Графика | Блог | Соцсети",
+        "valueEn": "Graphics | Blog | Social Media"
+      },
+      {
+        "label": "Период",
+        "labelEn": "Period",
+        "value": "2023–2026",
+        "valueEn": "2023–2026"
+      }
+    ],
+    "sections": [
+      {
+        "id": "starting-point",
+        "title": "С чего начали",
+        "titleEn": "The Starting Point",
+        "text": "Когда я пришла в команду, коммуникации строились на геометричных иллюстрациях и визуальных метафорах. Ограниченная палитра, выразительные фигуры и стоковые фотографии задавали узнаваемый характер. Ниже: мои работы в рамках этого стиля.",
+        "textEn": "When I joined the team, communications relied on geometric illustrations and visual metaphors. A restricted palette, expressive shapes and stock photography gave the brand a recognisable character. Below is my work within that visual direction.",
+        "images": [
+          {
+            "src": "/assets/img/aspro/wrapped-green.webp",
+            "alt": "Итоги года: зелёная композиция",
+            "altEn": "Year in review: green composition",
+            "width": 536,
+            "height": 281
+          },
+          {
+            "src": "/assets/img/aspro/newsletter-hand.webp",
+            "alt": "Рассылка: оценка опыта работы с сервисом",
+            "altEn": "Newsletter: feedback on the service",
+            "width": 536,
+            "height": 281
+          },
+          {
+            "src": "/assets/img/aspro/newsletter-cat.webp",
+            "alt": "Рассылка: метафора работы с сервисом",
+            "altEn": "Newsletter: a visual metaphor for using the service",
+            "width": 536,
+            "height": 281
+          },
+          {
+            "src": "/assets/img/aspro/wrapped-pink.webp",
+            "alt": "Итоги года: розовая композиция",
+            "altEn": "Year in review: pink composition",
+            "width": 536,
+            "height": 281
+          },
+          {
+            "src": "/assets/img/aspro/invoices.webp",
+            "alt": "Обложка статьи о сервисах выставления счетов",
+            "altEn": "Blog cover about invoicing services",
+            "width": 1112,
+            "height": 694,
+            "wide": true
+          },
+          {
+            "src": "/assets/img/aspro/ltv-front.webp",
+            "alt": "Карточка термина LTV: лицевая сторона",
+            "altEn": "LTV term card: front",
+            "width": 533,
+            "height": 533
+          },
+          {
+            "src": "/assets/img/aspro/ltv-back.webp",
+            "alt": "Карточка термина LTV: оборот",
+            "altEn": "LTV term card: back",
+            "width": 533,
+            "height": 533
+          },
+          {
+            "src": "/assets/img/aspro/january-updates.webp",
+            "alt": "Обновления января: коммуникационный материал",
+            "altEn": "January updates: communication asset",
+            "width": 1112,
+            "height": 582,
+            "wide": true
+          }
+        ]
+      },
+      {
+        "id": "constraints",
+        "title": "Что мешало двигаться быстрее",
+        "titleEn": "What Slowed Us Down",
+        "text": "Каждый формат требовал точной подгонки геометрии и расстояний. При адаптации композицию приходилось пересобирать, а строгая палитра ограничивала выбор решений. Для обложки в блог также нужно было найти незаезженную стоковую фотографию с подходящей моделью и постановкой, затем отретушировать её и встроить в иллюстрацию.",
+        "textEn": "Every format required precise adjustments to geometry and spacing. Adaptations meant rebuilding the composition, while the strict palette limited visual choices. A blog cover also involved finding a fresh stock photo with a suitable model and composition, retouching it and integrating it into the illustration.",
+        "images": []
+      },
+      {
+        "id": "direction",
+        "title": "Что сохранили и что изменили",
+        "titleEn": "What We Kept and Changed",
+        "text": "Сохранили метафоры и фирменные цвета: основу узнаваемости. От сложной геометрии отказались, чтобы упростить сборку и адаптацию. Палитру расширили производными градиентами: они стали работать в фонах и акцентах.",
+        "textEn": "We kept visual metaphors and the brand colours as the basis of recognition. We moved away from complex geometry to simplify production and adaptation. Gradients derived from the brand colours expanded the palette and became backgrounds and accents.",
+        "images": [
+          {
+            "src": "/assets/img/cases/aspro-01@2x.webp",
+            "width": 2420,
+            "height": 2246,
+            "alt": "Аспро.Cloud: фирменные цвета, градиенты и визуальные коммуникации",
+            "altEn": "Aspro.Cloud brand colours, gradients and visual communications",
+            "wide": true
+          }
+        ]
+      },
+      {
+        "id": "comparison",
+        "title": "Обложки до и после",
+        "titleEn": "Blog Covers Before and After",
+        "text": "В прежнем подходе: стоковая фотография, геометрия и ограниченная палитра. В обновлённом: объёмная метафора, стекло и градиенты на основе фирменных цветов.",
+        "textEn": "The earlier approach combined stock photography, geometry and a restricted palette. The evolved direction uses a dimensional metaphor, glass and gradients based on the brand colours.",
+        "images": [
+          {
+            "src": "/assets/img/aspro/blog-before-florist.webp",
+            "width": 864,
+            "height": 486,
+            "alt": "CRM для цветочного магазина (работа другого дизайнера)",
+            "altEn": "CRM for a flower shop (work by another designer)",
+            "caption": "CRM для цветочного магазина (работа другого дизайнера)",
+            "captionEn": "CRM for a flower shop (work by another designer)"
+          },
+          {
+            "src": "/assets/img/aspro/blog-after.webp",
+            "width": 960,
+            "height": 540,
+            "alt": "API для подключения своей телефонии",
+            "altEn": "API for connecting your own telephony system",
+            "caption": "API для подключения своей телефонии",
+            "captionEn": "API for connecting your own telephony system"
+          }
+        ]
+      },
+      {
+        "id": "visual-language",
+        "title": "Как вырабатывали новый стиль",
+        "titleEn": "Developing the New Visual Language",
+        "text": "В работу вошли AI-генерации с опорой на стекло и металл. Метафора по-прежнему определяла сюжет, а материалы и градиенты связывали разные изображения в один визуальный язык. Акцентные элементы добавляла вручную: генерация становилась частью дизайнерской сборки.",
+        "textEn": "We introduced AI-generated imagery built around glass and metal. The metaphor still shaped the concept, while materials and gradients connected different images into one visual language. I added accent elements by hand, making generation one part of the design process.",
+        "images": [
+          {
+            "src": "/assets/img/aspro/case_cloud_04.webp",
+            "width": 1788,
+            "height": 2072,
+            "alt": "Обложки блога Аспро.Cloud в обновлённом стиле",
+            "altEn": "Aspro.Cloud blog covers in the evolved visual style",
+            "wide": true
+          }
+        ]
+      },
+      {
+        "id": "landing-illustrations",
+        "title": "Обновление графики для лендингов",
+        "titleEn": "Updating Landing Page Graphics",
+        "text": "С развитием продукта иллюстрации обновили: вместо декоративной геометрии акцент сделали на актуальном интерфейсе и сценариях работы. Фон и акценты стали поддерживать композицию, а не перетягивать внимание.",
+        "textEn": "As the product evolved, we updated the illustrations to focus on the current interface and workflows rather than decorative geometry. Backgrounds and accents now supported the composition without competing for attention.",
+        "images": [],
+        "external": {
+          "href": "https://aspro.cloud/projects/crm-for-messengers/",
+          "label": "Посмотреть лендинг",
+          "labelEn": "View Landing Page"
+        },
+        "closing": "Моя задача охватывала 88 лендингов: 33 для разных видов бизнеса и отраслей и 55 для возможностей продукта. Обновляла графику под новые тексты и функционал, а в отдельной срочной задаче готовила иллюстрации и собирала новые страницы в существующей дизайн-системе. Всего на базе системы команда выпустила более 200 лендингов.",
+        "closingEn": "My task covered 88 landing pages: 33 for business types and industries, and 55 for product features. I updated graphics to match new copy and functionality. In a separate, time-sensitive task, I prepared illustrations and assembled new pages within the existing design system. In total, the team built more than 200 landing pages using the system.",
+        "comparisons": [
+          {
+            "title": "База знаний",
+            "titleEn": "Knowledge base",
+            "images": [
+              {
+                "src": "/assets/img/aspro/landing-knowledge-before.webp",
+                "width": 1504,
+                "height": 880,
+                "alt": "До: База знаний",
+                "altEn": "Before: Knowledge base"
+              },
+              {
+                "src": "/assets/img/aspro/landing-knowledge-after.webp",
+                "width": 753,
+                "height": 440,
+                "alt": "После: База знаний",
+                "altEn": "After: Knowledge base"
+              }
+            ]
+          },
+          {
+            "title": "Счета и отчёты",
+            "titleEn": "Invoices and reports",
+            "images": [
+              {
+                "src": "/assets/img/aspro/landing-invoices-before.webp",
+                "width": 753,
+                "height": 470,
+                "alt": "До: Счета и отчёты",
+                "altEn": "Before: Invoices and reports"
+              },
+              {
+                "src": "/assets/img/aspro/landing-invoices-after.webp",
+                "width": 753,
+                "height": 430,
+                "alt": "После: Счета и отчёты",
+                "altEn": "After: Invoices and reports"
+              }
+            ]
+          },
+          {
+            "title": "Общение с клиентами",
+            "titleEn": "Customer Communication",
+            "images": [
+              {
+                "src": "/assets/img/aspro/landing-chat-before.webp",
+                "width": 753,
+                "height": 470,
+                "alt": "До: Общение с клиентами",
+                "altEn": "Before: Customer Communication"
+              },
+              {
+                "src": "/assets/img/aspro/landing-chat-after.webp",
+                "width": 753,
+                "height": 470,
+                "alt": "После: Общение с клиентами",
+                "altEn": "After: Customer Communication"
+              }
+            ]
+          },
+          {
+            "title": "Карточка сделки",
+            "titleEn": "Deal Card",
+            "images": [
+              {
+                "src": "/assets/img/aspro/landing-deal-before.webp",
+                "width": 753,
+                "height": 470,
+                "alt": "До: Карточка сделки",
+                "altEn": "Before: Deal Card"
+              },
+              {
+                "src": "/assets/img/aspro/landing-deal-after.webp",
+                "width": 753,
+                "height": 470,
+                "alt": "После: Карточка сделки",
+                "altEn": "After: Deal Card"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "libraries",
+        "title": "Как поддерживала систему",
+        "titleEn": "Keeping the System Organised",
+        "text": "Для блога и соцсетей собирала шаблоны и повторяемые решения. Параллельно разбирала накопившиеся файлы, собирала стили и переменные, чтобы они работали между проектами. Моя зона ответственности: графика, коммуникационные шаблоны и организация библиотек.",
+        "textEn": "I built templates and reusable solutions for the blog and social media. Alongside this, I organised accumulated files and assembled styles and variables that worked across projects. My responsibility covered graphics, communication templates and library organisation.",
+        "images": []
+      },
+      {
+        "id": "results",
+        "title": "Что получилось",
+        "titleEn": "The Result",
+        "text": "На примере обложек для блога сравнили время до и после изменений. Раньше задача занимала в среднем 3 часа: поиск стоковой фотографии, ретушь, сборка и точная подгонка. С новым подходом в среднем 1,5 часа.",
+        "textEn": "We compared production time for blog covers before and after the changes. Previously, a cover took an average of 3 hours, including stock-photo research, retouching, composition and precise adjustments. With the new approach, it took an average of 1.5 hours.",
+        "images": []
+      },
+      {
+        "id": "showcase",
+        "title": "",
+        "titleEn": "",
+        "images": [
+          {
+            "src": "/assets/img/cases/aspro-06@2x.webp",
+            "width": 2416,
+            "height": 1450,
+            "alt": "Подборка работ для Аспро.Cloud",
+            "altEn": "Selected work for Aspro.Cloud",
+            "wide": true
+          }
+        ]
+      }
+    ],
     "external": {
       "label": "на behance",
       "href": "https://www.behance.net/gallery/248591759/Landing-pages-system-for-SaaS-platform",
       "labelEn": "On Behance"
     },
     "titleEn": "Identity and Development of the Aspro.Cloud System",
-    "summaryEn": "Developed and systematised the brand’s visual identity: worked on graphic solutions, communication style and key visual assets. Together with the team, built a consistent visual language that made the brand more recognisable in the digital space.",
-    "descriptionEn": ""
+    "summaryEn": "Evolving Aspro.Cloud’s visual language for the blog, social media and marketing communications. From geometric illustrations to a more flexible approach using AI-generated graphics and shared style libraries.",
+    "descriptionEn": "Worked within the existing brand identity: created graphics and communication assets, built blog and social media templates, organised design files and connected shared styles and variables across projects. The visual direction evolved in collaboration with the art director."
   }
 };
