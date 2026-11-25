@@ -432,8 +432,8 @@ window.CASES = {
         "id": "starting-point",
         "title": "С чего начали",
         "titleEn": "The Starting Point",
-        "text": "Когда я пришла в команду, коммуникации строились на геометричных иллюстрациях и визуальных метафорах. Ограниченная палитра, выразительные фигуры и стоковые фотографии задавали узнаваемый характер. Ниже: мои работы в рамках этого стиля.",
-        "textEn": "When I joined the team, communications relied on geometric illustrations and visual metaphors. A restricted palette, expressive shapes and stock photography gave the brand a recognisable character. Below is my work within that visual direction.",
+        "text": "Когда я пришла в команду, коммуникации строились на геометричных иллюстрациях и визуальных метафорах. Ограниченная палитра, выразительные фигуры и стоковые фотографии задавали узнаваемый характер.",
+        "textEn": "When I joined the team, communications relied on geometric illustrations and visual metaphors. A restricted palette, expressive shapes and stock photography gave the brand a recognisable character.",
         "images": [
           {
             "src": "/assets/img/aspro/wrapped-green.webp",
@@ -507,8 +507,8 @@ window.CASES = {
         "id": "direction",
         "title": "Что сохранили и что изменили",
         "titleEn": "What We Kept and Changed",
-        "text": "Сохранили метафоры и фирменные цвета: основу узнаваемости. От сложной геометрии отказались, чтобы упростить сборку и адаптацию. Палитру расширили производными градиентами: они стали работать в фонах и акцентах.",
-        "textEn": "We kept visual metaphors and the brand colours as the basis of recognition. We moved away from complex geometry to simplify production and adaptation. Gradients derived from the brand colours expanded the palette and became backgrounds and accents.",
+        "text": "Прежний стиль был более игривым. Нужно было сделать визуальный язык серьёзнее, сохранив яркие краски и узнаваемость бренда. Сохранили метафоры и фирменные цвета: основу узнаваемости. От сложной геометрии отказались, чтобы упростить сборку и адаптацию. Палитру расширили производными градиентами: они стали работать в фонах и акцентах.",
+        "textEn": "The previous style was more playful. We needed a more mature visual language while keeping the vivid colours and brand recognition. We kept visual metaphors and the brand colours as the basis of recognition. We moved away from complex geometry to simplify production and adaptation. Gradients derived from the brand colours expanded the palette and became backgrounds and accents.",
         "images": [
           {
             "src": "/assets/img/cases/aspro-01@2x.webp",
@@ -553,16 +553,7 @@ window.CASES = {
         "titleEn": "Developing the New Visual Language",
         "text": "В работу вошли AI-генерации с опорой на стекло и металл. Метафора по-прежнему определяла сюжет, а материалы и градиенты связывали разные изображения в один визуальный язык. Акцентные элементы добавляла вручную: генерация становилась частью дизайнерской сборки.",
         "textEn": "We introduced AI-generated imagery built around glass and metal. The metaphor still shaped the concept, while materials and gradients connected different images into one visual language. I added accent elements by hand, making generation one part of the design process.",
-        "images": [
-          {
-            "src": "/assets/img/aspro/case_cloud_04.webp",
-            "width": 1788,
-            "height": 2072,
-            "alt": "Обложки блога Аспро.Cloud в обновлённом стиле",
-            "altEn": "Aspro.Cloud blog covers in the evolved visual style",
-            "wide": true
-          }
-        ]
+        "images": []
       },
       {
         "id": "landing-illustrations",
@@ -658,6 +649,24 @@ window.CASES = {
                 "altEn": "After: Deal Card"
               }
             ]
+          }
+        ],
+        "closingImages": [
+          {
+            "src": "/assets/img/cases/aspro-02@2x.webp",
+            "width": 2416,
+            "height": 1168,
+            "alt": "Графика для лендингов Аспро.Cloud",
+            "altEn": "Landing page graphics for Aspro.Cloud",
+            "wide": true
+          },
+          {
+            "src": "/assets/img/cases/aspro-03@2x.webp",
+            "width": 2416,
+            "height": 1520,
+            "alt": "Примеры графики для лендингов Аспро.Cloud",
+            "altEn": "Examples of landing page graphics for Aspro.Cloud",
+            "wide": true
           }
         ]
       },
